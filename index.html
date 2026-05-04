@@ -7,8 +7,82 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>Frenemies</h1>
-  <p>Coming soon — a grid puzzle about words that pretend to be friends.</p>
+
+  <!-- COVER SCREEN -->
+  <section id="screen-cover" class="screen active">
+    <div class="container">
+      <h1 class="title">Frenemies</h1>
+      <p class="tagline">Some words look like friends. Some are traps.</p>
+
+      <div class="direction-selector">
+        <p class="prompt">Choose your direction of play:</p>
+        <button class="direction-btn" data-direction="en-from-es">
+          I read English / I judge against Spanish
+        </button>
+        <button class="direction-btn" data-direction="es-from-en">
+          I read Spanish / I judge against English
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEVEL 1: WORD FIELD -->
+  <section id="screen-level1" class="screen">
+    <div class="container">
+      <header class="hud">
+        <div class="hud-item">
+          <span class="hud-label">Level 1 — Word Field</span>
+        </div>
+        <div class="hud-item">
+          <span class="hud-label">Lives:</span>
+          <span id="level1-lives">3</span>
+        </div>
+        <div class="hud-item">
+          <span class="hud-label">Score:</span>
+          <span id="level1-score">0</span>
+        </div>
+      </header>
+
+      <p class="instructions">
+        Claim words used the same in both languages. Avoid the false friends.
+      </p>
+
+      <div id="level1-grid" class="grid"></div>
+
+      <p id="level1-feedback" class="feedback">Click a tile to claim it.</p>
+    </div>
+  </section>
+
+  <!-- LEVEL 2: SENTENCE FIELD (placeholder for now) -->
+  <section id="screen-level2" class="screen">
+    <div class="container">
+      <h2>Level 2 — Sentence Field</h2>
+      <p>Level 2 coming soon. You cleared Level 1 with <span id="carryover-score">0</span> points.</p>
+      <button id="level2-finish" class="primary-btn">Continue to End</button>
+    </div>
+  </section>
+
+  <!-- WIN STATE -->
+  <section id="screen-win" class="screen">
+    <div class="container">
+      <h2>Field Cleared</h2>
+      <p>You spotted every trap and claimed every safe word.</p>
+      <p>Final score: <span id="win-score">0</span></p>
+      <button class="replay-btn primary-btn">Play Again</button>
+    </div>
+  </section>
+
+  <!-- LOSE STATE -->
+  <section id="screen-lose" class="screen">
+    <div class="container">
+      <h2>Field Lost</h2>
+      <p>The traps got you.</p>
+      <p>Score before falling: <span id="lose-score">0</span></p>
+      <div id="lose-debrief"></div>
+      <button class="replay-btn primary-btn">Play Again</button>
+    </div>
+  </section>
+
   <script src="game.js"></script>
 </body>
 </html>

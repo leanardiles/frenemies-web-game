@@ -1,0 +1,768 @@
+{
+  "_meta": {
+    "project": "Frenemies",
+    "pass": "Pass 1 — EN-ES core corpus",
+    "shipping_languages": ["en", "es"],
+    "architecture_languages": ["en", "es", "fr", "nl"],
+    "level1_word_count": 30,
+    "level2_sentence_count": 35,
+    "validation_status": "DRAFT — pending native-speaker validation by Leandro",
+    "notes": "FR and NL form/meaning fields are present but empty; to be populated in Pass 2."
+  },
+
+  "level1_words": [
+    {
+      "id": "actual_001",
+      "type": "false_friend",
+      "forms": { "en": "actual", "es": "actual", "fr": "", "nl": "" },
+      "meanings": {
+        "en": "real, factual, existing in fact",
+        "es": "current, present-day",
+        "fr": "",
+        "nl": ""
+      },
+      "trap_in": ["en", "es"],
+      "notes": "Classic false friend. EN means 'real'; ES means 'current'. The trap fires in both directions."
+    },
+    {
+      "id": "embarazada_001",
+      "type": "false_friend",
+      "forms": { "en": "embarrassed", "es": "embarazada", "fr": "", "nl": "" },
+      "meanings": {
+        "en": "ashamed, awkward",
+        "es": "pregnant",
+        "fr": "",
+        "nl": ""
+      },
+      "trap_in": ["en", "es"],
+      "notes": "The most famous EN-ES false friend. Note: 'embarazada' is the feminine form; the masculine 'embarazado' exists but is rarely used in the same sense."
+    },
+    {
+      "id": "sensible_001",
+      "type": "false_friend",
+      "forms": { "en": "sensible", "es": "sensible", "fr": "", "nl": "" },
+      "meanings": {
+        "en": "practical, reasonable, having good judgment",
+        "es": "sensitive, easily affected emotionally",
+        "fr": "",
+        "nl": ""
+      },
+      "trap_in": ["en", "es"],
+      "notes": "EN 'sensible' = ES 'sensato' / 'razonable'. ES 'sensible' = EN 'sensitive'."
+    },
+    {
+      "id": "constipado_001",
+      "type": "false_friend",
+      "forms": { "en": "constipated", "es": "constipado", "fr": "", "nl": "" },
+      "meanings": {
+        "en": "having difficulty with bowel movements",
+        "es": "having a head cold, congested",
+        "fr": "",
+        "nl": ""
+      },
+      "trap_in": ["en", "es"],
+      "notes": "Medical false friend. ES 'constipado' = EN 'has a cold'. EN 'constipated' = ES 'estreñido'."
+    },
+    {
+      "id": "exito_001",
+      "type": "false_friend",
+      "forms": { "en": "exit", "es": "éxito", "fr": "", "nl": "" },
+      "meanings": {
+        "en": "way out",
+        "es": "success",
+        "fr": "",
+        "nl": ""
+      },
+      "trap_in": ["en", "es"],
+      "notes": "ES 'éxito' = EN 'success'. EN 'exit' = ES 'salida'."
+    },
+    {
+      "id": "libreria_001",
+      "type": "false_friend",
+      "forms": { "en": "library", "es": "librería", "fr": "", "nl": "" },
+      "meanings": {
+        "en": "place to borrow books",
+        "es": "bookshop, place to buy books",
+        "fr": "",
+        "nl": ""
+      },
+      "trap_in": ["en", "es"],
+      "notes": "ES 'librería' = EN 'bookshop'. EN 'library' = ES 'biblioteca'."
+    },
+    {
+      "id": "carpeta_001",
+      "type": "false_friend",
+      "forms": { "en": "carpet", "es": "carpeta", "fr": "", "nl": "" },
+      "meanings": {
+        "en": "floor covering",
+        "es": "folder, file holder",
+        "fr": "",
+        "nl": ""
+      },
+      "trap_in": ["en", "es"],
+      "notes": "ES 'carpeta' = EN 'folder'. EN 'carpet' = ES 'alfombra'."
+    },
+    {
+      "id": "fabrica_001",
+      "type": "false_friend",
+      "forms": { "en": "fabric", "es": "fábrica", "fr": "", "nl": "" },
+      "meanings": {
+        "en": "cloth material, textile",
+        "es": "factory, manufacturing plant",
+        "fr": "",
+        "nl": ""
+      },
+      "trap_in": ["en", "es"],
+      "notes": "ES 'fábrica' = EN 'factory'. EN 'fabric' = ES 'tela'."
+    },
+    {
+      "id": "ropa_001",
+      "type": "false_friend",
+      "forms": { "en": "rope", "es": "ropa", "fr": "", "nl": "" },
+      "meanings": {
+        "en": "thick cord, twisted fibers",
+        "es": "clothing, garments",
+        "fr": "",
+        "nl": ""
+      },
+      "trap_in": ["en", "es"],
+      "notes": "ES 'ropa' = EN 'clothes'. EN 'rope' = ES 'cuerda'."
+    },
+    {
+      "id": "molestar_001",
+      "type": "false_friend",
+      "forms": { "en": "molest", "es": "molestar", "fr": "", "nl": "" },
+      "meanings": {
+        "en": "to assault sexually",
+        "es": "to bother, annoy, disturb",
+        "fr": "",
+        "nl": ""
+      },
+      "trap_in": ["en", "es"],
+      "notes": "Significant register difference. ES 'molestar' is neutral and very common; EN 'molest' has shifted to a strongly negative meaning. A speaker confusing these can cause real distress."
+    },
+    {
+      "id": "asistir_001",
+      "type": "false_friend",
+      "forms": { "en": "assist", "es": "asistir", "fr": "", "nl": "" },
+      "meanings": {
+        "en": "to help",
+        "es": "to attend, be present at",
+        "fr": "",
+        "nl": ""
+      },
+      "trap_in": ["en", "es"],
+      "notes": "ES 'asistir' primarily means 'to attend' (e.g., asistir a una reunión = attend a meeting). It can also mean 'help' in some contexts but the primary meaning is 'attend'. EN 'assist' = ES 'ayudar'."
+    },
+    {
+      "id": "introducir_001",
+      "type": "false_friend",
+      "forms": { "en": "introduce", "es": "introducir", "fr": "", "nl": "" },
+      "meanings": {
+        "en": "to present someone or something",
+        "es": "to insert, put inside",
+        "fr": "",
+        "nl": ""
+      },
+      "trap_in": ["en", "es"],
+      "notes": "ES 'introducir' = EN 'insert'. EN 'introduce' (as in 'introduce a person') = ES 'presentar'."
+    },
+    {
+      "id": "atender_001",
+      "type": "false_friend",
+      "forms": { "en": "attend", "es": "atender", "fr": "", "nl": "" },
+      "meanings": {
+        "en": "to be present at, to go to",
+        "es": "to serve, to take care of, to attend to (e.g., a customer)",
+        "fr": "",
+        "nl": ""
+      },
+      "trap_in": ["en", "es"],
+      "notes": "Tricky pair because both touch on the idea of 'attending'. EN 'attend a meeting' = ES 'asistir a una reunión'. ES 'atender un cliente' = EN 'serve a customer'."
+    },
+    {
+      "id": "discusion_001",
+      "type": "false_friend",
+      "forms": { "en": "discussion", "es": "discusión", "fr": "", "nl": "" },
+      "meanings": {
+        "en": "conversation, talk about a topic",
+        "es": "argument, often heated",
+        "fr": "",
+        "nl": ""
+      },
+      "trap_in": ["en", "es"],
+      "notes": "Partial false friend. ES 'discusión' can mean a calm discussion in formal contexts but commonly implies an argument or disagreement. EN 'discussion' = ES 'conversación' or 'debate'."
+    },
+    {
+      "id": "eventualmente_001",
+      "type": "false_friend",
+      "forms": { "en": "eventually", "es": "eventualmente", "fr": "", "nl": "" },
+      "meanings": {
+        "en": "in the end, finally, after some time",
+        "es": "possibly, perhaps, occasionally",
+        "fr": "",
+        "nl": ""
+      },
+      "trap_in": ["en", "es"],
+      "notes": "ES 'eventualmente' = EN 'possibly' or 'occasionally'. EN 'eventually' = ES 'finalmente' or 'al final'. Common ESL/SSL error."
+    },
+    {
+      "id": "simpatico_001",
+      "type": "false_friend",
+      "forms": { "en": "sympathetic", "es": "simpático", "fr": "", "nl": "" },
+      "meanings": {
+        "en": "compassionate, showing concern for others' feelings",
+        "es": "nice, friendly, likeable",
+        "fr": "",
+        "nl": ""
+      },
+      "trap_in": ["en", "es"],
+      "notes": "ES 'simpático' = EN 'nice' or 'likeable'. EN 'sympathetic' = ES 'compasivo' or 'comprensivo'."
+    },
+    {
+      "id": "preservativo_001",
+      "type": "false_friend",
+      "forms": { "en": "preservative", "es": "preservativo", "fr": "", "nl": "" },
+      "meanings": {
+        "en": "substance added to food to prevent spoilage",
+        "es": "condom",
+        "fr": "",
+        "nl": ""
+      },
+      "trap_in": ["en", "es"],
+      "notes": "Memorably awkward false friend. EN 'preservative' = ES 'conservante'. ES 'preservativo' = EN 'condom'."
+    },
+    {
+      "id": "largo_001",
+      "type": "false_friend",
+      "forms": { "en": "large", "es": "largo", "fr": "", "nl": "" },
+      "meanings": {
+        "en": "big in size",
+        "es": "long",
+        "fr": "",
+        "nl": ""
+      },
+      "trap_in": ["en", "es"],
+      "notes": "ES 'largo' = EN 'long'. EN 'large' = ES 'grande'."
+    },
+    {
+      "id": "actor_001",
+      "type": "true_cognate",
+      "forms": { "en": "actor", "es": "actor", "fr": "", "nl": "" },
+      "meanings": {
+        "en": "performer in plays or films",
+        "es": "performer in plays or films",
+        "fr": "",
+        "nl": ""
+      },
+      "trap_in": [],
+      "notes": "Same meaning."
+    },
+    {
+      "id": "hotel_001",
+      "type": "true_cognate",
+      "forms": { "en": "hotel", "es": "hotel", "fr": "", "nl": "" },
+      "meanings": {
+        "en": "lodging establishment",
+        "es": "lodging establishment",
+        "fr": "",
+        "nl": ""
+      },
+      "trap_in": [],
+      "notes": "Same meaning."
+    },
+    {
+      "id": "doctor_001",
+      "type": "true_cognate",
+      "forms": { "en": "doctor", "es": "doctor", "fr": "", "nl": "" },
+      "meanings": {
+        "en": "medical practitioner; holder of doctorate",
+        "es": "medical practitioner; holder of doctorate",
+        "fr": "",
+        "nl": ""
+      },
+      "trap_in": [],
+      "notes": "Same meaning."
+    },
+    {
+      "id": "animal_001",
+      "type": "true_cognate",
+      "forms": { "en": "animal", "es": "animal", "fr": "", "nl": "" },
+      "meanings": {
+        "en": "living creature",
+        "es": "living creature",
+        "fr": "",
+        "nl": ""
+      },
+      "trap_in": [],
+      "notes": "Same meaning."
+    },
+    {
+      "id": "color_001",
+      "type": "true_cognate",
+      "forms": { "en": "color", "es": "color", "fr": "", "nl": "" },
+      "meanings": {
+        "en": "visual property of light",
+        "es": "visual property of light",
+        "fr": "",
+        "nl": ""
+      },
+      "trap_in": [],
+      "notes": "Same meaning. Note ES doesn't double the L (no 'colour' equivalent)."
+    },
+    {
+      "id": "natural_001",
+      "type": "true_cognate",
+      "forms": { "en": "natural", "es": "natural", "fr": "", "nl": "" },
+      "meanings": {
+        "en": "occurring in nature, not artificial",
+        "es": "occurring in nature, not artificial",
+        "fr": "",
+        "nl": ""
+      },
+      "trap_in": [],
+      "notes": "Same meaning."
+    },
+    {
+      "id": "radio_001",
+      "type": "true_cognate",
+      "forms": { "en": "radio", "es": "radio", "fr": "", "nl": "" },
+      "meanings": {
+        "en": "broadcast medium / radio device",
+        "es": "broadcast medium / radio device",
+        "fr": "",
+        "nl": ""
+      },
+      "trap_in": [],
+      "notes": "Same meaning. (Note: ES 'radio' can also mean 'radius' in geometry, but the broadcast meaning is the relevant one.)"
+    },
+    {
+      "id": "familia_001",
+      "type": "true_cognate",
+      "forms": { "en": "family", "es": "familia", "fr": "", "nl": "" },
+      "meanings": {
+        "en": "group of related people",
+        "es": "group of related people",
+        "fr": "",
+        "nl": ""
+      },
+      "trap_in": [],
+      "notes": "Same meaning."
+    },
+    {
+      "id": "musica_001",
+      "type": "true_cognate",
+      "forms": { "en": "music", "es": "música", "fr": "", "nl": "" },
+      "meanings": {
+        "en": "art of organized sound",
+        "es": "art of organized sound",
+        "fr": "",
+        "nl": ""
+      },
+      "trap_in": [],
+      "notes": "Same meaning."
+    },
+    {
+      "id": "telefono_001",
+      "type": "true_cognate",
+      "forms": { "en": "telephone", "es": "teléfono", "fr": "", "nl": "" },
+      "meanings": {
+        "en": "device for voice communication",
+        "es": "device for voice communication",
+        "fr": "",
+        "nl": ""
+      },
+      "trap_in": [],
+      "notes": "Same meaning."
+    },
+    {
+      "id": "universidad_001",
+      "type": "true_cognate",
+      "forms": { "en": "university", "es": "universidad", "fr": "", "nl": "" },
+      "meanings": {
+        "en": "institution of higher education",
+        "es": "institution of higher education",
+        "fr": "",
+        "nl": ""
+      },
+      "trap_in": [],
+      "notes": "Same meaning. Note ES uses '-dad' suffix where EN uses '-ty'."
+    },
+    {
+      "id": "importante_001",
+      "type": "true_cognate",
+      "forms": { "en": "important", "es": "importante", "fr": "", "nl": "" },
+      "meanings": {
+        "en": "of significance",
+        "es": "of significance",
+        "fr": "",
+        "nl": ""
+      },
+      "trap_in": [],
+      "notes": "Same meaning."
+    }
+  ],
+
+  "level2_sentences": [
+    {
+      "id": "actual_sent_001",
+      "based_on": "actual_001",
+      "language": "en",
+      "sentence": "Nobody knows the actual cost of the project.",
+      "flagged_word": "actual",
+      "correct_usage": true,
+      "translation_meaning": "real, true",
+      "notes": "Correct EN use of 'actual' meaning 'real'."
+    },
+    {
+      "id": "actual_sent_002",
+      "based_on": "actual_001",
+      "language": "en",
+      "sentence": "I will email you the actual schedule, not the old one.",
+      "flagged_word": "actual",
+      "correct_usage": false,
+      "translation_meaning": "the writer means 'current', which is the Spanish meaning",
+      "notes": "Misuse: the writer is treating EN 'actual' as if it meant ES 'actual' (current). The intended word would be 'current' or 'latest'."
+    },
+    {
+      "id": "actual_sent_003",
+      "based_on": "actual_001",
+      "language": "es",
+      "sentence": "Necesito el precio actual del producto.",
+      "flagged_word": "actual",
+      "correct_usage": true,
+      "translation_meaning": "current, present-day",
+      "notes": "Correct ES use of 'actual' meaning 'current'."
+    },
+    {
+      "id": "embarazada_sent_001",
+      "based_on": "embarazada_001",
+      "language": "es",
+      "sentence": "Mi hermana está embarazada de cinco meses.",
+      "flagged_word": "embarazada",
+      "correct_usage": true,
+      "translation_meaning": "pregnant",
+      "notes": "Correct ES use."
+    },
+    {
+      "id": "embarazada_sent_002",
+      "based_on": "embarazada_001",
+      "language": "es",
+      "sentence": "Estaba muy embarazada cuando me caí en público.",
+      "flagged_word": "embarazada",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'embarrassed', not 'pregnant'",
+      "notes": "Classic misuse. The intended word is 'avergonzada'."
+    },
+    {
+      "id": "sensible_sent_001",
+      "based_on": "sensible_001",
+      "language": "en",
+      "sentence": "She made a sensible decision to leave early.",
+      "flagged_word": "sensible",
+      "correct_usage": true,
+      "translation_meaning": "practical, reasonable",
+      "notes": "Correct EN use."
+    },
+    {
+      "id": "sensible_sent_002",
+      "based_on": "sensible_001",
+      "language": "en",
+      "sentence": "He's very sensible — he cries at every movie.",
+      "flagged_word": "sensible",
+      "correct_usage": false,
+      "translation_meaning": "the writer means 'sensitive', the Spanish meaning",
+      "notes": "Misuse. EN 'sensitive' = ES 'sensible'."
+    },
+    {
+      "id": "sensible_sent_003",
+      "based_on": "sensible_001",
+      "language": "es",
+      "sentence": "Es una persona muy sensible al ruido.",
+      "flagged_word": "sensible",
+      "correct_usage": true,
+      "translation_meaning": "sensitive",
+      "notes": "Correct ES use."
+    },
+    {
+      "id": "constipado_sent_001",
+      "based_on": "constipado_001",
+      "language": "es",
+      "sentence": "No iré a trabajar, estoy muy constipado.",
+      "flagged_word": "constipado",
+      "correct_usage": true,
+      "translation_meaning": "having a head cold",
+      "notes": "Correct ES use. The speaker has a cold."
+    },
+    {
+      "id": "constipado_sent_002",
+      "based_on": "constipado_001",
+      "language": "en",
+      "sentence": "I'm constipated — I think I caught it from my coworker.",
+      "flagged_word": "constipated",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means they have a cold (Spanish meaning)",
+      "notes": "Misuse. EN 'constipated' refers to bowel issues; the speaker is treating it as ES 'constipado'."
+    },
+    {
+      "id": "exito_sent_001",
+      "based_on": "exito_001",
+      "language": "es",
+      "sentence": "La película fue un gran éxito en taquilla.",
+      "flagged_word": "éxito",
+      "correct_usage": true,
+      "translation_meaning": "success",
+      "notes": "Correct ES use."
+    },
+    {
+      "id": "exito_sent_002",
+      "based_on": "exito_001",
+      "language": "es",
+      "sentence": "Por favor, use el éxito de emergencia más cercano.",
+      "flagged_word": "éxito",
+      "correct_usage": false,
+      "translation_meaning": "the writer means 'exit', confusing it with EN",
+      "notes": "Misuse. The intended word is 'salida'."
+    },
+    {
+      "id": "libreria_sent_001",
+      "based_on": "libreria_001",
+      "language": "es",
+      "sentence": "Compré tres libros nuevos en la librería del centro.",
+      "flagged_word": "librería",
+      "correct_usage": true,
+      "translation_meaning": "bookshop",
+      "notes": "Correct ES use. The speaker bought books at a bookshop."
+    },
+    {
+      "id": "libreria_sent_002",
+      "based_on": "libreria_001",
+      "language": "es",
+      "sentence": "Voy a la librería a estudiar y devolver libros.",
+      "flagged_word": "librería",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'library', confusing with EN",
+      "notes": "Misuse. The intended word is 'biblioteca' (you don't return books to a bookshop)."
+    },
+    {
+      "id": "carpeta_sent_001",
+      "based_on": "carpeta_001",
+      "language": "es",
+      "sentence": "Guardé los documentos en una carpeta azul.",
+      "flagged_word": "carpeta",
+      "correct_usage": true,
+      "translation_meaning": "folder",
+      "notes": "Correct ES use."
+    },
+    {
+      "id": "carpeta_sent_002",
+      "based_on": "carpeta_001",
+      "language": "en",
+      "sentence": "We need to clean the carpet before the documents arrive.",
+      "flagged_word": "carpet",
+      "correct_usage": true,
+      "translation_meaning": "floor covering",
+      "notes": "Correct EN use, included as a contrasting safe tile."
+    },
+    {
+      "id": "fabrica_sent_001",
+      "based_on": "fabrica_001",
+      "language": "es",
+      "sentence": "Mi padre trabaja en una fábrica de coches.",
+      "flagged_word": "fábrica",
+      "correct_usage": true,
+      "translation_meaning": "factory",
+      "notes": "Correct ES use."
+    },
+    {
+      "id": "fabrica_sent_002",
+      "based_on": "fabrica_001",
+      "language": "en",
+      "sentence": "This dress is made of expensive Italian fabric.",
+      "flagged_word": "fabric",
+      "correct_usage": true,
+      "translation_meaning": "cloth, textile",
+      "notes": "Correct EN use, contrasting safe tile."
+    },
+    {
+      "id": "ropa_sent_001",
+      "based_on": "ropa_001",
+      "language": "es",
+      "sentence": "Necesito lavar la ropa antes del viaje.",
+      "flagged_word": "ropa",
+      "correct_usage": true,
+      "translation_meaning": "clothing",
+      "notes": "Correct ES use."
+    },
+    {
+      "id": "ropa_sent_002",
+      "based_on": "ropa_001",
+      "language": "es",
+      "sentence": "Compré ropa nueva para escalar la montaña.",
+      "flagged_word": "ropa",
+      "correct_usage": false,
+      "translation_meaning": "the writer probably means 'rope', confusing with EN",
+      "notes": "FLAGGED FOR REVIEW: This trap is soft. The sentence is grammatically valid Spanish meaning 'I bought new clothes for climbing.' May need replacement with a clearer trap."
+    },
+    {
+      "id": "molestar_sent_001",
+      "based_on": "molestar_001",
+      "language": "es",
+      "sentence": "No quiero molestar, pero tengo una pregunta.",
+      "flagged_word": "molestar",
+      "correct_usage": true,
+      "translation_meaning": "to bother, disturb",
+      "notes": "Correct ES use, common polite phrase."
+    },
+    {
+      "id": "molestar_sent_002",
+      "based_on": "molestar_001",
+      "language": "en",
+      "sentence": "Sorry to molest you, but do you have a moment?",
+      "flagged_word": "molest",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'bother', not the modern EN sense",
+      "notes": "Misuse with strong consequences. The intended word is 'bother' or 'disturb'. This is a trap that real Spanish speakers fall into in English."
+    },
+    {
+      "id": "asistir_sent_001",
+      "based_on": "asistir_001",
+      "language": "es",
+      "sentence": "Pienso asistir a la conferencia el viernes.",
+      "flagged_word": "asistir",
+      "correct_usage": true,
+      "translation_meaning": "to attend",
+      "notes": "Correct ES use."
+    },
+    {
+      "id": "asistir_sent_002",
+      "based_on": "asistir_001",
+      "language": "en",
+      "sentence": "Can you assist the meeting tomorrow morning?",
+      "flagged_word": "assist",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'attend', the Spanish meaning",
+      "notes": "Misuse. The intended word is 'attend'."
+    },
+    {
+      "id": "introducir_sent_001",
+      "based_on": "introducir_001",
+      "language": "es",
+      "sentence": "Introduce la moneda en la ranura.",
+      "flagged_word": "introduce",
+      "correct_usage": true,
+      "translation_meaning": "to insert",
+      "notes": "Correct ES use. (Note: imperative 'introduce', not infinitive 'introducir'.)"
+    },
+    {
+      "id": "introducir_sent_002",
+      "based_on": "introducir_001",
+      "language": "en",
+      "sentence": "Please introduce your card into the machine.",
+      "flagged_word": "introduce",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'insert', the Spanish meaning",
+      "notes": "Misuse. The intended word is 'insert'."
+    },
+    {
+      "id": "discusion_sent_001",
+      "based_on": "discusion_001",
+      "language": "es",
+      "sentence": "Tuvimos una discusión muy fuerte anoche.",
+      "flagged_word": "discusión",
+      "correct_usage": true,
+      "translation_meaning": "argument, heated disagreement",
+      "notes": "Correct ES use, implying argument."
+    },
+    {
+      "id": "discusion_sent_002",
+      "based_on": "discusion_001",
+      "language": "en",
+      "sentence": "The team had a productive discussion about the budget.",
+      "flagged_word": "discussion",
+      "correct_usage": true,
+      "translation_meaning": "calm conversation",
+      "notes": "Correct EN use, contrasting safe tile."
+    },
+    {
+      "id": "eventualmente_sent_001",
+      "based_on": "eventualmente_001",
+      "language": "es",
+      "sentence": "Eventualmente trabajo los sábados, pero no siempre.",
+      "flagged_word": "eventualmente",
+      "correct_usage": true,
+      "translation_meaning": "occasionally, sometimes",
+      "notes": "Correct ES use meaning 'occasionally'. FLAGGED: confirm this reads as natural Spanish."
+    },
+    {
+      "id": "eventualmente_sent_002",
+      "based_on": "eventualmente_001",
+      "language": "en",
+      "sentence": "Eventually I help in the office on weekends.",
+      "flagged_word": "eventually",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'occasionally', the Spanish meaning",
+      "notes": "Misuse. EN 'eventually' = 'in the end', not 'occasionally'."
+    },
+    {
+      "id": "simpatico_sent_001",
+      "based_on": "simpatico_001",
+      "language": "es",
+      "sentence": "Tu primo es muy simpático, me cae genial.",
+      "flagged_word": "simpático",
+      "correct_usage": true,
+      "translation_meaning": "nice, friendly",
+      "notes": "Correct ES use. FLAGGED: 'me cae genial' may be too colloquial; alternatives possible."
+    },
+    {
+      "id": "simpatico_sent_002",
+      "based_on": "simpatico_001",
+      "language": "en",
+      "sentence": "Your cousin is so sympathetic — everyone enjoys his company.",
+      "flagged_word": "sympathetic",
+      "correct_usage": false,
+      "translation_meaning": "the writer means 'nice', the Spanish meaning",
+      "notes": "Misuse. The intended word is 'nice' or 'friendly'."
+    },
+    {
+      "id": "preservativo_sent_001",
+      "based_on": "preservativo_001",
+      "language": "en",
+      "sentence": "This bread has no artificial preservatives.",
+      "flagged_word": "preservatives",
+      "correct_usage": true,
+      "translation_meaning": "food additives",
+      "notes": "Correct EN use."
+    },
+    {
+      "id": "preservativo_sent_002",
+      "based_on": "preservativo_001",
+      "language": "en",
+      "sentence": "Check the label for preservatives before eating it.",
+      "flagged_word": "preservatives",
+      "correct_usage": true,
+      "translation_meaning": "food additives",
+      "notes": "Correct EN use, additional contrast tile. (Deliberately did not write a misuse sentence using 'preservativo' to mean 'condom' because it would be off-tone for the brief.)"
+    },
+    {
+      "id": "largo_sent_001",
+      "based_on": "largo_001",
+      "language": "es",
+      "sentence": "El río más largo de Europa es el Volga.",
+      "flagged_word": "largo",
+      "correct_usage": true,
+      "translation_meaning": "long",
+      "notes": "Correct ES use."
+    },
+    {
+      "id": "largo_sent_002",
+      "based_on": "largo_001",
+      "language": "en",
+      "sentence": "I need a large box to ship this manuscript.",
+      "flagged_word": "large",
+      "correct_usage": true,
+      "translation_meaning": "big in size",
+      "notes": "Correct EN use, contrasting safe tile."
+    }
+  ]
+}
