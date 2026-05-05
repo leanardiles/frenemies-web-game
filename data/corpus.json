@@ -1,14 +1,14 @@
 {
   "_meta": {
     "project": "Frenemies",
-    "version": "1.1",
-    "pass": "Pass 1.5 — EN-ES expanded corpus",
+    "version": "1.2",
+    "pass": "Pass 1.6 — EN-ES expanded cognate pool",
     "shipping_languages": ["en", "es"],
     "architecture_languages": ["en", "es", "fr", "nl"],
-    "level1_word_count": 52,
+    "level1_word_count": 67,
     "level2_sentence_count": 80,
     "validation_status": "DRAFT — pending native-speaker validation by Leandro",
-    "notes": "FR and NL form/meaning fields are present but empty; to be populated in Pass 2. Filename stays 'corpus.json' across versions; version is tracked here. v1.1 added 22 false friends and 45 sentence entries to v1.0."
+    "notes": "FR and NL form/meaning fields are present but empty; to be populated in Pass 2. Filename stays 'corpus.json' across versions; version is tracked here. v1.2 added 15 true cognates to expand the safe-tile pool for better gameplay variety; total cognates went from 12 to 27."
   },
 
   "level1_words": [
@@ -685,6 +685,126 @@
         "fr": "",
         "nl": ""
       },
+      "trap_in": [],
+      "notes": "Same meaning."
+    },
+    {
+      "id": "idea_001",
+      "type": "true_cognate",
+      "forms": { "en": "idea", "es": "idea", "fr": "", "nl": "" },
+      "meanings": { "en": "a thought, concept", "es": "a thought, concept", "fr": "", "nl": "" },
+      "trap_in": [],
+      "notes": "Same meaning, identical spelling."
+    },
+    {
+      "id": "plan_001",
+      "type": "true_cognate",
+      "forms": { "en": "plan", "es": "plan", "fr": "", "nl": "" },
+      "meanings": { "en": "a proposed scheme", "es": "a proposed scheme", "fr": "", "nl": "" },
+      "trap_in": [],
+      "notes": "Same meaning, identical spelling."
+    },
+    {
+      "id": "problema_001",
+      "type": "true_cognate",
+      "forms": { "en": "problem", "es": "problema", "fr": "", "nl": "" },
+      "meanings": { "en": "a difficulty to be solved", "es": "a difficulty to be solved", "fr": "", "nl": "" },
+      "trap_in": [],
+      "notes": "Same meaning. Note ES adds final -a (gendered noun)."
+    },
+    {
+      "id": "minuto_001",
+      "type": "true_cognate",
+      "forms": { "en": "minute", "es": "minuto", "fr": "", "nl": "" },
+      "meanings": { "en": "60 seconds", "es": "60 seconds", "fr": "", "nl": "" },
+      "trap_in": [],
+      "notes": "Same meaning (the time unit, not the adjective)."
+    },
+    {
+      "id": "numero_001",
+      "type": "true_cognate",
+      "forms": { "en": "number", "es": "número", "fr": "", "nl": "" },
+      "meanings": { "en": "a numerical value", "es": "a numerical value", "fr": "", "nl": "" },
+      "trap_in": [],
+      "notes": "Same meaning."
+    },
+    {
+      "id": "moderno_001",
+      "type": "true_cognate",
+      "forms": { "en": "modern", "es": "moderno", "fr": "", "nl": "" },
+      "meanings": { "en": "of the current era", "es": "of the current era", "fr": "", "nl": "" },
+      "trap_in": [],
+      "notes": "Same meaning."
+    },
+    {
+      "id": "publico_001",
+      "type": "true_cognate",
+      "forms": { "en": "public", "es": "público", "fr": "", "nl": "" },
+      "meanings": { "en": "open to or shared by all", "es": "open to or shared by all", "fr": "", "nl": "" },
+      "trap_in": [],
+      "notes": "Same meaning. Both languages also use it as a noun for 'audience'."
+    },
+    {
+      "id": "perfecto_001",
+      "type": "true_cognate",
+      "forms": { "en": "perfect", "es": "perfecto", "fr": "", "nl": "" },
+      "meanings": { "en": "without flaw", "es": "without flaw", "fr": "", "nl": "" },
+      "trap_in": [],
+      "notes": "Same meaning."
+    },
+    {
+      "id": "favorito_001",
+      "type": "true_cognate",
+      "forms": { "en": "favorite", "es": "favorito", "fr": "", "nl": "" },
+      "meanings": { "en": "preferred above others", "es": "preferred above others", "fr": "", "nl": "" },
+      "trap_in": [],
+      "notes": "Same meaning."
+    },
+    {
+      "id": "horrible_001",
+      "type": "true_cognate",
+      "forms": { "en": "horrible", "es": "horrible", "fr": "", "nl": "" },
+      "meanings": { "en": "extremely unpleasant", "es": "extremely unpleasant", "fr": "", "nl": "" },
+      "trap_in": [],
+      "notes": "Same meaning, identical spelling."
+    },
+    {
+      "id": "elegante_001",
+      "type": "true_cognate",
+      "forms": { "en": "elegant", "es": "elegante", "fr": "", "nl": "" },
+      "meanings": { "en": "graceful and stylish", "es": "graceful and stylish", "fr": "", "nl": "" },
+      "trap_in": [],
+      "notes": "Same meaning."
+    },
+    {
+      "id": "examen_001",
+      "type": "true_cognate",
+      "forms": { "en": "exam", "es": "examen", "fr": "", "nl": "" },
+      "meanings": { "en": "a formal test", "es": "a formal test", "fr": "", "nl": "" },
+      "trap_in": [],
+      "notes": "Same meaning."
+    },
+    {
+      "id": "memoria_001",
+      "type": "true_cognate",
+      "forms": { "en": "memory", "es": "memoria", "fr": "", "nl": "" },
+      "meanings": { "en": "the faculty of recall", "es": "the faculty of recall", "fr": "", "nl": "" },
+      "trap_in": [],
+      "notes": "Same meaning. Both can mean computer memory too."
+    },
+    {
+      "id": "decision_001",
+      "type": "true_cognate",
+      "forms": { "en": "decision", "es": "decisión", "fr": "", "nl": "" },
+      "meanings": { "en": "a conclusion reached", "es": "a conclusion reached", "fr": "", "nl": "" },
+      "trap_in": [],
+      "notes": "Same meaning."
+    },
+    {
+      "id": "energia_001",
+      "type": "true_cognate",
+      "forms": { "en": "energy", "es": "energía", "fr": "", "nl": "" },
+      "meanings": { "en": "vitality, force", "es": "vitality, force", "fr": "", "nl": "" },
       "trap_in": [],
       "notes": "Same meaning."
     }

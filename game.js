@@ -17,7 +17,7 @@ const GAME = {
   trapsHit: []         // for the lose-state debrief
 };
 
-const GRID_SIZE = 25;             // 5x5 grid
+const GRID_SIZE = 20;             // 5x4 grid
 const TRAP_RATIO_MIN = 0.30;      // minimum % of tiles that are traps
 const TRAP_RATIO_MAX = 0.45;      // maximum % of tiles that are traps
 const STARTING_LIVES = 3;
