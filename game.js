@@ -12,12 +12,20 @@ const GAME = {
   lives: 3,
   score: 0,
   level1Tiles: [],     // the 25 tiles drawn for the current level 1
+  safesTotal: 0,       // how many safe tiles in the current field
+  safesClaimed: 0,     // how many the player has claimed so far
   trapsHit: []         // for the lose-state debrief
 };
 
-const GRID_SIZE = 25;       // 5x5 grid
-const TRAP_RATIO = 0.35;    // ~35% of tiles are traps; tweak to taste
+const GRID_SIZE = 25;             // 5x5 grid
+const TRAP_RATIO_MIN = 0.30;      // minimum % of tiles that are traps
+const TRAP_RATIO_MAX = 0.45;      // maximum % of tiles that are traps
 const STARTING_LIVES = 3;
+
+// Sample a fresh trap ratio each level for variety
+function pickTrapRatio() {
+  return TRAP_RATIO_MIN + Math.random() * (TRAP_RATIO_MAX - TRAP_RATIO_MIN);
+}
 
 // ============================================================
 // SCREEN MANAGEMENT
@@ -91,8 +99,11 @@ function pickTilesForLevel1() {
   // Shuffle helpers
   const shuffle = arr => [...arr].sort(() => Math.random() - 0.5);
 
-  const numTraps = Math.round(GRID_SIZE * TRAP_RATIO);
+  // Sample a fresh trap ratio for this level so each session feels different
+  const ratio = pickTrapRatio();
+  const numTraps = Math.round(GRID_SIZE * ratio);
   const numSafes = GRID_SIZE - numTraps;
+  console.log(`Level 1 ratio: ${(ratio * 100).toFixed(0)}% traps (${numTraps} traps / ${numSafes} safes)`);
 
   const pickedTraps = shuffle(traps).slice(0, numTraps);
   const pickedSafes = shuffle(safes).slice(0, numSafes);
@@ -104,6 +115,10 @@ function pickTilesForLevel1() {
   if (pickedSafes.length < numSafes) {
     console.warn(`Only ${pickedSafes.length} safes available; wanted ${numSafes}`);
   }
+
+  // Track the actual safe count delivered (may be less than requested if corpus is small)
+  GAME.safesTotal = pickedSafes.length;
+  GAME.safesClaimed = 0;
 
   // Combine and shuffle into final tile order
   const allTiles = shuffle([...pickedTraps, ...pickedSafes]);
@@ -154,6 +169,7 @@ function handleTileClick(index) {
   } else {
     // Safe claim
     GAME.score += 1;
+    GAME.safesClaimed += 1;
     tileEl.classList.add('claimed');
     setFeedback(`Safe. "${tile.displayText}" is a true cognate.`, 'success');
 
@@ -175,6 +191,10 @@ function handleTileClick(index) {
 function updateHUD() {
   document.getElementById('level1-lives').textContent = GAME.lives;
   document.getElementById('level1-score').textContent = GAME.score;
+  const progressEl = document.getElementById('level1-progress');
+  if (progressEl) {
+    progressEl.textContent = `${GAME.safesClaimed} / ${GAME.safesTotal}`;
+  }
 }
 
 function setFeedback(text, type) {
