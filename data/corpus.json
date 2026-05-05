@@ -1,14 +1,16 @@
 {
   "_meta": {
     "project": "Frenemies",
-    "version": "1.2",
-    "pass": "Pass 1.6 — EN-ES expanded cognate pool",
+    "version": "1.3",
+    "pass": "Pass 1.7 — EN-ES expanded sentence corpus",
     "shipping_languages": ["en", "es"],
     "architecture_languages": ["en", "es", "fr", "nl"],
     "level1_word_count": 67,
-    "level2_sentence_count": 80,
+    "level2_sentence_count": 121,
+    "level2_correct_usages": 80,
+    "level2_misuses": 41,
     "validation_status": "DRAFT — pending native-speaker validation by Leandro",
-    "notes": "FR and NL form/meaning fields are present but empty; to be populated in Pass 2. Filename stays 'corpus.json' across versions; version is tracked here. v1.2 added 15 true cognates to expand the safe-tile pool for better gameplay variety; total cognates went from 12 to 27."
+    "notes": "FR and NL form/meaning fields are present but empty; to be populated in Pass 2. Filename stays 'corpus.json' across versions; version is tracked here. v1.3 added 41 sentences to bring most false friends to 3+ sentences each, expanding Level 2 variety. Sentence balance leans toward correct uses (80) over misuses (41) — Level 2 will sample to maintain trap ratio similar to Level 1."
   },
 
   "level1_words": [
@@ -1610,6 +1612,416 @@
       "correct_usage": false,
       "translation_meaning": "the writer means 'lyrics', the Spanish meaning",
       "notes": "Misuse. EN 'letter of a song' is not idiomatic; the intended word is 'lyrics'."
+    },
+    {
+      "id": "atender_sent_001",
+      "based_on": "atender_001",
+      "language": "es",
+      "sentence": "El mesero va a atender nuestra mesa pronto.",
+      "flagged_word": "atender",
+      "correct_usage": true,
+      "translation_meaning": "to serve, to take care of",
+      "notes": "Correct ES use meaning 'to serve' (a customer)."
+    },
+    {
+      "id": "atender_sent_002",
+      "based_on": "atender_001",
+      "language": "en",
+      "sentence": "The waiter will attend our table soon.",
+      "flagged_word": "attend",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'serve', the Spanish meaning",
+      "notes": "Misuse. EN 'attend a table' is not idiomatic; the intended word is 'serve' or 'wait on'."
+    },
+    {
+      "id": "actual_sent_004",
+      "based_on": "actual_001",
+      "language": "es",
+      "sentence": "La situación actual del país es complicada.",
+      "flagged_word": "actual",
+      "correct_usage": true,
+      "translation_meaning": "current",
+      "notes": "Correct ES use meaning 'current'."
+    },
+    {
+      "id": "embarazada_sent_003",
+      "based_on": "embarazada_001",
+      "language": "en",
+      "sentence": "I'm so embarazada I can barely speak right now.",
+      "flagged_word": "embarazada",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'embarrassed', mixing in the Spanish word",
+      "notes": "Misuse via code-switching. The speaker has reached for 'embarazada' thinking it means 'embarrassed'."
+    },
+    {
+      "id": "sensible_sent_004",
+      "based_on": "sensible_001",
+      "language": "es",
+      "sentence": "Tomó una decisión sensible para evitar problemas.",
+      "flagged_word": "sensible",
+      "correct_usage": false,
+      "translation_meaning": "the writer means 'sensato' (reasonable), confusing with EN 'sensible'",
+      "notes": "Misuse. ES 'decisión sensible' would mean 'sensitive decision'; the intended meaning is 'wise/reasonable decision' = 'decisión sensata'."
+    },
+    {
+      "id": "constipado_sent_003",
+      "based_on": "constipado_001",
+      "language": "es",
+      "sentence": "Tengo que comprar pañuelos, estoy constipado.",
+      "flagged_word": "constipado",
+      "correct_usage": true,
+      "translation_meaning": "having a head cold",
+      "notes": "Correct ES use. Tissues confirm the cold context."
+    },
+    {
+      "id": "exito_sent_003",
+      "based_on": "exito_001",
+      "language": "en",
+      "sentence": "His debut album was an instant exit on the charts.",
+      "flagged_word": "exit",
+      "correct_usage": false,
+      "translation_meaning": "the writer means 'success' (Spanish meaning of éxito)",
+      "notes": "Misuse. The intended word is 'success'."
+    },
+    {
+      "id": "libreria_sent_003",
+      "based_on": "libreria_001",
+      "language": "en",
+      "sentence": "I bought this novel at a bookstore called The Library.",
+      "flagged_word": "library",
+      "correct_usage": true,
+      "translation_meaning": "the bookstore is named 'The Library' but is actually a bookstore",
+      "notes": "Correct EN use of 'library' as a proper name. Pedagogically interesting because both meanings are present."
+    },
+    {
+      "id": "carpeta_sent_003",
+      "based_on": "carpeta_001",
+      "language": "en",
+      "sentence": "Please put these files in the blue carpet on my desk.",
+      "flagged_word": "carpet",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'folder' (Spanish meaning of carpeta)",
+      "notes": "Misuse. Files don't go on a 'blue carpet'; the intended word is 'folder'."
+    },
+    {
+      "id": "fabrica_sent_003",
+      "based_on": "fabrica_001",
+      "language": "en",
+      "sentence": "He works at a large fabric that produces cars.",
+      "flagged_word": "fabric",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'factory' (Spanish meaning of fábrica)",
+      "notes": "Misuse. A 'fabric' doesn't produce cars; the intended word is 'factory'."
+    },
+    {
+      "id": "ropa_sent_003",
+      "based_on": "ropa_001",
+      "language": "es",
+      "sentence": "Me probé la ropa antes de comprarla.",
+      "flagged_word": "ropa",
+      "correct_usage": true,
+      "translation_meaning": "clothing",
+      "notes": "Correct ES use meaning 'clothes'."
+    },
+    {
+      "id": "molestar_sent_003",
+      "based_on": "molestar_001",
+      "language": "es",
+      "sentence": "Los mosquitos me molestan mucho en verano.",
+      "flagged_word": "molestan",
+      "correct_usage": true,
+      "translation_meaning": "to bother, annoy",
+      "notes": "Correct ES use meaning 'bother'."
+    },
+    {
+      "id": "asistir_sent_003",
+      "based_on": "asistir_001",
+      "language": "es",
+      "sentence": "Mañana voy a asistir a la boda de mi prima.",
+      "flagged_word": "asistir",
+      "correct_usage": true,
+      "translation_meaning": "to attend",
+      "notes": "Correct ES use meaning 'attend'."
+    },
+    {
+      "id": "introducir_sent_003",
+      "based_on": "introducir_001",
+      "language": "es",
+      "sentence": "Hay que introducir el código en el cajero.",
+      "flagged_word": "introducir",
+      "correct_usage": true,
+      "translation_meaning": "to insert, enter",
+      "notes": "Correct ES use meaning 'insert/enter'."
+    },
+    {
+      "id": "discusion_sent_003",
+      "based_on": "discusion_001",
+      "language": "es",
+      "sentence": "La discusión entre ellos terminó muy mal.",
+      "flagged_word": "discusión",
+      "correct_usage": true,
+      "translation_meaning": "argument, heated disagreement",
+      "notes": "Correct ES use; the bad ending confirms the argument meaning."
+    },
+    {
+      "id": "eventualmente_sent_003",
+      "based_on": "eventualmente_001",
+      "language": "es",
+      "sentence": "Eventualmente trabajamos los fines de semana, no es habitual.",
+      "flagged_word": "eventualmente",
+      "correct_usage": true,
+      "translation_meaning": "occasionally",
+      "notes": "Correct ES use meaning 'occasionally'. Context confirms by saying 'not habitual'."
+    },
+    {
+      "id": "simpatico_sent_003",
+      "based_on": "simpatico_001",
+      "language": "es",
+      "sentence": "El nuevo profesor es muy simpático con los estudiantes.",
+      "flagged_word": "simpático",
+      "correct_usage": true,
+      "translation_meaning": "nice, friendly",
+      "notes": "Correct ES use meaning 'nice'."
+    },
+    {
+      "id": "preservativo_sent_003",
+      "based_on": "preservativo_001",
+      "language": "es",
+      "sentence": "Este pan no contiene preservativos artificiales.",
+      "flagged_word": "preservativos",
+      "correct_usage": false,
+      "translation_meaning": "the writer means 'food preservatives', confusing with EN",
+      "notes": "Misuse. ES 'preservativos' = condoms; the intended word is 'conservantes'."
+    },
+    {
+      "id": "largo_sent_003",
+      "based_on": "largo_001",
+      "language": "en",
+      "sentence": "She has very large hair that reaches her waist.",
+      "flagged_word": "large",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'long' (Spanish meaning of largo)",
+      "notes": "Misuse. Hair length is described with 'long', not 'large'."
+    },
+    {
+      "id": "carrera_sent_003",
+      "based_on": "carrera_001",
+      "language": "es",
+      "sentence": "Mi hermano corrió la carrera de cinco kilómetros.",
+      "flagged_word": "carrera",
+      "correct_usage": true,
+      "translation_meaning": "race (running)",
+      "notes": "Correct ES use meaning 'race'."
+    },
+    {
+      "id": "decepcion_sent_003",
+      "based_on": "decepcion_001",
+      "language": "es",
+      "sentence": "Me llevé una gran decepción con el resultado del examen.",
+      "flagged_word": "decepción",
+      "correct_usage": true,
+      "translation_meaning": "disappointment",
+      "notes": "Correct ES use meaning 'disappointment'."
+    },
+    {
+      "id": "compromiso_sent_003",
+      "based_on": "compromiso_001",
+      "language": "es",
+      "sentence": "Tengo un compromiso de trabajo el viernes por la noche.",
+      "flagged_word": "compromiso",
+      "correct_usage": true,
+      "translation_meaning": "commitment, obligation",
+      "notes": "Correct ES use meaning 'work commitment'."
+    },
+    {
+      "id": "soportar_sent_003",
+      "based_on": "soportar_001",
+      "language": "es",
+      "sentence": "Estos zapatos no soportan la lluvia muy bien.",
+      "flagged_word": "soportan",
+      "correct_usage": true,
+      "translation_meaning": "to withstand, endure",
+      "notes": "Correct ES use meaning 'withstand'."
+    },
+    {
+      "id": "realizar_sent_003",
+      "based_on": "realizar_001",
+      "language": "en",
+      "sentence": "The company will realize a major project next month.",
+      "flagged_word": "realize",
+      "correct_usage": false,
+      "translation_meaning": "the writer means 'carry out' (Spanish meaning of realizar)",
+      "notes": "Misuse. Companies don't 'realize a project' (in the awareness sense); the intended word is 'carry out' or 'complete'."
+    },
+    {
+      "id": "asignatura_sent_003",
+      "based_on": "asignatura_001",
+      "language": "es",
+      "sentence": "Esta asignatura es obligatoria para todos los estudiantes.",
+      "flagged_word": "asignatura",
+      "correct_usage": true,
+      "translation_meaning": "school subject",
+      "notes": "Correct ES use meaning 'subject'."
+    },
+    {
+      "id": "envolver_sent_003",
+      "based_on": "envolver_001",
+      "language": "es",
+      "sentence": "¿Me puedes envolver el libro para regalo?",
+      "flagged_word": "envolver",
+      "correct_usage": true,
+      "translation_meaning": "to wrap",
+      "notes": "Correct ES use meaning 'wrap'."
+    },
+    {
+      "id": "jubilacion_sent_003",
+      "based_on": "jubilacion_001",
+      "language": "es",
+      "sentence": "Después de cuarenta años de trabajo, espera su jubilación.",
+      "flagged_word": "jubilación",
+      "correct_usage": true,
+      "translation_meaning": "retirement",
+      "notes": "Correct ES use meaning 'retirement'."
+    },
+    {
+      "id": "lectura_sent_003",
+      "based_on": "lectura_001",
+      "language": "es",
+      "sentence": "La lectura del informe nos llevó toda la mañana.",
+      "flagged_word": "lectura",
+      "correct_usage": true,
+      "translation_meaning": "reading",
+      "notes": "Correct ES use meaning 'reading'."
+    },
+    {
+      "id": "marca_sent_003",
+      "based_on": "marca_001",
+      "language": "es",
+      "sentence": "Compré zapatos de una marca italiana.",
+      "flagged_word": "marca",
+      "correct_usage": true,
+      "translation_meaning": "brand",
+      "notes": "Correct ES use meaning 'brand'."
+    },
+    {
+      "id": "pretender_sent_003",
+      "based_on": "pretender_001",
+      "language": "es",
+      "sentence": "No pretendo ofender a nadie con mis comentarios.",
+      "flagged_word": "pretendo",
+      "correct_usage": true,
+      "translation_meaning": "to intend",
+      "notes": "Correct ES use meaning 'intend'."
+    },
+    {
+      "id": "destino_sent_003",
+      "based_on": "destino_001",
+      "language": "es",
+      "sentence": "El destino del vuelo es Madrid.",
+      "flagged_word": "destino",
+      "correct_usage": true,
+      "translation_meaning": "destination",
+      "notes": "Correct ES use meaning 'destination'."
+    },
+    {
+      "id": "campo_sent_003",
+      "based_on": "campo_001",
+      "language": "es",
+      "sentence": "Trabaja en el campo de la inteligencia artificial.",
+      "flagged_word": "campo",
+      "correct_usage": true,
+      "translation_meaning": "field (academic/professional)",
+      "notes": "Correct ES use meaning 'field' (area of expertise)."
+    },
+    {
+      "id": "argumento_sent_003",
+      "based_on": "argumento_001",
+      "language": "es",
+      "sentence": "El argumento de la novela es muy complejo.",
+      "flagged_word": "argumento",
+      "correct_usage": true,
+      "translation_meaning": "plot",
+      "notes": "Correct ES use meaning 'plot'."
+    },
+    {
+      "id": "noticia_sent_003",
+      "based_on": "noticia_001",
+      "language": "es",
+      "sentence": "La noticia del accidente nos sorprendió a todos.",
+      "flagged_word": "noticia",
+      "correct_usage": true,
+      "translation_meaning": "news",
+      "notes": "Correct ES use meaning 'news'."
+    },
+    {
+      "id": "casual_sent_003",
+      "based_on": "casual_001",
+      "language": "es",
+      "sentence": "Nos conocimos de manera casual en el parque.",
+      "flagged_word": "casual",
+      "correct_usage": true,
+      "translation_meaning": "by chance",
+      "notes": "Correct ES use meaning 'by chance'."
+    },
+    {
+      "id": "ignorar_sent_003",
+      "based_on": "ignorar_001",
+      "language": "es",
+      "sentence": "Ignoramos cuándo llegará el paquete.",
+      "flagged_word": "ignoramos",
+      "correct_usage": true,
+      "translation_meaning": "we don't know",
+      "notes": "Correct ES use meaning 'we don't know'."
+    },
+    {
+      "id": "advertencia_sent_003",
+      "based_on": "advertencia_001",
+      "language": "es",
+      "sentence": "El médico me dio una advertencia sobre los efectos secundarios.",
+      "flagged_word": "advertencia",
+      "correct_usage": true,
+      "translation_meaning": "warning",
+      "notes": "Correct ES use meaning 'warning'."
+    },
+    {
+      "id": "delito_sent_003",
+      "based_on": "delito_001",
+      "language": "es",
+      "sentence": "Conducir sin licencia es un delito en este estado.",
+      "flagged_word": "delito",
+      "correct_usage": true,
+      "translation_meaning": "crime",
+      "notes": "Correct ES use meaning 'crime'."
+    },
+    {
+      "id": "pariente_sent_003",
+      "based_on": "pariente_001",
+      "language": "es",
+      "sentence": "Mi tío es el único pariente que me queda en España.",
+      "flagged_word": "pariente",
+      "correct_usage": true,
+      "translation_meaning": "relative",
+      "notes": "Correct ES use meaning 'relative'."
+    },
+    {
+      "id": "vaso_sent_003",
+      "based_on": "vaso_001",
+      "language": "es",
+      "sentence": "El vaso se rompió cuando se cayó al suelo.",
+      "flagged_word": "vaso",
+      "correct_usage": true,
+      "translation_meaning": "drinking glass",
+      "notes": "Correct ES use meaning 'glass'."
+    },
+    {
+      "id": "letra_sent_003",
+      "based_on": "letra_001",
+      "language": "es",
+      "sentence": "La letra de tu nombre comienza con M.",
+      "flagged_word": "letra",
+      "correct_usage": true,
+      "translation_meaning": "alphabetical character",
+      "notes": "Correct ES use meaning 'alphabetical letter'."
     }
   ]
 }
