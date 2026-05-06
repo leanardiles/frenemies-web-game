@@ -10,7 +10,6 @@ const GAME = {
   direction: null,     // 'en-from-es' or 'es-from-en'
   level: 1,
   lives: 3,
-  score: 0,
   level1Tiles: [],     // the 20 tiles drawn for the current level 1
   level1TrapIds: [],   // ids of false friends that appeared in Level 1 (for connected pool in Level 2)
   level2Tiles: [],     // sentence tiles for Level 2
@@ -246,6 +245,8 @@ const sfx = {
   fail: null,
   levelClear: null,
   levelLose: null,
+  levelOneIntro: null,
+  levelTwoIntro: null,
   baseVolume: 0.4,  // SFX sit slightly below music baseline so they don't dominate
 
   init() {
@@ -253,10 +254,15 @@ const sfx = {
     this.fail = document.getElementById('sfx-fail');
     this.levelClear = document.getElementById('sfx-level-clear');
     this.levelLose = document.getElementById('sfx-level-lose');
+    this.levelOneIntro = document.getElementById('sfx-level-one-intro');
+    this.levelTwoIntro = document.getElementById('sfx-level-two-intro');
     if (this.click) this.click.volume = this.baseVolume;
     if (this.fail) this.fail.volume = this.baseVolume;
     if (this.levelClear) this.levelClear.volume = this.baseVolume;
     if (this.levelLose) this.levelLose.volume = this.baseVolume;
+    // Level intros play slightly louder than baseline so they cut through the gameplay music
+    if (this.levelOneIntro) this.levelOneIntro.volume = Math.min(1.0, this.baseVolume * 1.6);
+    if (this.levelTwoIntro) this.levelTwoIntro.volume = Math.min(1.0, this.baseVolume * 1.6);
   },
 
   play(name) {
@@ -277,7 +283,9 @@ const sfx = {
   playClick() { this.play('click'); },
   playFail() { this.play('fail'); },
   playLevelClear() { this.play('levelClear'); },
-  playLevelLose() { this.play('levelLose'); }
+  playLevelLose() { this.play('levelLose'); },
+  playLevelOneIntro() { this.play('levelOneIntro'); },
+  playLevelTwoIntro() { this.play('levelTwoIntro'); }
 };
 
 // ============================================================
@@ -341,7 +349,6 @@ function startLevel1() {
   // Reset state
   GAME.level = 1;
   GAME.lives = STARTING_LIVES;
-  GAME.score = 0;
   GAME.trapsHit = [];
   GAME.level1TrapIds = [];
 
@@ -354,6 +361,11 @@ function startLevel1() {
   setFeedback('Click a tile to claim it.', '');
 
   showScreen('screen-level1');
+
+  // Voice intro: play "Nivel uno" after the screen transition. Brief delay
+  // ensures the music crossfade has started before the voice cuts through,
+  // keeping the audio layers from clashing on level entry.
+  setTimeout(() => sfx.playLevelOneIntro(), 600);
 }
 
 function pickTilesForLevel1() {
@@ -446,7 +458,6 @@ function handleTileClick(index) {
     }
   } else {
     // Safe claim — tile turns green and is no longer interactive
-    GAME.score += 1;
     GAME.safesClaimed += 1;
     tileEl.classList.add('claimed');
     tileEl.disabled = true;
@@ -529,7 +540,6 @@ function setupTileModal() {
 // ============================================================
 function updateHUD() {
   document.getElementById('level1-lives').textContent = GAME.lives;
-  document.getElementById('level1-score').textContent = GAME.score;
   const progressEl = document.getElementById('level1-progress');
   if (progressEl) {
     progressEl.textContent = `${GAME.safesClaimed} / ${GAME.safesTotal}`;
@@ -549,10 +559,6 @@ function goToLevel1Summary() {
   // Render stats
   const statsEl = document.getElementById('summary-stats');
   statsEl.innerHTML = `
-    <div class="summary-stat">
-      <p class="summary-stat-label">Score</p>
-      <p class="summary-stat-value">${GAME.score}</p>
-    </div>
     <div class="summary-stat">
       <p class="summary-stat-label">Lives Remaining</p>
       <p class="summary-stat-value">${GAME.lives}</p>
@@ -672,14 +678,13 @@ function renderSummaryTraps() {
 // LEVEL 2 — SENTENCE FIELD
 // ============================================================
 function goToLevel2() {
-  // Compute starting lives from Level 1 performance per the brief's formula:
-  // Level 2 starting lives = 1 + (Level 1 score / max possible) * 2, rounded.
-  // This rewards strong Level 1 play with more margin for error in Level 2.
-  const level1MaxScore = GAME.safesTotal;
-  const ratio = (level1MaxScore > 0) ? (GAME.score / level1MaxScore) : 0;
-  const carryoverLives = Math.max(1, Math.round(1 + ratio * 2));
+  // Lives carry over from Level 1 directly. A player who finished Level 1 with
+  // 3 lives starts Level 2 with 3; a player who barely made it with 1 life
+  // starts Level 2 with 1. This makes Level 1 performance materially affect
+  // Level 2 difficulty in a way the player can feel.
+  const carryoverLives = Math.max(1, GAME.lives);
 
-  // Reset state for Level 2 (preserve score, replace lives)
+  // Reset state for Level 2 (carry lives forward, reset trap log)
   GAME.level = 2;
   GAME.lives = carryoverLives;
   GAME.trapsHit = [];
@@ -693,6 +698,10 @@ function goToLevel2() {
   setLevel2Feedback('Click a sentence to claim it.', '');
 
   showScreen('screen-level2');
+
+  // Voice intro: play "Nivel dos" after the screen transition. Same delay
+  // as Level 1's intro for consistency.
+  setTimeout(() => sfx.playLevelTwoIntro(), 600);
 }
 
 function pickTilesForLevel2() {
@@ -813,7 +822,6 @@ function handleLevel2TileClick(index) {
     }
   } else {
     // Safe claim — sentence used the word correctly
-    GAME.score += 1;
     GAME.safesClaimed += 1;
     tileEl.classList.add('claimed');
     sfx.playClick();
@@ -834,7 +842,6 @@ function handleLevel2TileClick(index) {
 
 function updateLevel2HUD() {
   document.getElementById('level2-lives').textContent = GAME.lives;
-  document.getElementById('level2-score').textContent = GAME.score;
   document.getElementById('level2-progress').textContent = `${GAME.safesClaimed} / ${GAME.safesTotal}`;
 }
 
@@ -849,10 +856,9 @@ function setLevel2Feedback(text, type) {
 // ============================================================
 function endGame(won) {
   if (won) {
-    document.getElementById('win-score').textContent = GAME.score;
+    document.getElementById('win-lives').textContent = GAME.lives;
     showScreen('screen-win');
   } else {
-    document.getElementById('lose-score').textContent = GAME.score;
     renderLoseDebrief();
 
     // Reveal remaining traps on whichever level the player lost on

@@ -20,6 +20,8 @@
   <audio id="sfx-fail" src="audio/sound-fail.mp3" preload="auto"></audio>
   <audio id="sfx-level-clear" src="audio/sound-level-clear.mp3" preload="auto"></audio>
   <audio id="sfx-level-lose" src="audio/sound-level-fail.mp3" preload="auto"></audio>
+  <audio id="sfx-level-one-intro" src="audio/level-one-intro.mp3" preload="auto"></audio>
+  <audio id="sfx-level-two-intro" src="audio/level-two-intro.mp3" preload="auto"></audio>
 
   <!-- TOP-LEFT NAV BUTTON — context-aware: Back on intro/instructions/language, Quit on gameplay -->
   <button id="nav-btn" class="nav-btn" aria-label="Back or quit"></button>
@@ -85,10 +87,6 @@
           <span class="hud-label">Progress:</span>
           <span id="level1-progress">0 / 0</span>
         </div>
-        <div class="hud-item">
-          <span class="hud-label">Score:</span>
-          <span id="level1-score">0</span>
-        </div>
       </header>
 
       <p class="instructions">
@@ -116,10 +114,6 @@
           <span class="hud-label">Progress:</span>
           <span id="level2-progress">0 / 0</span>
         </div>
-        <div class="hud-item">
-          <span class="hud-label">Score:</span>
-          <span id="level2-score">0</span>
-        </div>
       </header>
 
       <div id="level2-intro" class="level-intro">
@@ -137,7 +131,7 @@
     <div class="container">
       <h2>Field Cleared</h2>
       <p>You spotted every trap and claimed every safe word.</p>
-      <p>Final score: <span id="win-score">0</span></p>
+      <p>You finished with <span id="win-lives">0</span> lives intact.</p>
       <button class="replay-btn primary-btn">Play Again</button>
     </div>
   </section>
@@ -147,7 +141,6 @@
     <div class="container">
       <h2>Field Lost</h2>
       <p>The traps got you.</p>
-      <p>Score before falling: <span id="lose-score">0</span></p>
       <div id="lose-debrief"></div>
       <button class="replay-btn primary-btn">Play Again</button>
     </div>

@@ -1,543 +1,875 @@
 {
   "_meta": {
     "project": "Frenemies",
-    "version": "1.4",
-    "pass": "Pass 1.8 — ES misuse expansion to fix Level 2 trap ratio",
-    "shipping_languages": ["en", "es"],
-    "architecture_languages": ["en", "es", "fr", "nl"],
+    "version": "1.5",
+    "pass": "Pass 1.9 — corpus density expansion (audit fix for connected-pool dilution)",
+    "shipping_languages": [
+      "en",
+      "es"
+    ],
+    "architecture_languages": [
+      "en",
+      "es",
+      "fr",
+      "nl"
+    ],
     "level1_word_count": 67,
-    "level2_sentence_count": 151,
-    "level2_correct_usages": 80,
-    "level2_misuses": 71,
+    "level2_sentence_count": 239,
+    "level2_correct_usages": 84,
+    "level2_misuses": 155,
     "validation_status": "DRAFT — pending native-speaker validation by Leandro",
-    "notes": "v1.4 added 30 ES misuse sentences modeling English-influenced Spanish (Spanglish/heritage-speaker interference patterns). This fixes the Level 2 trap-ratio issue where Spanish-only mode previously had only 6 misuses available, making the level too easy."
+    "notes": "v1.5 expanded the ES misuse corpus from 35 to 120 misuses, ensuring every false friend has at least 3 misuse sentences. This addresses the audit finding on 'connected pool dilution': Level 2 can now reliably draw all of its trap tiles from the connected pool (sentences based on Level 1's traps) without falling back to top-up from the broader pool. Sentence IDs were renumbered sequentially within each based_on group to eliminate duplicates."
   },
-
   "level1_words": [
     {
       "id": "actual_001",
       "type": "false_friend",
-      "forms": { "en": "actual", "es": "actual", "fr": "", "nl": "" },
+      "forms": {
+        "en": "actual",
+        "es": "actual",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "real, factual, existing in fact",
         "es": "current, present-day",
         "fr": "",
         "nl": ""
       },
-      "trap_in": ["en", "es"],
+      "trap_in": [
+        "en",
+        "es"
+      ],
       "notes": "Classic false friend. EN means 'real'; ES means 'current'. The trap fires in both directions."
     },
     {
       "id": "embarazada_001",
       "type": "false_friend",
-      "forms": { "en": "embarrassed", "es": "embarazada", "fr": "", "nl": "" },
+      "forms": {
+        "en": "embarrassed",
+        "es": "embarazada",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "ashamed, awkward",
         "es": "pregnant",
         "fr": "",
         "nl": ""
       },
-      "trap_in": ["en", "es"],
+      "trap_in": [
+        "en",
+        "es"
+      ],
       "notes": "The most famous EN-ES false friend. Note: 'embarazada' is the feminine form; the masculine 'embarazado' exists but is rarely used in the same sense."
     },
     {
       "id": "sensible_001",
       "type": "false_friend",
-      "forms": { "en": "sensible", "es": "sensible", "fr": "", "nl": "" },
+      "forms": {
+        "en": "sensible",
+        "es": "sensible",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "practical, reasonable, having good judgment",
         "es": "sensitive, easily affected emotionally",
         "fr": "",
         "nl": ""
       },
-      "trap_in": ["en", "es"],
+      "trap_in": [
+        "en",
+        "es"
+      ],
       "notes": "EN 'sensible' = ES 'sensato' / 'razonable'. ES 'sensible' = EN 'sensitive'."
     },
     {
       "id": "constipado_001",
       "type": "false_friend",
-      "forms": { "en": "constipated", "es": "constipado", "fr": "", "nl": "" },
+      "forms": {
+        "en": "constipated",
+        "es": "constipado",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "having difficulty with bowel movements",
         "es": "having a head cold, congested",
         "fr": "",
         "nl": ""
       },
-      "trap_in": ["en", "es"],
+      "trap_in": [
+        "en",
+        "es"
+      ],
       "notes": "Medical false friend. ES 'constipado' = EN 'has a cold'. EN 'constipated' = ES 'estreñido'."
     },
     {
       "id": "exito_001",
       "type": "false_friend",
-      "forms": { "en": "exit", "es": "éxito", "fr": "", "nl": "" },
+      "forms": {
+        "en": "exit",
+        "es": "éxito",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "way out",
         "es": "success",
         "fr": "",
         "nl": ""
       },
-      "trap_in": ["en", "es"],
+      "trap_in": [
+        "en",
+        "es"
+      ],
       "notes": "ES 'éxito' = EN 'success'. EN 'exit' = ES 'salida'."
     },
     {
       "id": "libreria_001",
       "type": "false_friend",
-      "forms": { "en": "library", "es": "librería", "fr": "", "nl": "" },
+      "forms": {
+        "en": "library",
+        "es": "librería",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "place to borrow books",
         "es": "bookshop, place to buy books",
         "fr": "",
         "nl": ""
       },
-      "trap_in": ["en", "es"],
+      "trap_in": [
+        "en",
+        "es"
+      ],
       "notes": "ES 'librería' = EN 'bookshop'. EN 'library' = ES 'biblioteca'."
     },
     {
       "id": "carpeta_001",
       "type": "false_friend",
-      "forms": { "en": "carpet", "es": "carpeta", "fr": "", "nl": "" },
+      "forms": {
+        "en": "carpet",
+        "es": "carpeta",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "floor covering",
         "es": "folder, file holder",
         "fr": "",
         "nl": ""
       },
-      "trap_in": ["en", "es"],
+      "trap_in": [
+        "en",
+        "es"
+      ],
       "notes": "ES 'carpeta' = EN 'folder'. EN 'carpet' = ES 'alfombra'."
     },
     {
       "id": "fabrica_001",
       "type": "false_friend",
-      "forms": { "en": "fabric", "es": "fábrica", "fr": "", "nl": "" },
+      "forms": {
+        "en": "fabric",
+        "es": "fábrica",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "cloth material, textile",
         "es": "factory, manufacturing plant",
         "fr": "",
         "nl": ""
       },
-      "trap_in": ["en", "es"],
+      "trap_in": [
+        "en",
+        "es"
+      ],
       "notes": "ES 'fábrica' = EN 'factory'. EN 'fabric' = ES 'tela'."
     },
     {
       "id": "ropa_001",
       "type": "false_friend",
-      "forms": { "en": "rope", "es": "ropa", "fr": "", "nl": "" },
+      "forms": {
+        "en": "rope",
+        "es": "ropa",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "thick cord, twisted fibers",
         "es": "clothing, garments",
         "fr": "",
         "nl": ""
       },
-      "trap_in": ["en", "es"],
+      "trap_in": [
+        "en",
+        "es"
+      ],
       "notes": "ES 'ropa' = EN 'clothes'. EN 'rope' = ES 'cuerda'."
     },
     {
       "id": "molestar_001",
       "type": "false_friend",
-      "forms": { "en": "molest", "es": "molestar", "fr": "", "nl": "" },
+      "forms": {
+        "en": "molest",
+        "es": "molestar",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "to assault sexually",
         "es": "to bother, annoy, disturb",
         "fr": "",
         "nl": ""
       },
-      "trap_in": ["en", "es"],
+      "trap_in": [
+        "en",
+        "es"
+      ],
       "notes": "Significant register difference. ES 'molestar' is neutral and very common; EN 'molest' has shifted to a strongly negative meaning. A speaker confusing these can cause real distress."
     },
     {
       "id": "asistir_001",
       "type": "false_friend",
-      "forms": { "en": "assist", "es": "asistir", "fr": "", "nl": "" },
+      "forms": {
+        "en": "assist",
+        "es": "asistir",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "to help",
         "es": "to attend, be present at",
         "fr": "",
         "nl": ""
       },
-      "trap_in": ["en", "es"],
+      "trap_in": [
+        "en",
+        "es"
+      ],
       "notes": "ES 'asistir' primarily means 'to attend' (e.g., asistir a una reunión = attend a meeting). It can also mean 'help' in some contexts but the primary meaning is 'attend'. EN 'assist' = ES 'ayudar'."
     },
     {
       "id": "introducir_001",
       "type": "false_friend",
-      "forms": { "en": "introduce", "es": "introducir", "fr": "", "nl": "" },
+      "forms": {
+        "en": "introduce",
+        "es": "introducir",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "to present someone or something",
         "es": "to insert, put inside",
         "fr": "",
         "nl": ""
       },
-      "trap_in": ["en", "es"],
+      "trap_in": [
+        "en",
+        "es"
+      ],
       "notes": "ES 'introducir' = EN 'insert'. EN 'introduce' (as in 'introduce a person') = ES 'presentar'."
     },
     {
       "id": "atender_001",
       "type": "false_friend",
-      "forms": { "en": "attend", "es": "atender", "fr": "", "nl": "" },
+      "forms": {
+        "en": "attend",
+        "es": "atender",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "to be present at, to go to",
         "es": "to serve, to take care of, to attend to (e.g., a customer)",
         "fr": "",
         "nl": ""
       },
-      "trap_in": ["en", "es"],
+      "trap_in": [
+        "en",
+        "es"
+      ],
       "notes": "Tricky pair because both touch on the idea of 'attending'. EN 'attend a meeting' = ES 'asistir a una reunión'. ES 'atender un cliente' = EN 'serve a customer'."
     },
     {
       "id": "discusion_001",
       "type": "false_friend",
-      "forms": { "en": "discussion", "es": "discusión", "fr": "", "nl": "" },
+      "forms": {
+        "en": "discussion",
+        "es": "discusión",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "conversation, talk about a topic",
         "es": "argument, often heated",
         "fr": "",
         "nl": ""
       },
-      "trap_in": ["en", "es"],
+      "trap_in": [
+        "en",
+        "es"
+      ],
       "notes": "Partial false friend. ES 'discusión' can mean a calm discussion in formal contexts but commonly implies an argument or disagreement. EN 'discussion' = ES 'conversación' or 'debate'."
     },
     {
       "id": "eventualmente_001",
       "type": "false_friend",
-      "forms": { "en": "eventually", "es": "eventualmente", "fr": "", "nl": "" },
+      "forms": {
+        "en": "eventually",
+        "es": "eventualmente",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "in the end, finally, after some time",
         "es": "possibly, perhaps, occasionally",
         "fr": "",
         "nl": ""
       },
-      "trap_in": ["en", "es"],
+      "trap_in": [
+        "en",
+        "es"
+      ],
       "notes": "ES 'eventualmente' = EN 'possibly' or 'occasionally'. EN 'eventually' = ES 'finalmente' or 'al final'. Common ESL/SSL error."
     },
     {
       "id": "simpatico_001",
       "type": "false_friend",
-      "forms": { "en": "sympathetic", "es": "simpático", "fr": "", "nl": "" },
+      "forms": {
+        "en": "sympathetic",
+        "es": "simpático",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "compassionate, showing concern for others' feelings",
         "es": "nice, friendly, likeable",
         "fr": "",
         "nl": ""
       },
-      "trap_in": ["en", "es"],
+      "trap_in": [
+        "en",
+        "es"
+      ],
       "notes": "ES 'simpático' = EN 'nice' or 'likeable'. EN 'sympathetic' = ES 'compasivo' or 'comprensivo'."
     },
     {
       "id": "preservativo_001",
       "type": "false_friend",
-      "forms": { "en": "preservative", "es": "preservativo", "fr": "", "nl": "" },
+      "forms": {
+        "en": "preservative",
+        "es": "preservativo",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "substance added to food to prevent spoilage",
         "es": "condom",
         "fr": "",
         "nl": ""
       },
-      "trap_in": ["en", "es"],
+      "trap_in": [
+        "en",
+        "es"
+      ],
       "notes": "Memorably awkward false friend. EN 'preservative' = ES 'conservante'. ES 'preservativo' = EN 'condom'."
     },
     {
       "id": "largo_001",
       "type": "false_friend",
-      "forms": { "en": "large", "es": "largo", "fr": "", "nl": "" },
+      "forms": {
+        "en": "large",
+        "es": "largo",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "big in size",
         "es": "long",
         "fr": "",
         "nl": ""
       },
-      "trap_in": ["en", "es"],
+      "trap_in": [
+        "en",
+        "es"
+      ],
       "notes": "ES 'largo' = EN 'long'. EN 'large' = ES 'grande'."
     },
     {
       "id": "carrera_001",
       "type": "false_friend",
-      "forms": { "en": "career", "es": "carrera", "fr": "", "nl": "" },
+      "forms": {
+        "en": "career",
+        "es": "carrera",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "a person's profession or occupation over time",
         "es": "university degree program; also 'race' (running)",
         "fr": "",
         "nl": ""
       },
-      "trap_in": ["en", "es"],
+      "trap_in": [
+        "en",
+        "es"
+      ],
       "notes": "ES 'carrera' most often means a degree program (estudiar una carrera). EN 'career' = ES 'trayectoria profesional' or 'profesión'."
     },
     {
       "id": "decepcion_001",
       "type": "false_friend",
-      "forms": { "en": "deception", "es": "decepción", "fr": "", "nl": "" },
+      "forms": {
+        "en": "deception",
+        "es": "decepción",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "the act of deceiving",
         "es": "disappointment, letdown",
         "fr": "",
         "nl": ""
       },
-      "trap_in": ["en", "es"],
+      "trap_in": [
+        "en",
+        "es"
+      ],
       "notes": "ES 'decepción' = EN 'disappointment'. EN 'deception' = ES 'engaño'."
     },
     {
       "id": "compromiso_001",
       "type": "false_friend",
-      "forms": { "en": "compromise", "es": "compromiso", "fr": "", "nl": "" },
+      "forms": {
+        "en": "compromise",
+        "es": "compromiso",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "a settlement reached by mutual concession",
         "es": "commitment, engagement, obligation",
         "fr": "",
         "nl": ""
       },
-      "trap_in": ["en", "es"],
+      "trap_in": [
+        "en",
+        "es"
+      ],
       "notes": "ES 'compromiso' = EN 'commitment' (e.g., compromiso matrimonial = engagement). EN 'compromise' = ES 'acuerdo' or 'concesión mutua'."
     },
     {
       "id": "soportar_001",
       "type": "false_friend",
-      "forms": { "en": "support", "es": "soportar", "fr": "", "nl": "" },
+      "forms": {
+        "en": "support",
+        "es": "soportar",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "to help, back up, encourage",
         "es": "to endure, tolerate, put up with",
         "fr": "",
         "nl": ""
       },
-      "trap_in": ["en", "es"],
+      "trap_in": [
+        "en",
+        "es"
+      ],
       "notes": "ES 'soportar' = EN 'endure' or 'tolerate'. EN 'support' = ES 'apoyar' (emotionally) or 'sostener' (physically)."
     },
     {
       "id": "realizar_001",
       "type": "false_friend",
-      "forms": { "en": "realize", "es": "realizar", "fr": "", "nl": "" },
+      "forms": {
+        "en": "realize",
+        "es": "realizar",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "to become aware of, to understand suddenly",
         "es": "to carry out, to perform, to accomplish",
         "fr": "",
         "nl": ""
       },
-      "trap_in": ["en", "es"],
+      "trap_in": [
+        "en",
+        "es"
+      ],
       "notes": "ES 'realizar' = EN 'perform' or 'carry out'. EN 'realize' = ES 'darse cuenta de'. FLAGGED: EN influence has caused some drift in casual ES usage; validate against your dialect."
     },
     {
       "id": "asignatura_001",
       "type": "false_friend",
-      "forms": { "en": "signature", "es": "asignatura", "fr": "", "nl": "" },
+      "forms": {
+        "en": "signature",
+        "es": "asignatura",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "a person's handwritten name",
         "es": "school subject, course",
         "fr": "",
         "nl": ""
       },
-      "trap_in": ["en", "es"],
+      "trap_in": [
+        "en",
+        "es"
+      ],
       "notes": "ES 'asignatura' = EN 'subject' or 'course'. EN 'signature' = ES 'firma'. The words don't share roots but look similar enough to confuse learners."
     },
     {
       "id": "envolver_001",
       "type": "false_friend",
-      "forms": { "en": "involve", "es": "envolver", "fr": "", "nl": "" },
+      "forms": {
+        "en": "involve",
+        "es": "envolver",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "to include as a necessary part",
         "es": "to wrap, to envelop",
         "fr": "",
         "nl": ""
       },
-      "trap_in": ["en", "es"],
+      "trap_in": [
+        "en",
+        "es"
+      ],
       "notes": "ES 'envolver' = EN 'wrap' (e.g., envolver un regalo). EN 'involve' = ES 'implicar' or 'involucrar'."
     },
     {
       "id": "jubilacion_001",
       "type": "false_friend",
-      "forms": { "en": "jubilation", "es": "jubilación", "fr": "", "nl": "" },
+      "forms": {
+        "en": "jubilation",
+        "es": "jubilación",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "great joy, celebration",
         "es": "retirement (from work)",
         "fr": "",
         "nl": ""
       },
-      "trap_in": ["en", "es"],
+      "trap_in": [
+        "en",
+        "es"
+      ],
       "notes": "ES 'jubilación' = EN 'retirement'. EN 'jubilation' = ES 'júbilo'. The roots are connected but meanings have diverged."
     },
     {
       "id": "lectura_001",
       "type": "false_friend",
-      "forms": { "en": "lecture", "es": "lectura", "fr": "", "nl": "" },
+      "forms": {
+        "en": "lecture",
+        "es": "lectura",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "an educational talk given to an audience",
         "es": "reading (the act of reading)",
         "fr": "",
         "nl": ""
       },
-      "trap_in": ["en", "es"],
+      "trap_in": [
+        "en",
+        "es"
+      ],
       "notes": "ES 'lectura' = EN 'reading'. EN 'lecture' = ES 'conferencia' or 'clase'."
     },
     {
       "id": "marca_001",
       "type": "false_friend",
-      "forms": { "en": "mark", "es": "marca", "fr": "", "nl": "" },
+      "forms": {
+        "en": "mark",
+        "es": "marca",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "a visible trace, sign, or symbol",
         "es": "brand (commercial), record (athletic)",
         "fr": "",
         "nl": ""
       },
-      "trap_in": ["en", "es"],
+      "trap_in": [
+        "en",
+        "es"
+      ],
       "notes": "ES 'marca' primarily means 'brand' (Coca-Cola es una marca). EN 'mark' = ES 'señal' or 'huella'. Partial false friend — 'marca' can mean 'mark' in some contexts, but the brand meaning dominates."
     },
     {
       "id": "pretender_001",
       "type": "false_friend",
-      "forms": { "en": "pretend", "es": "pretender", "fr": "", "nl": "" },
+      "forms": {
+        "en": "pretend",
+        "es": "pretender",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "to feign, to act as if something is true when it isn't",
         "es": "to intend, to aspire, to claim (a position or person)",
         "fr": "",
         "nl": ""
       },
-      "trap_in": ["en", "es"],
+      "trap_in": [
+        "en",
+        "es"
+      ],
       "notes": "ES 'pretender' = EN 'intend' or 'aspire to'. EN 'pretend' = ES 'fingir' or 'aparentar'."
     },
     {
       "id": "destino_001",
       "type": "false_friend",
-      "forms": { "en": "destiny", "es": "destino", "fr": "", "nl": "" },
+      "forms": {
+        "en": "destiny",
+        "es": "destino",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "fate, predetermined course of events",
         "es": "destination (place); also 'fate' in literary contexts",
         "fr": "",
         "nl": ""
       },
-      "trap_in": ["en", "es"],
+      "trap_in": [
+        "en",
+        "es"
+      ],
       "notes": "Partial false friend. ES 'destino' most commonly means 'destination' (¿Cuál es tu destino?). EN 'destiny' = ES 'destino' only in poetic/literary use; everyday meaning differs."
     },
     {
       "id": "campo_001",
       "type": "false_friend",
-      "forms": { "en": "camp", "es": "campo", "fr": "", "nl": "" },
+      "forms": {
+        "en": "camp",
+        "es": "campo",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "a place where people live temporarily in tents",
         "es": "field, countryside; also 'field' in academic sense",
         "fr": "",
         "nl": ""
       },
-      "trap_in": ["en", "es"],
+      "trap_in": [
+        "en",
+        "es"
+      ],
       "notes": "ES 'campo' = EN 'field' or 'countryside' (campo de fútbol = soccer field, vivir en el campo = live in the country). EN 'camp' = ES 'campamento'."
     },
     {
       "id": "argumento_001",
       "type": "false_friend",
-      "forms": { "en": "argument", "es": "argumento", "fr": "", "nl": "" },
+      "forms": {
+        "en": "argument",
+        "es": "argumento",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "a reason given in support of a point; also a heated dispute",
         "es": "plot of a story or film; also 'reasoning' in logical context",
         "fr": "",
         "nl": ""
       },
-      "trap_in": ["en", "es"],
+      "trap_in": [
+        "en",
+        "es"
+      ],
       "notes": "ES 'argumento' primarily means 'plot' (el argumento de la película). EN 'argument' (dispute) = ES 'discusión' or 'pelea'. Partial overlap in formal logic contexts."
     },
     {
       "id": "noticia_001",
       "type": "false_friend",
-      "forms": { "en": "notice", "es": "noticia", "fr": "", "nl": "" },
+      "forms": {
+        "en": "notice",
+        "es": "noticia",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "a written or printed announcement; also attention paid to something",
         "es": "news, news story",
         "fr": "",
         "nl": ""
       },
-      "trap_in": ["en", "es"],
+      "trap_in": [
+        "en",
+        "es"
+      ],
       "notes": "ES 'noticia' = EN 'news'. EN 'notice' (announcement) = ES 'aviso' or 'anuncio'."
     },
     {
       "id": "casual_001",
       "type": "false_friend",
-      "forms": { "en": "casual", "es": "casual", "fr": "", "nl": "" },
+      "forms": {
+        "en": "casual",
+        "es": "casual",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "informal, relaxed, unceremonial",
         "es": "accidental, by chance, coincidental",
         "fr": "",
         "nl": ""
       },
-      "trap_in": ["en", "es"],
+      "trap_in": [
+        "en",
+        "es"
+      ],
       "notes": "ES 'casual' = EN 'accidental' or 'by chance' (un encuentro casual = a chance encounter). EN 'casual' (informal) = ES 'informal' or 'desenfadado'."
     },
     {
       "id": "ignorar_001",
       "type": "false_friend",
-      "forms": { "en": "ignore", "es": "ignorar", "fr": "", "nl": "" },
+      "forms": {
+        "en": "ignore",
+        "es": "ignorar",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "to deliberately pay no attention to",
         "es": "to not know, to be unaware of",
         "fr": "",
         "nl": ""
       },
-      "trap_in": ["en", "es"],
+      "trap_in": [
+        "en",
+        "es"
+      ],
       "notes": "ES 'ignorar' primarily means 'to not know' (ignoro la respuesta = I don't know the answer). EN 'ignore' = ES 'hacer caso omiso' or 'desatender'. FLAGGED: partial overlap in modern usage but the false friend holds in standard register."
     },
     {
       "id": "advertencia_001",
       "type": "false_friend",
-      "forms": { "en": "advertisement", "es": "advertencia", "fr": "", "nl": "" },
+      "forms": {
+        "en": "advertisement",
+        "es": "advertencia",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "a public notice promoting a product or service",
         "es": "warning, caution",
         "fr": "",
         "nl": ""
       },
-      "trap_in": ["en", "es"],
+      "trap_in": [
+        "en",
+        "es"
+      ],
       "notes": "ES 'advertencia' = EN 'warning'. EN 'advertisement' = ES 'anuncio' or 'publicidad'."
     },
     {
       "id": "delito_001",
       "type": "false_friend",
-      "forms": { "en": "delight", "es": "delito", "fr": "", "nl": "" },
+      "forms": {
+        "en": "delight",
+        "es": "delito",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "great pleasure, joy",
         "es": "crime, criminal offense",
         "fr": "",
         "nl": ""
       },
-      "trap_in": ["en", "es"],
+      "trap_in": [
+        "en",
+        "es"
+      ],
       "notes": "ES 'delito' = EN 'crime'. EN 'delight' = ES 'placer' or 'deleite'. Memorable false friend because the meanings are so opposite in tone."
     },
     {
       "id": "pariente_001",
       "type": "false_friend",
-      "forms": { "en": "parent", "es": "pariente", "fr": "", "nl": "" },
+      "forms": {
+        "en": "parent",
+        "es": "pariente",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "a mother or father",
         "es": "any relative (cousin, aunt, sibling, etc.)",
         "fr": "",
         "nl": ""
       },
-      "trap_in": ["en", "es"],
+      "trap_in": [
+        "en",
+        "es"
+      ],
       "notes": "ES 'pariente' = EN 'relative' (any family member). EN 'parent' = ES 'padre' or 'madre'."
     },
     {
       "id": "vaso_001",
       "type": "false_friend",
-      "forms": { "en": "vase", "es": "vaso", "fr": "", "nl": "" },
+      "forms": {
+        "en": "vase",
+        "es": "vaso",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "a decorative container for flowers",
         "es": "drinking glass",
         "fr": "",
         "nl": ""
       },
-      "trap_in": ["en", "es"],
+      "trap_in": [
+        "en",
+        "es"
+      ],
       "notes": "ES 'vaso' = EN 'glass' (drinking vessel). EN 'vase' = ES 'jarrón' or 'florero'."
     },
     {
       "id": "letra_001",
       "type": "false_friend",
-      "forms": { "en": "letter", "es": "letra", "fr": "", "nl": "" },
+      "forms": {
+        "en": "letter",
+        "es": "letra",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "a written message; also a single character of the alphabet",
         "es": "a single character of the alphabet; also 'lyrics' (of a song)",
         "fr": "",
         "nl": ""
       },
-      "trap_in": ["en", "es"],
+      "trap_in": [
+        "en",
+        "es"
+      ],
       "notes": "Partial false friend. Both share the alphabet-character meaning. ES 'letra' (the message) = EN 'carta'. ES 'letra' (song lyrics) = EN 'lyrics'. Trap fires when EN speaker uses 'letter' for 'message' and assumes ES 'letra' works the same way."
     },
     {
       "id": "actor_001",
       "type": "true_cognate",
-      "forms": { "en": "actor", "es": "actor", "fr": "", "nl": "" },
+      "forms": {
+        "en": "actor",
+        "es": "actor",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "performer in plays or films",
         "es": "performer in plays or films",
@@ -550,7 +882,12 @@
     {
       "id": "hotel_001",
       "type": "true_cognate",
-      "forms": { "en": "hotel", "es": "hotel", "fr": "", "nl": "" },
+      "forms": {
+        "en": "hotel",
+        "es": "hotel",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "lodging establishment",
         "es": "lodging establishment",
@@ -563,7 +900,12 @@
     {
       "id": "doctor_001",
       "type": "true_cognate",
-      "forms": { "en": "doctor", "es": "doctor", "fr": "", "nl": "" },
+      "forms": {
+        "en": "doctor",
+        "es": "doctor",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "medical practitioner; holder of doctorate",
         "es": "medical practitioner; holder of doctorate",
@@ -576,7 +918,12 @@
     {
       "id": "animal_001",
       "type": "true_cognate",
-      "forms": { "en": "animal", "es": "animal", "fr": "", "nl": "" },
+      "forms": {
+        "en": "animal",
+        "es": "animal",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "living creature",
         "es": "living creature",
@@ -589,7 +936,12 @@
     {
       "id": "color_001",
       "type": "true_cognate",
-      "forms": { "en": "color", "es": "color", "fr": "", "nl": "" },
+      "forms": {
+        "en": "color",
+        "es": "color",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "visual property of light",
         "es": "visual property of light",
@@ -602,7 +954,12 @@
     {
       "id": "natural_001",
       "type": "true_cognate",
-      "forms": { "en": "natural", "es": "natural", "fr": "", "nl": "" },
+      "forms": {
+        "en": "natural",
+        "es": "natural",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "occurring in nature, not artificial",
         "es": "occurring in nature, not artificial",
@@ -615,7 +972,12 @@
     {
       "id": "radio_001",
       "type": "true_cognate",
-      "forms": { "en": "radio", "es": "radio", "fr": "", "nl": "" },
+      "forms": {
+        "en": "radio",
+        "es": "radio",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "broadcast medium / radio device",
         "es": "broadcast medium / radio device",
@@ -628,7 +990,12 @@
     {
       "id": "familia_001",
       "type": "true_cognate",
-      "forms": { "en": "family", "es": "familia", "fr": "", "nl": "" },
+      "forms": {
+        "en": "family",
+        "es": "familia",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "group of related people",
         "es": "group of related people",
@@ -641,7 +1008,12 @@
     {
       "id": "musica_001",
       "type": "true_cognate",
-      "forms": { "en": "music", "es": "música", "fr": "", "nl": "" },
+      "forms": {
+        "en": "music",
+        "es": "música",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "art of organized sound",
         "es": "art of organized sound",
@@ -654,7 +1026,12 @@
     {
       "id": "telefono_001",
       "type": "true_cognate",
-      "forms": { "en": "telephone", "es": "teléfono", "fr": "", "nl": "" },
+      "forms": {
+        "en": "telephone",
+        "es": "teléfono",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "device for voice communication",
         "es": "device for voice communication",
@@ -667,7 +1044,12 @@
     {
       "id": "universidad_001",
       "type": "true_cognate",
-      "forms": { "en": "university", "es": "universidad", "fr": "", "nl": "" },
+      "forms": {
+        "en": "university",
+        "es": "universidad",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "institution of higher education",
         "es": "institution of higher education",
@@ -680,7 +1062,12 @@
     {
       "id": "importante_001",
       "type": "true_cognate",
-      "forms": { "en": "important", "es": "importante", "fr": "", "nl": "" },
+      "forms": {
+        "en": "important",
+        "es": "importante",
+        "fr": "",
+        "nl": ""
+      },
       "meanings": {
         "en": "of significance",
         "es": "of significance",
@@ -693,125 +1080,274 @@
     {
       "id": "idea_001",
       "type": "true_cognate",
-      "forms": { "en": "idea", "es": "idea", "fr": "", "nl": "" },
-      "meanings": { "en": "a thought, concept", "es": "a thought, concept", "fr": "", "nl": "" },
+      "forms": {
+        "en": "idea",
+        "es": "idea",
+        "fr": "",
+        "nl": ""
+      },
+      "meanings": {
+        "en": "a thought, concept",
+        "es": "a thought, concept",
+        "fr": "",
+        "nl": ""
+      },
       "trap_in": [],
       "notes": "Same meaning, identical spelling."
     },
     {
       "id": "plan_001",
       "type": "true_cognate",
-      "forms": { "en": "plan", "es": "plan", "fr": "", "nl": "" },
-      "meanings": { "en": "a proposed scheme", "es": "a proposed scheme", "fr": "", "nl": "" },
+      "forms": {
+        "en": "plan",
+        "es": "plan",
+        "fr": "",
+        "nl": ""
+      },
+      "meanings": {
+        "en": "a proposed scheme",
+        "es": "a proposed scheme",
+        "fr": "",
+        "nl": ""
+      },
       "trap_in": [],
       "notes": "Same meaning, identical spelling."
     },
     {
       "id": "problema_001",
       "type": "true_cognate",
-      "forms": { "en": "problem", "es": "problema", "fr": "", "nl": "" },
-      "meanings": { "en": "a difficulty to be solved", "es": "a difficulty to be solved", "fr": "", "nl": "" },
+      "forms": {
+        "en": "problem",
+        "es": "problema",
+        "fr": "",
+        "nl": ""
+      },
+      "meanings": {
+        "en": "a difficulty to be solved",
+        "es": "a difficulty to be solved",
+        "fr": "",
+        "nl": ""
+      },
       "trap_in": [],
       "notes": "Same meaning. Note ES adds final -a (gendered noun)."
     },
     {
       "id": "minuto_001",
       "type": "true_cognate",
-      "forms": { "en": "minute", "es": "minuto", "fr": "", "nl": "" },
-      "meanings": { "en": "60 seconds", "es": "60 seconds", "fr": "", "nl": "" },
+      "forms": {
+        "en": "minute",
+        "es": "minuto",
+        "fr": "",
+        "nl": ""
+      },
+      "meanings": {
+        "en": "60 seconds",
+        "es": "60 seconds",
+        "fr": "",
+        "nl": ""
+      },
       "trap_in": [],
       "notes": "Same meaning (the time unit, not the adjective)."
     },
     {
       "id": "numero_001",
       "type": "true_cognate",
-      "forms": { "en": "number", "es": "número", "fr": "", "nl": "" },
-      "meanings": { "en": "a numerical value", "es": "a numerical value", "fr": "", "nl": "" },
+      "forms": {
+        "en": "number",
+        "es": "número",
+        "fr": "",
+        "nl": ""
+      },
+      "meanings": {
+        "en": "a numerical value",
+        "es": "a numerical value",
+        "fr": "",
+        "nl": ""
+      },
       "trap_in": [],
       "notes": "Same meaning."
     },
     {
       "id": "moderno_001",
       "type": "true_cognate",
-      "forms": { "en": "modern", "es": "moderno", "fr": "", "nl": "" },
-      "meanings": { "en": "of the current era", "es": "of the current era", "fr": "", "nl": "" },
+      "forms": {
+        "en": "modern",
+        "es": "moderno",
+        "fr": "",
+        "nl": ""
+      },
+      "meanings": {
+        "en": "of the current era",
+        "es": "of the current era",
+        "fr": "",
+        "nl": ""
+      },
       "trap_in": [],
       "notes": "Same meaning."
     },
     {
       "id": "publico_001",
       "type": "true_cognate",
-      "forms": { "en": "public", "es": "público", "fr": "", "nl": "" },
-      "meanings": { "en": "open to or shared by all", "es": "open to or shared by all", "fr": "", "nl": "" },
+      "forms": {
+        "en": "public",
+        "es": "público",
+        "fr": "",
+        "nl": ""
+      },
+      "meanings": {
+        "en": "open to or shared by all",
+        "es": "open to or shared by all",
+        "fr": "",
+        "nl": ""
+      },
       "trap_in": [],
       "notes": "Same meaning. Both languages also use it as a noun for 'audience'."
     },
     {
       "id": "perfecto_001",
       "type": "true_cognate",
-      "forms": { "en": "perfect", "es": "perfecto", "fr": "", "nl": "" },
-      "meanings": { "en": "without flaw", "es": "without flaw", "fr": "", "nl": "" },
+      "forms": {
+        "en": "perfect",
+        "es": "perfecto",
+        "fr": "",
+        "nl": ""
+      },
+      "meanings": {
+        "en": "without flaw",
+        "es": "without flaw",
+        "fr": "",
+        "nl": ""
+      },
       "trap_in": [],
       "notes": "Same meaning."
     },
     {
       "id": "favorito_001",
       "type": "true_cognate",
-      "forms": { "en": "favorite", "es": "favorito", "fr": "", "nl": "" },
-      "meanings": { "en": "preferred above others", "es": "preferred above others", "fr": "", "nl": "" },
+      "forms": {
+        "en": "favorite",
+        "es": "favorito",
+        "fr": "",
+        "nl": ""
+      },
+      "meanings": {
+        "en": "preferred above others",
+        "es": "preferred above others",
+        "fr": "",
+        "nl": ""
+      },
       "trap_in": [],
       "notes": "Same meaning."
     },
     {
       "id": "horrible_001",
       "type": "true_cognate",
-      "forms": { "en": "horrible", "es": "horrible", "fr": "", "nl": "" },
-      "meanings": { "en": "extremely unpleasant", "es": "extremely unpleasant", "fr": "", "nl": "" },
+      "forms": {
+        "en": "horrible",
+        "es": "horrible",
+        "fr": "",
+        "nl": ""
+      },
+      "meanings": {
+        "en": "extremely unpleasant",
+        "es": "extremely unpleasant",
+        "fr": "",
+        "nl": ""
+      },
       "trap_in": [],
       "notes": "Same meaning, identical spelling."
     },
     {
       "id": "elegante_001",
       "type": "true_cognate",
-      "forms": { "en": "elegant", "es": "elegante", "fr": "", "nl": "" },
-      "meanings": { "en": "graceful and stylish", "es": "graceful and stylish", "fr": "", "nl": "" },
+      "forms": {
+        "en": "elegant",
+        "es": "elegante",
+        "fr": "",
+        "nl": ""
+      },
+      "meanings": {
+        "en": "graceful and stylish",
+        "es": "graceful and stylish",
+        "fr": "",
+        "nl": ""
+      },
       "trap_in": [],
       "notes": "Same meaning."
     },
     {
       "id": "examen_001",
       "type": "true_cognate",
-      "forms": { "en": "exam", "es": "examen", "fr": "", "nl": "" },
-      "meanings": { "en": "a formal test", "es": "a formal test", "fr": "", "nl": "" },
+      "forms": {
+        "en": "exam",
+        "es": "examen",
+        "fr": "",
+        "nl": ""
+      },
+      "meanings": {
+        "en": "a formal test",
+        "es": "a formal test",
+        "fr": "",
+        "nl": ""
+      },
       "trap_in": [],
       "notes": "Same meaning."
     },
     {
       "id": "memoria_001",
       "type": "true_cognate",
-      "forms": { "en": "memory", "es": "memoria", "fr": "", "nl": "" },
-      "meanings": { "en": "the faculty of recall", "es": "the faculty of recall", "fr": "", "nl": "" },
+      "forms": {
+        "en": "memory",
+        "es": "memoria",
+        "fr": "",
+        "nl": ""
+      },
+      "meanings": {
+        "en": "the faculty of recall",
+        "es": "the faculty of recall",
+        "fr": "",
+        "nl": ""
+      },
       "trap_in": [],
       "notes": "Same meaning. Both can mean computer memory too."
     },
     {
       "id": "decision_001",
       "type": "true_cognate",
-      "forms": { "en": "decision", "es": "decisión", "fr": "", "nl": "" },
-      "meanings": { "en": "a conclusion reached", "es": "a conclusion reached", "fr": "", "nl": "" },
+      "forms": {
+        "en": "decision",
+        "es": "decisión",
+        "fr": "",
+        "nl": ""
+      },
+      "meanings": {
+        "en": "a conclusion reached",
+        "es": "a conclusion reached",
+        "fr": "",
+        "nl": ""
+      },
       "trap_in": [],
       "notes": "Same meaning."
     },
     {
       "id": "energia_001",
       "type": "true_cognate",
-      "forms": { "en": "energy", "es": "energía", "fr": "", "nl": "" },
-      "meanings": { "en": "vitality, force", "es": "vitality, force", "fr": "", "nl": "" },
+      "forms": {
+        "en": "energy",
+        "es": "energía",
+        "fr": "",
+        "nl": ""
+      },
+      "meanings": {
+        "en": "vitality, force",
+        "es": "vitality, force",
+        "fr": "",
+        "nl": ""
+      },
       "trap_in": [],
       "notes": "Same meaning."
     }
   ],
-
   "level2_sentences": [
     {
       "id": "actual_sent_001",
@@ -2194,7 +2730,7 @@
       "notes": "ES misuse, increasingly common under English influence. Speaker means EN 'realize' (darme cuenta de), but ES 'realizar' = 'carry out/perform'."
     },
     {
-      "id": "asignatura_sent_003",
+      "id": "asignatura_sent_004",
       "based_on": "asignatura_001",
       "language": "es",
       "sentence": "Necesito tu asignatura en este formulario, por favor.",
@@ -2204,7 +2740,7 @@
       "notes": "ES misuse. Speaker means EN 'signature' (firma), but ES 'asignatura' = 'school subject'."
     },
     {
-      "id": "envolver_sent_003",
+      "id": "envolver_sent_004",
       "based_on": "envolver_001",
       "language": "es",
       "sentence": "El proyecto va a envolver a todo el equipo de marketing.",
@@ -2214,7 +2750,7 @@
       "notes": "ES misuse. Speaker means EN 'involve' (involucrar), but ES 'envolver' = 'wrap'."
     },
     {
-      "id": "lectura_sent_003",
+      "id": "lectura_sent_004",
       "based_on": "lectura_001",
       "language": "es",
       "sentence": "Asistí a una lectura sobre física cuántica en la universidad.",
@@ -2224,7 +2760,7 @@
       "notes": "ES misuse. Speaker means EN 'lecture' (conferencia / clase magistral), but ES 'lectura' = 'reading'."
     },
     {
-      "id": "marca_sent_003",
+      "id": "marca_sent_004",
       "based_on": "marca_001",
       "language": "es",
       "sentence": "Hay una marca en la pared que parece sangre.",
@@ -2234,7 +2770,7 @@
       "notes": "ES misuse. Speaker means EN 'mark/stain' (mancha), but ES 'marca' typically means 'brand'. Partial false friend — context helps clarify."
     },
     {
-      "id": "pretender_sent_003",
+      "id": "pretender_sent_004",
       "based_on": "pretender_001",
       "language": "es",
       "sentence": "El niño pretende estar dormido cuando llamo a la puerta.",
@@ -2244,7 +2780,7 @@
       "notes": "ES misuse. Speaker means EN 'pretend' (finge / aparenta), but ES 'pretender' = 'intend/aspire'."
     },
     {
-      "id": "destino_sent_003",
+      "id": "destino_sent_004",
       "based_on": "destino_001",
       "language": "es",
       "sentence": "Creo en el destino, todo lo que pasa estaba escrito.",
@@ -2254,7 +2790,7 @@
       "notes": "Correct ES use in the literary 'fate' sense. Both meanings of destino exist; this one is valid."
     },
     {
-      "id": "campo_sent_003",
+      "id": "campo_sent_004",
       "based_on": "campo_001",
       "language": "es",
       "sentence": "Vamos al campo de verano de los niños este fin de semana.",
@@ -2264,7 +2800,7 @@
       "notes": "ES misuse. Speaker means EN 'summer camp' (campamento), but ES 'campo' = 'field/countryside'."
     },
     {
-      "id": "argumento_sent_003",
+      "id": "argumento_sent_004",
       "based_on": "argumento_001",
       "language": "es",
       "sentence": "Tuvimos un argumento muy fuerte sobre la política familiar.",
@@ -2274,7 +2810,7 @@
       "notes": "ES misuse. Speaker means EN 'argument/dispute' (discusión / pelea), but ES 'argumento' = 'plot of a story' or formal 'reasoning'."
     },
     {
-      "id": "noticia_sent_003",
+      "id": "noticia_sent_004",
       "based_on": "noticia_001",
       "language": "es",
       "sentence": "Pegaron una noticia en la pared sobre la fiesta del sábado.",
@@ -2284,7 +2820,7 @@
       "notes": "ES misuse. Speaker means EN 'notice/posted announcement' (aviso / anuncio), but ES 'noticia' = 'news'."
     },
     {
-      "id": "casual_sent_003",
+      "id": "casual_sent_004",
       "based_on": "casual_001",
       "language": "es",
       "sentence": "Voy con ropa casual a la oficina los viernes.",
@@ -2294,7 +2830,7 @@
       "notes": "ES misuse, increasingly common. Speaker means EN 'casual/informal' (informal / desenfadada), but standard ES 'casual' = 'by chance/accidental'."
     },
     {
-      "id": "advertencia_sent_003",
+      "id": "advertencia_sent_004",
       "based_on": "advertencia_001",
       "language": "es",
       "sentence": "Vi una advertencia muy creativa de coca-cola en la televisión.",
@@ -2304,7 +2840,7 @@
       "notes": "ES misuse. Speaker means EN 'advertisement' (anuncio / publicidad), but ES 'advertencia' = 'warning'."
     },
     {
-      "id": "pariente_sent_003",
+      "id": "pariente_sent_004",
       "based_on": "pariente_001",
       "language": "es",
       "sentence": "Voy a la reunión con mis dos parientes esta noche.",
@@ -2314,7 +2850,7 @@
       "notes": "ES misuse. Speaker means EN 'parents' (padres), but ES 'pariente' = 'any relative'. The 'two' makes the misuse plausible only as 'parents'."
     },
     {
-      "id": "ignorar_sent_003",
+      "id": "ignorar_sent_004",
       "based_on": "ignorar_001",
       "language": "es",
       "sentence": "Voy a ignorar tu mensaje a propósito porque me molestaste.",
@@ -2322,6 +2858,886 @@
       "correct_usage": false,
       "translation_meaning": "the speaker means 'deliberately ignore' (English-influenced misuse)",
       "notes": "ES misuse. Speaker means EN 'deliberately ignore' (hacer caso omiso / no hacer caso), but standard ES 'ignorar' = 'not know'. Increasingly accepted in casual modern Spanish under English influence."
+    },
+    {
+      "id": "constipado_sent_004",
+      "based_on": "constipado_001",
+      "language": "es",
+      "sentence": "Llevo tres días constipado y no puedo ir al baño.",
+      "flagged_word": "constipado",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'constipated (digestive)' (English-influenced misuse)",
+      "notes": "ES misuse. Speaker means EN 'constipated/digestive issue' (estreñido), but ES 'constipado' = 'congested with a cold'."
+    },
+    {
+      "id": "constipado_sent_005",
+      "based_on": "constipado_001",
+      "language": "es",
+      "sentence": "El médico me dijo que estoy constipado y debo comer más fibra.",
+      "flagged_word": "constipado",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'constipated (digestive)' (English-influenced misuse)",
+      "notes": "ES misuse. The fibra cue makes the digestive meaning unmistakable. Speaker means 'estreñido', but said 'constipado'."
+    },
+    {
+      "id": "constipado_sent_006",
+      "based_on": "constipado_001",
+      "language": "es",
+      "sentence": "Mi abuela está constipada porque no toma suficiente agua.",
+      "flagged_word": "constipada",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'constipated (digestive)' (English-influenced misuse)",
+      "notes": "ES misuse. The water-intake context implicates digestive constipation, not a head cold."
+    },
+    {
+      "id": "atender_sent_003",
+      "based_on": "atender_001",
+      "language": "es",
+      "sentence": "Voy a atender la conferencia de ciencia el sábado por la tarde.",
+      "flagged_word": "atender",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'to attend an event' (English-influenced misuse)",
+      "notes": "ES misuse. Speaker means EN 'attend' (asistir a), but ES 'atender' = 'to serve/take care of'. Common Spanglish error."
+    },
+    {
+      "id": "atender_sent_004",
+      "based_on": "atender_001",
+      "language": "es",
+      "sentence": "No pude atender la boda de mi prima por el viaje de trabajo.",
+      "flagged_word": "atender",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'to attend an event' (English-influenced misuse)",
+      "notes": "ES misuse. Speaker means 'asistir a' (attend), not 'atender' (serve/take care of)."
+    },
+    {
+      "id": "atender_sent_005",
+      "based_on": "atender_001",
+      "language": "es",
+      "sentence": "Tengo que atender una reunión importante a las diez de la mañana.",
+      "flagged_word": "atender",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'to attend a meeting' (English-influenced misuse)",
+      "notes": "ES misuse. EN 'attend a meeting' = 'asistir a una reunión'. The misuse is increasingly common in business Spanish under English influence."
+    },
+    {
+      "id": "largo_sent_004",
+      "based_on": "largo_001",
+      "language": "es",
+      "sentence": "Compré un café largo en Starbucks porque tenía mucha sed.",
+      "flagged_word": "largo",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'large size' (English-influenced misuse)",
+      "notes": "ES misuse. Speaker means EN 'large' (grande), but ES 'largo' = 'long'. Very common in coffee/restaurant ordering Spanglish."
+    },
+    {
+      "id": "largo_sent_005",
+      "based_on": "largo_001",
+      "language": "es",
+      "sentence": "Mi camiseta talla larga ya no me queda bien después del verano.",
+      "flagged_word": "larga",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'large size' (English-influenced misuse)",
+      "notes": "ES misuse. Clothing-size context. EN 'large' = 'grande' in Spanish; 'largo/larga' = 'long'."
+    },
+    {
+      "id": "largo_sent_006",
+      "based_on": "largo_001",
+      "language": "es",
+      "sentence": "Necesito una caja larga para guardar todos estos libros.",
+      "flagged_word": "larga",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'large box' (English-influenced misuse)",
+      "notes": "ES misuse. Storage context implicates 'grande' (large), not 'larga' (long)."
+    },
+    {
+      "id": "carrera_sent_004",
+      "based_on": "carrera_001",
+      "language": "es",
+      "sentence": "Mi carrera en marketing va muy bien, ya soy gerente regional.",
+      "flagged_word": "carrera",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'professional career path' (English-influenced misuse)",
+      "notes": "ES misuse. Speaker means EN 'career' (trayectoria profesional), but ES 'carrera' = 'university degree' or 'race'. Subtle: 'carrera' can mean career in some contexts but not in this professional progression sense."
+    },
+    {
+      "id": "carrera_sent_005",
+      "based_on": "carrera_001",
+      "language": "es",
+      "sentence": "Después de veinte años de carrera, finalmente me ascendieron a director.",
+      "flagged_word": "carrera",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'professional career' (English-influenced misuse)",
+      "notes": "ES misuse. Same drift — 'twenty years of career' implies the EN 'career' meaning, not ES 'university degree'."
+    },
+    {
+      "id": "carrera_sent_006",
+      "based_on": "carrera_001",
+      "language": "es",
+      "sentence": "Cambié de carrera porque ya no me gustaba trabajar en finanzas.",
+      "flagged_word": "carrera",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'change careers (jobs)' (English-influenced misuse)",
+      "notes": "ES misuse. EN 'change careers' = 'cambiar de profesión / trayectoria'. Speaker uses 'carrera' under English influence."
+    },
+    {
+      "id": "jubilacion_sent_004",
+      "based_on": "jubilacion_001",
+      "language": "es",
+      "sentence": "Sentí mucha jubilación cuando supe que aprobé el examen final.",
+      "flagged_word": "jubilación",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'jubilation/joy' (English-influenced misuse)",
+      "notes": "ES misuse. Speaker means EN 'jubilation' (júbilo / alegría), but ES 'jubilación' = 'retirement from work'."
+    },
+    {
+      "id": "jubilacion_sent_005",
+      "based_on": "jubilacion_001",
+      "language": "es",
+      "sentence": "Hubo gran jubilación en la calle cuando ganó la selección argentina.",
+      "flagged_word": "jubilación",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'jubilation/celebration' (English-influenced misuse)",
+      "notes": "ES misuse. Sports celebration context implicates 'júbilo' (jubilation), but speaker used 'jubilación' (retirement)."
+    },
+    {
+      "id": "jubilacion_sent_006",
+      "based_on": "jubilacion_001",
+      "language": "es",
+      "sentence": "La jubilación de los fans en el concierto fue increíble.",
+      "flagged_word": "jubilación",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'jubilation of fans' (English-influenced misuse)",
+      "notes": "ES misuse. Concert context. EN 'jubilation' = 'júbilo' or 'euforia', not ES 'jubilación' (retirement)."
+    },
+    {
+      "id": "destino_sent_005",
+      "based_on": "destino_001",
+      "language": "es",
+      "sentence": "Mi destino para las vacaciones de verano es la ciudad de Lyon.",
+      "flagged_word": "destino",
+      "correct_usage": true,
+      "translation_meaning": "destination (travel)",
+      "notes": "Correct ES use — 'destino' = 'travel destination'. This is a valid use; included to balance the corpus on this entry."
+    },
+    {
+      "id": "delito_sent_004",
+      "based_on": "delito_001",
+      "language": "es",
+      "sentence": "Comer chocolate antes de dormir es mi pequeño delito de placer.",
+      "flagged_word": "delito",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'guilty pleasure' (English-influenced misuse)",
+      "notes": "ES misuse. EN 'guilty pleasure' or 'small sin' (pecado / placer culpable), but ES 'delito' = 'criminal offense'. The casual context makes the criminal meaning absurd."
+    },
+    {
+      "id": "delito_sent_005",
+      "based_on": "delito_001",
+      "language": "es",
+      "sentence": "Mi único delito fue comer la última galleta sin avisarle.",
+      "flagged_word": "delito",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'minor offense/sin' (English-influenced misuse)",
+      "notes": "ES misuse. Calling eating a cookie a 'delito' (crime) is hyperbolic in EN but inappropriate in ES — speaker means 'pecado' or 'falta'."
+    },
+    {
+      "id": "delito_sent_006",
+      "based_on": "delito_001",
+      "language": "es",
+      "sentence": "Ese postre es un delito, está demasiado delicioso para ser legal.",
+      "flagged_word": "delito",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'a sin/something forbidden' (English-influenced misuse)",
+      "notes": "ES misuse. Idiomatic English 'that dessert is a crime' (so good it should be illegal). The construction works in EN slang but not in standard ES."
+    },
+    {
+      "id": "vaso_sent_004",
+      "based_on": "vaso_001",
+      "language": "es",
+      "sentence": "Decoramos la mesa con un vaso de flores rosas y blancas.",
+      "flagged_word": "vaso",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'vase (for flowers)' (English-influenced misuse)",
+      "notes": "ES misuse. EN 'vase' = ES 'jarrón' or 'florero'; ES 'vaso' = 'drinking glass'. The flowers context makes the intended meaning clear."
+    },
+    {
+      "id": "vaso_sent_005",
+      "based_on": "vaso_001",
+      "language": "es",
+      "sentence": "Compré un vaso antiguo de cerámica en el mercado de pulgas.",
+      "flagged_word": "vaso",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'antique vase' (English-influenced misuse)",
+      "notes": "ES misuse. Antique-store context implicates 'jarrón' (decorative vase), not 'vaso' (drinking glass)."
+    },
+    {
+      "id": "vaso_sent_006",
+      "based_on": "vaso_001",
+      "language": "es",
+      "sentence": "Cuidado con ese vaso de cristal, es muy frágil y costó mucho dinero.",
+      "flagged_word": "vaso",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'crystal vase' (English-influenced misuse)",
+      "notes": "ES misuse. 'Cristal' (crystal) and 'frágil' (fragile) plus high cost suggest decorative item, not drinking glass."
+    },
+    {
+      "id": "letra_sent_004",
+      "based_on": "letra_001",
+      "language": "es",
+      "sentence": "Te envío una letra para que la firmes y me la devuelvas pronto.",
+      "flagged_word": "letra",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'a letter (correspondence)' (English-influenced misuse)",
+      "notes": "ES misuse. EN 'letter (correspondence)' = ES 'carta'; ES 'letra' = 'single character/alphabet letter' or 'song lyrics'. Common Spanglish error."
+    },
+    {
+      "id": "letra_sent_005",
+      "based_on": "letra_001",
+      "language": "es",
+      "sentence": "Recibí una letra del banco diciendo que mi cuenta tiene problemas.",
+      "flagged_word": "letra",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'a letter (correspondence)' (English-influenced misuse)",
+      "notes": "ES misuse. Bank correspondence context — EN 'letter' = 'carta', not 'letra'."
+    },
+    {
+      "id": "letra_sent_006",
+      "based_on": "letra_001",
+      "language": "es",
+      "sentence": "Mi abuela siempre me escribe letras a mano con tinta azul.",
+      "flagged_word": "letras",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'letters (correspondence)' (English-influenced misuse)",
+      "notes": "ES misuse. Speaker means 'cartas' (letters/correspondence), but used 'letras' (alphabet characters) under English influence."
+    },
+    {
+      "id": "actual_sent_006",
+      "based_on": "actual_001",
+      "language": "es",
+      "sentence": "El problema actual con el carro es que no arranca por las mañanas.",
+      "flagged_word": "actual",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'the actual problem' (English-influenced misuse)",
+      "notes": "ES misuse. EN 'actual' = 'real / verdadero' in Spanish; ES 'actual' = 'current'. The context of describing a specific problem implies the EN sense."
+    },
+    {
+      "id": "actual_sent_007",
+      "based_on": "actual_001",
+      "language": "es",
+      "sentence": "Lo actual es que no tenemos dinero para pagar el alquiler este mes.",
+      "flagged_word": "actual",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'the actual/real fact' (English-influenced misuse)",
+      "notes": "ES misuse. Speaker means EN 'the actual fact' (la verdad / lo real / lo cierto), not ES 'lo actual' (the current/present)."
+    },
+    {
+      "id": "sensible_sent_005",
+      "based_on": "sensible_001",
+      "language": "es",
+      "sentence": "Necesito tomar una decisión sensible sobre dónde invertir mis ahorros.",
+      "flagged_word": "sensible",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'sensible/reasonable decision' (English-influenced misuse)",
+      "notes": "ES misuse. Classic false friend. EN 'sensible' (rational) = ES 'sensato / razonable'; ES 'sensible' = 'sensitive/emotionally aware'."
+    },
+    {
+      "id": "sensible_sent_006",
+      "based_on": "sensible_001",
+      "language": "es",
+      "sentence": "Mi hermano siempre da consejos muy sensibles porque piensa antes de hablar.",
+      "flagged_word": "sensibles",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'sensible/wise advice' (English-influenced misuse)",
+      "notes": "ES misuse. Wise/thoughtful advice = 'sensato', not 'sensible' (which means emotionally sensitive in Spanish)."
+    },
+    {
+      "id": "carpeta_sent_005",
+      "based_on": "carpeta_001",
+      "language": "es",
+      "sentence": "La carpeta del salón es de lana y muy difícil de limpiar.",
+      "flagged_word": "carpeta",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'living-room carpet' (English-influenced misuse)",
+      "notes": "ES misuse. Wool material + cleaning context = 'alfombra' (carpet/rug). 'Carpeta' in ES = file folder, not floor covering."
+    },
+    {
+      "id": "carpeta_sent_006",
+      "based_on": "carpeta_001",
+      "language": "es",
+      "sentence": "Pisé la carpeta con los zapatos sucios y mi madre se enojó.",
+      "flagged_word": "carpeta",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'walked on the carpet' (English-influenced misuse)",
+      "notes": "ES misuse. Stepping on something = 'alfombra'. You don't step on a folder."
+    },
+    {
+      "id": "fabrica_sent_005",
+      "based_on": "fabrica_001",
+      "language": "es",
+      "sentence": "Mi madre cose vestidos con fábrica de algodón orgánico.",
+      "flagged_word": "fábrica",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'cotton fabric/cloth' (English-influenced misuse)",
+      "notes": "ES misuse. Sewing context = 'tela' (fabric). 'Fábrica' = factory."
+    },
+    {
+      "id": "fabrica_sent_006",
+      "based_on": "fabrica_001",
+      "language": "es",
+      "sentence": "Esa fábrica de seda es demasiado fina para hacer cortinas.",
+      "flagged_word": "fábrica",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'silk fabric' (English-influenced misuse)",
+      "notes": "ES misuse. Silk/curtains context = 'tela', not 'fábrica' (factory)."
+    },
+    {
+      "id": "molestar_sent_005",
+      "based_on": "molestar_001",
+      "language": "es",
+      "sentence": "Las autoridades investigan el caso del entrenador acusado de molestar menores.",
+      "flagged_word": "molestar",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'to molest/abuse' (English-influenced misuse)",
+      "notes": "ES misuse with serious implications. Speaker means EN 'molest/abuse' (abusar / acosar sexualmente), not ES 'molestar' (bother). The misuse can cause real misunderstanding in news/legal contexts."
+    },
+    {
+      "id": "molestar_sent_006",
+      "based_on": "molestar_001",
+      "language": "es",
+      "sentence": "El sospechoso fue arrestado por intentar molestar a una niña en el parque.",
+      "flagged_word": "molestar",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'to molest/abuse' (English-influenced misuse)",
+      "notes": "ES misuse. Crime/police context. EN 'molest' (a child) = ES 'abusar de'. ES 'molestar' (bother) is far less serious."
+    },
+    {
+      "id": "asistir_sent_005",
+      "based_on": "asistir_001",
+      "language": "es",
+      "sentence": "Mi nuevo trabajo es asistir al gerente con tareas administrativas diarias.",
+      "flagged_word": "asistir",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'to assist the manager' (English-influenced misuse)",
+      "notes": "ES misuse. EN 'assist a manager' = 'ayudar al gerente' or 'ser asistente de'. ES 'asistir' = 'attend (an event)'."
+    },
+    {
+      "id": "asistir_sent_006",
+      "based_on": "asistir_001",
+      "language": "es",
+      "sentence": "Voy a contratar a alguien para asistirme con la mudanza el sábado.",
+      "flagged_word": "asistirme",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'to help me with the move' (English-influenced misuse)",
+      "notes": "ES misuse. EN 'assist with the move' = 'ayudar con la mudanza'. ES 'asistir' is to attend."
+    },
+    {
+      "id": "introducir_sent_005",
+      "based_on": "introducir_001",
+      "language": "es",
+      "sentence": "Quisiera introducirles al nuevo director del departamento de marketing.",
+      "flagged_word": "introducirles",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'introduce people' (English-influenced misuse)",
+      "notes": "ES misuse. EN 'introduce someone' = 'presentar'; ES 'introducir' = insert (an object). Very common business Spanglish."
+    },
+    {
+      "id": "introducir_sent_006",
+      "based_on": "introducir_001",
+      "language": "es",
+      "sentence": "Te quiero introducir a mi novio antes de que se vaya de viaje.",
+      "flagged_word": "introducir",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'introduce my boyfriend' (English-influenced misuse)",
+      "notes": "ES misuse. Speaker means 'presentar' (introduce a person). 'Introducir' implies physical insertion, awkward in social context."
+    },
+    {
+      "id": "discusion_sent_005",
+      "based_on": "discusion_001",
+      "language": "es",
+      "sentence": "Tuvimos una discusión productiva en la junta sobre el nuevo presupuesto.",
+      "flagged_word": "discusión",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'productive discussion' (English-influenced misuse)",
+      "notes": "ES misuse. ES 'discusión' implies argument/disagreement. EN 'productive discussion' = 'conversación productiva' or 'debate productivo'."
+    },
+    {
+      "id": "discusion_sent_006",
+      "based_on": "discusion_001",
+      "language": "es",
+      "sentence": "Después de una larga discusión amistosa, decidimos qué película ver.",
+      "flagged_word": "discusión",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'friendly discussion' (English-influenced misuse)",
+      "notes": "ES misuse. 'Discusión amistosa' is contradictory in standard ES (discusiones aren't friendly). Speaker means 'conversación' or 'charla'."
+    },
+    {
+      "id": "eventualmente_sent_005",
+      "based_on": "eventualmente_001",
+      "language": "es",
+      "sentence": "Eventualmente voy a terminar mi novela, pero no tengo prisa.",
+      "flagged_word": "eventualmente",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'eventually' (English-influenced misuse)",
+      "notes": "ES misuse. EN 'eventually' (algún día / al final / con el tiempo) ≠ ES 'eventualmente' (occasionally / from time to time)."
+    },
+    {
+      "id": "eventualmente_sent_006",
+      "based_on": "eventualmente_001",
+      "language": "es",
+      "sentence": "Eventualmente todos vamos a aprender a manejar las nuevas tecnologías.",
+      "flagged_word": "eventualmente",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'eventually all of us' (English-influenced misuse)",
+      "notes": "ES misuse. The 'todos' implies a future inevitability ('eventually everyone will'), the EN sense, not the ES 'occasionally'."
+    },
+    {
+      "id": "simpatico_sent_005",
+      "based_on": "simpatico_001",
+      "language": "es",
+      "sentence": "Me siento muy simpático con su situación, debe ser difícil.",
+      "flagged_word": "simpático",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'sympathetic/empathetic' (English-influenced misuse)",
+      "notes": "ES misuse. EN 'sympathetic' (toward someone's pain) = 'comprensivo' or 'compasivo'. ES 'simpático' = 'nice/likeable'."
+    },
+    {
+      "id": "simpatico_sent_006",
+      "based_on": "simpatico_001",
+      "language": "es",
+      "sentence": "El doctor fue muy simpático con mi diagnóstico, eso me ayudó mucho.",
+      "flagged_word": "simpático",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'sympathetic/understanding' (English-influenced misuse)",
+      "notes": "ES misuse. Medical context where 'simpático' would just mean the doctor was friendly, but speaker means EN 'sympathetic to my situation' (comprensivo)."
+    },
+    {
+      "id": "preservativo_sent_004",
+      "based_on": "preservativo_001",
+      "language": "es",
+      "sentence": "Esta mermelada no tiene preservativos, es completamente natural.",
+      "flagged_word": "preservativos",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'food preservatives' (English-influenced misuse)",
+      "notes": "ES misuse with potentially embarrassing implications. EN 'preservatives' (in food) = ES 'conservantes'; ES 'preservativos' = 'condoms'."
+    },
+    {
+      "id": "preservativo_sent_005",
+      "based_on": "preservativo_001",
+      "language": "es",
+      "sentence": "Lee la etiqueta para ver qué preservativos contiene esta marca.",
+      "flagged_word": "preservativos",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'food preservatives' (English-influenced misuse)",
+      "notes": "ES misuse. The label-reading + brand context implicates food additives ('conservantes'), making the speaker's intended meaning clear despite the wrong word."
+    },
+    {
+      "id": "decepcion_sent_005",
+      "based_on": "decepcion_001",
+      "language": "es",
+      "sentence": "El estafador realizó una decepción muy elaborada para robar el dinero.",
+      "flagged_word": "decepción",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'elaborate deception/fraud' (English-influenced misuse)",
+      "notes": "ES misuse. Crime context. EN 'deception' = 'engaño / estafa'; ES 'decepción' = 'disappointment'."
+    },
+    {
+      "id": "decepcion_sent_006",
+      "based_on": "decepcion_001",
+      "language": "es",
+      "sentence": "Cuidado con esa decepción, parece real pero es completamente falso.",
+      "flagged_word": "decepción",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'a deception/trick' (English-influenced misuse)",
+      "notes": "ES misuse. The 'parece real pero es falso' framing makes the EN 'deception' meaning unmistakable."
+    },
+    {
+      "id": "compromiso_sent_005",
+      "based_on": "compromiso_001",
+      "language": "es",
+      "sentence": "Después de horas de negociación llegamos a un compromiso aceptable para ambos.",
+      "flagged_word": "compromiso",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'compromise/middle-ground agreement' (English-influenced misuse)",
+      "notes": "ES misuse. Negotiation context. EN 'compromise' (middle-ground) = ES 'concesión mutua / acuerdo'; ES 'compromiso' = 'commitment / engagement'."
+    },
+    {
+      "id": "compromiso_sent_006",
+      "based_on": "compromiso_001",
+      "language": "es",
+      "sentence": "Tuve que hacer un compromiso entre lo que quería y lo que podía pagar.",
+      "flagged_word": "compromiso",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'made a compromise/concession' (English-influenced misuse)",
+      "notes": "ES misuse. EN 'made a compromise' = 'cedí / hice una concesión'. ES 'compromiso' implies commitment, not the act of giving ground."
+    },
+    {
+      "id": "soportar_sent_005",
+      "based_on": "soportar_001",
+      "language": "es",
+      "sentence": "Mi mejor amiga me soporta emocionalmente cuando tengo problemas.",
+      "flagged_word": "soporta",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'supports me emotionally' (English-influenced misuse)",
+      "notes": "ES misuse. EN 'supports emotionally' = 'apoya'; ES 'soportar' = 'tolerate / put up with'. The emocionalmente cue makes the misuse striking."
+    },
+    {
+      "id": "soportar_sent_006",
+      "based_on": "soportar_001",
+      "language": "es",
+      "sentence": "Los empleados soportan al nuevo CEO porque tiene buenas ideas.",
+      "flagged_word": "soportan",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'support the CEO' (English-influenced misuse)",
+      "notes": "ES misuse. Workplace endorsement context. EN 'support the leader' = 'apoyan'. Standard ES 'soportar' here would mean 'tolerate/endure', which sounds critical."
+    },
+    {
+      "id": "realizar_sent_005",
+      "based_on": "realizar_001",
+      "language": "es",
+      "sentence": "De repente realicé que había olvidado el pasaporte en casa.",
+      "flagged_word": "realicé",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'realized/noticed suddenly' (English-influenced misuse)",
+      "notes": "ES misuse. Common modern Spanglish. EN 'realize' = 'darse cuenta'; ES 'realizar' = 'carry out / accomplish'."
+    },
+    {
+      "id": "realizar_sent_006",
+      "based_on": "realizar_001",
+      "language": "es",
+      "sentence": "Cuando vi el video, realicé que mi hijo tenía mucho talento.",
+      "flagged_word": "realicé",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'realized my son was talented' (English-influenced misuse)",
+      "notes": "ES misuse. EN 'realize about a person' = 'darme cuenta de'. Increasingly accepted in colloquial Spanish but flagged here as a misuse."
+    },
+    {
+      "id": "asignatura_sent_005",
+      "based_on": "asignatura_001",
+      "language": "es",
+      "sentence": "Por favor, deja tu asignatura al final del documento legal.",
+      "flagged_word": "asignatura",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'signature' (English-influenced misuse)",
+      "notes": "ES misuse. Legal/document context. EN 'signature' = 'firma'; ES 'asignatura' = 'school subject'."
+    },
+    {
+      "id": "asignatura_sent_006",
+      "based_on": "asignatura_001",
+      "language": "es",
+      "sentence": "La asignatura del artista famoso vale mucho dinero en subasta.",
+      "flagged_word": "asignatura",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'autograph/signature' (English-influenced misuse)",
+      "notes": "ES misuse. Auction/celebrity context. EN 'signature' (autograph) = 'firma' or 'autógrafo'; ES 'asignatura' is about school subjects."
+    },
+    {
+      "id": "envolver_sent_005",
+      "based_on": "envolver_001",
+      "language": "es",
+      "sentence": "Esta nueva ley va a envolver muchos cambios para nuestra empresa.",
+      "flagged_word": "envolver",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'involve/entail changes' (English-influenced misuse)",
+      "notes": "ES misuse. Legal/business context. EN 'involve / entail' = 'implicar / suponer'; ES 'envolver' = 'wrap'."
+    },
+    {
+      "id": "envolver_sent_006",
+      "based_on": "envolver_001",
+      "language": "es",
+      "sentence": "No quiero envolverme en los problemas familiares de mi vecino.",
+      "flagged_word": "envolverme",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'get involved in problems' (English-influenced misuse)",
+      "notes": "ES misuse. EN 'get involved in' = 'involucrarme' or 'meterme'. 'Envolverme' literally means to wrap myself, which doesn't make sense here."
+    },
+    {
+      "id": "lectura_sent_005",
+      "based_on": "lectura_001",
+      "language": "es",
+      "sentence": "El profesor dio una lectura fascinante sobre la historia romana antigua.",
+      "flagged_word": "lectura",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'lecture/talk' (English-influenced misuse)",
+      "notes": "ES misuse. EN 'lecture' (academic talk) = 'conferencia / charla'; ES 'lectura' = 'reading' (the act of reading)."
+    },
+    {
+      "id": "lectura_sent_006",
+      "based_on": "lectura_001",
+      "language": "es",
+      "sentence": "Mañana hay una lectura pública en la universidad sobre cambio climático.",
+      "flagged_word": "lectura",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'public lecture/talk' (English-influenced misuse)",
+      "notes": "ES misuse. Public talk context. EN 'public lecture' = 'conferencia pública'; ES 'lectura' implies a reading session."
+    },
+    {
+      "id": "marca_sent_005",
+      "based_on": "marca_001",
+      "language": "es",
+      "sentence": "Tiene una marca grande en la cara desde el accidente de bicicleta.",
+      "flagged_word": "marca",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'a mark/scar on the face' (English-influenced misuse)",
+      "notes": "ES misuse. Body-injury context. EN 'mark / scar' = 'marca' is acceptable in some dialects, but 'cicatriz' is more precise. Speaker means physical mark/scar, which English speakers default to 'marca'."
+    },
+    {
+      "id": "marca_sent_006",
+      "based_on": "marca_001",
+      "language": "es",
+      "sentence": "Mi camisa nueva tiene una marca de café que no se quita con nada.",
+      "flagged_word": "marca",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'coffee stain' (English-influenced misuse)",
+      "notes": "ES misuse. Stain context. EN 'mark / stain' = ES 'mancha'; ES 'marca' is more precisely 'brand' or 'sign/imprint'."
+    },
+    {
+      "id": "pretender_sent_005",
+      "based_on": "pretender_001",
+      "language": "es",
+      "sentence": "El gato pretende estar dormido pero solo está esperando que me vaya.",
+      "flagged_word": "pretende",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'pretends/feigns sleep' (English-influenced misuse)",
+      "notes": "ES misuse. Common in heritage Spanish. EN 'pretend / feign' = 'fingir / aparentar'; ES 'pretender' = 'intend / aspire'."
+    },
+    {
+      "id": "pretender_sent_006",
+      "based_on": "pretender_001",
+      "language": "es",
+      "sentence": "No pretendas que no sabes nada del asunto, todos vimos lo que pasó.",
+      "flagged_word": "pretendas",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'don't pretend ignorance' (English-influenced misuse)",
+      "notes": "ES misuse. Confrontation context. EN 'pretend' = 'fingir'. Standard ES 'no pretendas' would mean 'don't aspire to', which makes no sense in confrontation."
+    },
+    {
+      "id": "campo_sent_005",
+      "based_on": "campo_001",
+      "language": "es",
+      "sentence": "Mi hijo va al campo de matemáticas durante todo el verano.",
+      "flagged_word": "campo",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'math camp' (English-influenced misuse)",
+      "notes": "ES misuse. Camp context. EN 'math camp / summer camp' = 'campamento'; ES 'campo' = 'field / countryside'."
+    },
+    {
+      "id": "campo_sent_006",
+      "based_on": "campo_001",
+      "language": "es",
+      "sentence": "El campo de música rock empezó la semana pasada en las montañas.",
+      "flagged_word": "campo",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'rock music camp' (English-influenced misuse)",
+      "notes": "ES misuse. EN 'music camp' = 'campamento de música'; ES 'campo' is field/countryside, not an organized camp/program."
+    },
+    {
+      "id": "argumento_sent_005",
+      "based_on": "argumento_001",
+      "language": "es",
+      "sentence": "Mi novio y yo tuvimos un argumento muy fuerte ayer por la noche.",
+      "flagged_word": "argumento",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'a fight/argument with partner' (English-influenced misuse)",
+      "notes": "ES misuse. EN 'argument / fight' = 'discusión / pelea'; ES 'argumento' = 'plot of a story' or 'formal reasoning'."
+    },
+    {
+      "id": "argumento_sent_006",
+      "based_on": "argumento_001",
+      "language": "es",
+      "sentence": "Ese argumento entre los vecinos terminó cuando llamaron a la policía.",
+      "flagged_word": "argumento",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'argument/fight between neighbors' (English-influenced misuse)",
+      "notes": "ES misuse. Conflict requiring police involvement = 'pelea / disputa', not 'argumento' (which is a story plot)."
+    },
+    {
+      "id": "noticia_sent_005",
+      "based_on": "noticia_001",
+      "language": "es",
+      "sentence": "Pusieron una noticia en el tablero del edificio sobre la reunión de mañana.",
+      "flagged_word": "noticia",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'a notice/announcement' (English-influenced misuse)",
+      "notes": "ES misuse. EN 'notice / posted announcement' = 'aviso / anuncio'; ES 'noticia' = 'news'."
+    },
+    {
+      "id": "noticia_sent_006",
+      "based_on": "noticia_001",
+      "language": "es",
+      "sentence": "Recibí una noticia oficial del gobierno sobre los nuevos impuestos.",
+      "flagged_word": "noticia",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'official notice' (English-influenced misuse)",
+      "notes": "ES misuse. Government correspondence context. EN 'official notice' = 'aviso / notificación oficial'."
+    },
+    {
+      "id": "casual_sent_005",
+      "based_on": "casual_001",
+      "language": "es",
+      "sentence": "El código de vestimenta de la empresa es casual los viernes.",
+      "flagged_word": "casual",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'casual dress code' (English-influenced misuse)",
+      "notes": "ES misuse. Workplace dress-code context. EN 'casual dress' = 'informal'; standard ES 'casual' = 'by chance / accidental'."
+    },
+    {
+      "id": "casual_sent_006",
+      "based_on": "casual_001",
+      "language": "es",
+      "sentence": "Tuvimos una conversación casual sobre la película sin profundizar.",
+      "flagged_word": "casual",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'casual/relaxed conversation' (English-influenced misuse)",
+      "notes": "ES misuse. EN 'casual conversation' = 'conversación informal / relajada'; ES 'casual' implies coincidental."
+    },
+    {
+      "id": "advertencia_sent_005",
+      "based_on": "advertencia_001",
+      "language": "es",
+      "sentence": "La advertencia del nuevo coche eléctrico se está viendo en toda la ciudad.",
+      "flagged_word": "advertencia",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'advertisement/ad campaign' (English-influenced misuse)",
+      "notes": "ES misuse. Advertising context. EN 'advertisement' = 'anuncio / publicidad'; ES 'advertencia' = 'warning'."
+    },
+    {
+      "id": "advertencia_sent_006",
+      "based_on": "advertencia_001",
+      "language": "es",
+      "sentence": "Esa advertencia de televisión es muy creativa y me hace reír siempre.",
+      "flagged_word": "advertencia",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'TV commercial' (English-influenced misuse)",
+      "notes": "ES misuse. TV/comedy context. 'Advertencia' (warning) doesn't make people laugh; speaker means 'anuncio' (commercial)."
+    },
+    {
+      "id": "embarazada_sent_005",
+      "based_on": "embarazada_001",
+      "language": "es",
+      "sentence": "Me sentí muy embarazada cuando me preguntó delante de todos.",
+      "flagged_word": "embarazada",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'embarrassed' (English-influenced misuse)",
+      "notes": "ES misuse. Classic Spanglish error. EN 'embarrassed' = 'avergonzada / apenada'; ES 'embarazada' = 'pregnant'."
+    },
+    {
+      "id": "exito_sent_005",
+      "based_on": "exito_001",
+      "language": "es",
+      "sentence": "Sigue las señales del éxito de emergencia para salir del edificio.",
+      "flagged_word": "éxito",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'emergency exit' (English-influenced misuse)",
+      "notes": "ES misuse. Building safety context. EN 'exit' = 'salida'; ES 'éxito' = 'success'. The signs context makes the misuse comical."
+    },
+    {
+      "id": "libreria_sent_005",
+      "based_on": "libreria_001",
+      "language": "es",
+      "sentence": "La librería universitaria está abierta todos los días hasta las once.",
+      "flagged_word": "librería",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'university library' (English-influenced misuse)",
+      "notes": "ES misuse. EN 'library' = 'biblioteca'; ES 'librería' = 'bookstore'. The university+late hours context implicates a study library."
+    },
+    {
+      "id": "ropa_sent_005",
+      "based_on": "ropa_001",
+      "language": "es",
+      "sentence": "Tira la ropa por la ventana para escalar y bajar al primer piso.",
+      "flagged_word": "ropa",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'rope (climbing rope)' (English-influenced misuse)",
+      "notes": "ES misuse. Climbing/escape context. EN 'rope' = 'cuerda / soga'; ES 'ropa' = 'clothing'. Throwing clothing for climbing makes no sense."
+    },
+    {
+      "id": "destino_sent_006",
+      "based_on": "destino_001",
+      "language": "es",
+      "sentence": "Mi destino para el trabajo es siempre el mismo edificio en el centro.",
+      "flagged_word": "destino",
+      "correct_usage": true,
+      "translation_meaning": "destination (location)",
+      "notes": "Correct ES use — 'destino' as a destination/place is valid. Marked as correct usage."
+    },
+    {
+      "id": "destino_sent_007",
+      "based_on": "destino_001",
+      "language": "es",
+      "sentence": "Era mi destino encontrarte aquí, no podía haber sucedido de otra forma.",
+      "flagged_word": "destino",
+      "correct_usage": true,
+      "translation_meaning": "destiny/fate (literary)",
+      "notes": "Correct ES use — 'destino' in the literary 'fate' sense. Both 'destination' and 'fate' meanings exist in Spanish; this is the latter."
+    },
+    {
+      "id": "ignorar_sent_005",
+      "based_on": "ignorar_001",
+      "language": "es",
+      "sentence": "Decidí ignorar el correo electrónico porque no me parecía importante.",
+      "flagged_word": "ignorar",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'deliberately ignore email' (English-influenced misuse)",
+      "notes": "ES misuse. EN 'deliberately ignore' = 'hacer caso omiso / no hacer caso'; standard ES 'ignorar' = 'not know'. Increasingly accepted under English influence."
+    },
+    {
+      "id": "ignorar_sent_006",
+      "based_on": "ignorar_001",
+      "language": "es",
+      "sentence": "Mi vecino me ignora cada vez que lo veo en el ascensor.",
+      "flagged_word": "ignora",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'snubs/ignores me' (English-influenced misuse)",
+      "notes": "ES misuse. Standard ES 'ignorar' implies not knowing, but here speaker means active 'snubbing' = 'no me hace caso / me esquiva'."
+    },
+    {
+      "id": "pariente_sent_005",
+      "based_on": "pariente_001",
+      "language": "es",
+      "sentence": "Llamé a mis parientes para decirles que llegaré tarde a la cena.",
+      "flagged_word": "parientes",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'parents' (English-influenced misuse)",
+      "notes": "ES misuse. The 'cena' (dinner) implies the speaker is calling immediate family ('padres'), not general relatives."
+    },
+    {
+      "id": "pariente_sent_006",
+      "based_on": "pariente_001",
+      "language": "es",
+      "sentence": "Mis parientes son muy estrictos con las reglas de la casa.",
+      "flagged_word": "parientes",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'parents' (English-influenced misuse)",
+      "notes": "ES misuse. House rules implicate 'padres' (parents who set rules), not extended family ('parientes')."
+    },
+    {
+      "id": "destino_sent_008",
+      "based_on": "destino_001",
+      "language": "es",
+      "sentence": "Estoy convencido de que mi destino es ser un programador exitoso.",
+      "flagged_word": "destino",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'destiny/career calling' (English-influenced misuse)",
+      "notes": "ES misuse. EN 'my destiny' (career calling) lands awkwardly; standard ES would say 'mi vocación' or 'mi camino'. 'Destino' is more about destination or external fate, not chosen calling."
+    },
+    {
+      "id": "destino_sent_009",
+      "based_on": "destino_001",
+      "language": "es",
+      "sentence": "El destino de la empresa depende de las decisiones que tomemos hoy.",
+      "flagged_word": "destino",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'fate/future of company' (English-influenced misuse)",
+      "notes": "ES misuse. Business context. EN 'fate of the company' = ES 'futuro / suerte de la empresa'. 'Destino' here sounds overly literary/dramatic for corporate decision-making."
+    },
+    {
+      "id": "destino_sent_010",
+      "based_on": "destino_001",
+      "language": "es",
+      "sentence": "Su destino estaba marcado desde el momento en que conoció a esa mujer.",
+      "flagged_word": "destino",
+      "correct_usage": false,
+      "translation_meaning": "the speaker means 'fate was sealed' (English-influenced misuse)",
+      "notes": "ES misuse. EN 'fate was sealed/marked' is idiomatic in English; ES would say 'su suerte estaba echada' or 'su camino estaba marcado'."
     }
   ]
 }
