@@ -569,18 +569,11 @@ function goToLevel1Summary() {
     </div>
   `;
 
-  // Conditionally show the trap-tile section or the perfect-play message
-  const trapsSection = document.getElementById('summary-traps-section');
-  const perfectMessage = document.getElementById('summary-perfect-message');
-
-  if (GAME.trapsHit.length > 0) {
-    trapsSection.style.display = '';
-    perfectMessage.style.display = 'none';
-    renderSummaryTraps();
-  } else {
-    trapsSection.style.display = 'none';
-    perfectMessage.style.display = '';
-  }
+  // Always show the trap-tile section — every player benefits from seeing
+  // the false friends from this level, whether they hit them or avoided them
+  document.getElementById('summary-traps-section').style.display = '';
+  document.getElementById('summary-perfect-message').style.display = 'none';
+  renderSummaryTraps();
 
   // Wire the action buttons (re-wire each time to ensure clean state)
   document.getElementById('summary-continue-btn').onclick = () => {
@@ -659,13 +652,28 @@ function renderSummaryTraps() {
   const grid = document.getElementById('summary-traps-grid');
   grid.innerHTML = '';
 
-  // Render each false friend the player hit as a clickable tile
-  GAME.trapsHit.forEach((word, index) => {
+  // Pull all false-friend tiles from Level 1, regardless of whether they were hit
+  const allTraps = GAME.level1Tiles.filter(t => t.isTrap).map(t => t.word);
+
+  // Build a Set of IDs of false friends the player actually hit, for quick lookup
+  const hitIds = new Set(GAME.trapsHit.map(w => w.id));
+
+  // Sort: hit traps first (so the player sees their misses immediately),
+  // followed by traps they correctly avoided
+  const sortedTraps = [
+    ...allTraps.filter(w => hitIds.has(w.id)),
+    ...allTraps.filter(w => !hitIds.has(w.id))
+  ];
+
+  sortedTraps.forEach((word, index) => {
     const btn = document.createElement('button');
-    btn.className = 'tile trap-hit';
-    btn.textContent = word.forms.es;  // show the Spanish word (the one the player saw)
+    const wasHit = hitIds.has(word.id);
+    // Hit traps get the oxblood 'trap-hit' state; avoided traps stay neutral ivory
+    btn.className = 'tile' + (wasHit ? ' trap-hit' : ' trap-avoided');
+    btn.textContent = word.forms.es;
     btn.dataset.index = index;
-    // Single-click does nothing; double-click opens the existing tile modal
+    // Same double-click reveal mechanic for both states — the modal is for
+    // studying the false friend, regardless of whether the player fell for it
     btn.addEventListener('dblclick', (e) => {
       e.preventDefault();
       openTileModal(word);

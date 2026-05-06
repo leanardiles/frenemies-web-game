@@ -181,12 +181,14 @@
       <div id="summary-stats" class="summary-stats"></div>
 
       <div id="summary-traps-section">
-        <p class="summary-section-label">False friends that caught you:</p>
-        <p class="summary-hint">Double-click any tile to see what it really means.</p>
+        <p class="summary-section-label">False friends in this level:</p>
+        <p class="summary-hint">Tiles you fell for are marked. Double-click any tile to see what it really means.</p>
         <div id="summary-traps-grid" class="grid"></div>
       </div>
 
-      <div id="summary-perfect-message">
+      <!-- Kept in DOM (hidden by JS) for backward compatibility with any future logic; -->
+      <!-- the trap section is now always shown, regardless of player performance. -->
+      <div id="summary-perfect-message" style="display:none">
         <p class="summary-celebratory">You spotted every trap. Nothing caught you this round.</p>
       </div>
 

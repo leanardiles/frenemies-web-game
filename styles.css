@@ -578,6 +578,25 @@ p {
   color: var(--babel-ivory);
 }
 
+/* Avoided trap tile (used in summary modal): represents a false friend the
+   player correctly left alone. Neutral ivory base with a subtle gold dotted
+   border to signal "this was a trap you handled correctly." */
+.tile.trap-avoided {
+  background-color: var(--babel-ivory);
+  border: 1px dashed var(--babel-gold);
+  color: var(--babel-umber);
+  cursor: pointer;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 2px rgba(168, 132, 47, 0.15);
+}
+
+.tile.trap-avoided:hover {
+  background-color: var(--babel-ivory-soft);
+  border-style: solid;
+  transform: translateY(-1px);
+}
+
 .tile.trap-revealed {
   background-color: rgba(124, 45, 18, 0.15);
   border-color: var(--babel-oxblood);
