@@ -173,6 +173,10 @@ function renderLevel1Grid() {
     btn.textContent = tile.displayText;
     btn.dataset.index = index;
     btn.addEventListener('click', () => handleTileClick(index));
+    btn.addEventListener('dblclick', (e) => {
+      e.preventDefault();
+      handleTileDoubleClick(index);
+    });
     grid.appendChild(btn);
   });
 }
@@ -183,25 +187,24 @@ function handleTileClick(index) {
 
   tile.claimed = true;
   const tileEl = document.querySelector(`#level1-grid .tile[data-index="${index}"]`);
-  tileEl.disabled = true;
 
   if (tile.isTrap) {
-    // Trap hit
+    // Trap hit — tile turns red, stays clickable for the double-click reveal
     GAME.lives -= 1;
     GAME.trapsHit.push(tile.word);
     tileEl.classList.add('trap-hit');
-    tileEl.innerHTML = `<div>${tile.displayText}<br><small>${tile.word.meanings[tile.word.trap_in[0]]}</small></div>`;
-    setFeedback(`Trap. "${tile.displayText}" doesn't mean what it looks like.`, 'failure');
+    setFeedback(`Trap. Double-click the tile to see what it really means.`, 'failure');
 
     if (GAME.lives <= 0) {
       endGame(false);
       return;
     }
   } else {
-    // Safe claim
+    // Safe claim — tile turns green and is no longer interactive
     GAME.score += 1;
     GAME.safesClaimed += 1;
     tileEl.classList.add('claimed');
+    tileEl.disabled = true;
     setFeedback(`Safe. "${tile.displayText}" is a true cognate.`, 'success');
 
     // Win check: all safe tiles claimed?
@@ -214,6 +217,64 @@ function handleTileClick(index) {
   }
 
   updateHUD();
+}
+
+function handleTileDoubleClick(index) {
+  const tile = GAME.level1Tiles[index];
+  // Only respond to double-click on already-claimed false-friend tiles
+  if (!tile.claimed || !tile.isTrap) return;
+  openTileModal(tile.word);
+}
+
+// ============================================================
+// TILE MODAL — false-friend reveal
+// ============================================================
+// When a player double-clicks a claimed false-friend tile, this opens
+// a modal showing both the source-language word and the deceptive
+// English-language equivalent the player likely assumed.
+function openTileModal(word) {
+  const modal = document.getElementById('tile-modal');
+  const content = document.getElementById('tile-modal-content');
+
+  // Spanish form + what it actually means in Spanish (the truth)
+  // English form + what 'compromise' (etc.) actually means in English (the trap they assumed)
+  content.innerHTML = `
+    <div class="modal-row">
+      <span class="modal-lang-tag">(ES)</span>
+      <span class="modal-word">${word.forms.es}</span>
+    </div>
+    <p class="modal-meaning">${word.meanings.es}</p>
+    <hr class="modal-divider">
+    <div class="modal-row">
+      <span class="modal-lang-tag">(EN)</span>
+      <span class="modal-word">${word.forms.en}</span>
+    </div>
+    <p class="modal-meaning">${word.meanings.en}</p>
+    <p class="modal-hint">Double-click anywhere or press Esc to close.</p>
+  `;
+
+  modal.classList.add('active');
+}
+
+function closeTileModal() {
+  document.getElementById('tile-modal').classList.remove('active');
+}
+
+function setupTileModal() {
+  const modal = document.getElementById('tile-modal');
+
+  // Double-click anywhere on the modal closes it
+  modal.addEventListener('dblclick', closeTileModal);
+
+  // Click on the backdrop (outside the modal content) closes it
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeTileModal();
+  });
+
+  // Esc key closes it
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) closeTileModal();
+  });
 }
 
 // ============================================================
@@ -464,6 +525,7 @@ async function init() {
   if (!GAME.corpus) return;
   setupCoverScreen();
   setupReplayButtons();
+  setupTileModal();
 }
 
 document.addEventListener('DOMContentLoaded', init);
