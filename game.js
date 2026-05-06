@@ -41,6 +41,77 @@ function showScreen(screenId) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(screenId).classList.add('active');
   audio.onScreenChange(screenId);
+  updateNavButton(screenId);
+}
+
+// ============================================================
+// NAV BUTTON — context-aware Back/Quit in top-left
+// ============================================================
+// On instructions/language screens: shows "Back" and returns to cover screen.
+// On Level 1/Level 2 screens: shows "Quit" and triggers a confirmation modal.
+// On other screens (cover, summary, win, lose): hidden.
+function updateNavButton(screenId) {
+  const btn = document.getElementById('nav-btn');
+  if (!btn) return;
+
+  // Reset state
+  btn.classList.remove('visible', 'quit-mode');
+  btn.onclick = null;
+
+  if (screenId === 'screen-instructions' || screenId === 'screen-language') {
+    btn.textContent = '← Back';
+    btn.classList.add('visible');
+    btn.onclick = () => showScreen('screen-cover');
+  } else if (screenId === 'screen-level1' || screenId === 'screen-level2') {
+    btn.textContent = 'Quit';
+    btn.classList.add('visible', 'quit-mode');
+    btn.onclick = () => requestQuit();
+  }
+  // All other screens: button stays hidden
+}
+
+// ============================================================
+// QUIT FLOW — confirmation modal then return to cover
+// ============================================================
+function requestQuit() {
+  showConfirmation('Are you sure you want to quit?', () => {
+    // User confirmed — return to cover screen
+    showScreen('screen-cover');
+  });
+}
+
+function showConfirmation(message, onConfirm) {
+  const modal = document.getElementById('confirm-modal');
+  const messageEl = document.getElementById('confirm-modal-message');
+  const yesBtn = document.getElementById('confirm-yes-btn');
+  const noBtn = document.getElementById('confirm-no-btn');
+
+  messageEl.textContent = message;
+
+  // Re-wire buttons each time to ensure clean state
+  yesBtn.onclick = () => {
+    closeConfirmation();
+    if (onConfirm) onConfirm();
+  };
+  noBtn.onclick = () => closeConfirmation();
+
+  modal.classList.add('active');
+}
+
+function closeConfirmation() {
+  document.getElementById('confirm-modal').classList.remove('active');
+}
+
+function setupConfirmationModal() {
+  const modal = document.getElementById('confirm-modal');
+  // Click backdrop closes the dialog as a "Cancel"
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeConfirmation();
+  });
+  // Escape key closes the dialog
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) closeConfirmation();
+  });
 }
 
 // ============================================================
@@ -70,7 +141,7 @@ const audio = {
   trackForScreen(screenId) {
     const introScreens = ['screen-cover', 'screen-instructions', 'screen-language'];
     const gameplayScreens = ['screen-level1', 'screen-level2'];
-    const silentScreens = ['screen-win', 'screen-lose'];
+    const silentScreens = ['screen-win', 'screen-lose', 'screen-summary'];
     if (introScreens.includes(screenId)) return 'intro';
     if (gameplayScreens.includes(screenId)) return 'gameplay';
     if (silentScreens.includes(screenId)) return null;
@@ -184,14 +255,6 @@ function setupCoverScreen() {
     GAME.direction = PROTOTYPE_DIRECTION;
     console.log('Direction locked to:', GAME.direction);
     startLevel1();
-  });
-
-  // Back buttons (used on instructions and language screens)
-  document.querySelectorAll('.back-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const target = btn.dataset.backTo || 'screen-cover';
-      showScreen(target);
-    });
   });
 }
 
@@ -314,8 +377,8 @@ function handleTileClick(index) {
     // Win check: all safe tiles claimed?
     const remainingSafes = GAME.level1Tiles.filter(t => !t.isTrap && !t.claimed);
     if (remainingSafes.length === 0) {
-      // Level 1 complete!
-      setTimeout(() => goToLevel2(), 800);
+      // Level 1 complete — go to summary screen, not straight to Level 2
+      setTimeout(() => goToLevel1Summary(), 800);
       return;
     }
   }
@@ -397,6 +460,66 @@ function setFeedback(text, type) {
   const fb = document.getElementById('level1-feedback');
   fb.textContent = text;
   fb.className = 'feedback ' + (type || '');
+}
+
+// ============================================================
+// LEVEL 1 SUMMARY SCREEN
+// ============================================================
+function goToLevel1Summary() {
+  // Render stats
+  const statsEl = document.getElementById('summary-stats');
+  statsEl.innerHTML = `
+    <div class="summary-stat">
+      <p class="summary-stat-label">Score</p>
+      <p class="summary-stat-value">${GAME.score}</p>
+    </div>
+    <div class="summary-stat">
+      <p class="summary-stat-label">Lives Remaining</p>
+      <p class="summary-stat-value">${GAME.lives}</p>
+    </div>
+    <div class="summary-stat">
+      <p class="summary-stat-label">Traps Hit</p>
+      <p class="summary-stat-value">${GAME.trapsHit.length}</p>
+    </div>
+  `;
+
+  // Conditionally show the trap-tile section or the perfect-play message
+  const trapsSection = document.getElementById('summary-traps-section');
+  const perfectMessage = document.getElementById('summary-perfect-message');
+
+  if (GAME.trapsHit.length > 0) {
+    trapsSection.style.display = '';
+    perfectMessage.style.display = 'none';
+    renderSummaryTraps();
+  } else {
+    trapsSection.style.display = 'none';
+    perfectMessage.style.display = '';
+  }
+
+  // Wire the action buttons (re-wire each time to ensure clean state)
+  document.getElementById('summary-continue-btn').onclick = () => goToLevel2();
+  document.getElementById('summary-quit-btn').onclick = () => requestQuit();
+
+  showScreen('screen-summary');
+}
+
+function renderSummaryTraps() {
+  const grid = document.getElementById('summary-traps-grid');
+  grid.innerHTML = '';
+
+  // Render each false friend the player hit as a clickable tile
+  GAME.trapsHit.forEach((word, index) => {
+    const btn = document.createElement('button');
+    btn.className = 'tile trap-hit';
+    btn.textContent = word.forms.es;  // show the Spanish word (the one the player saw)
+    btn.dataset.index = index;
+    // Single-click does nothing; double-click opens the existing tile modal
+    btn.addEventListener('dblclick', (e) => {
+      e.preventDefault();
+      openTileModal(word);
+    });
+    grid.appendChild(btn);
+  });
 }
 
 // ============================================================
@@ -631,6 +754,7 @@ async function init() {
   setupCoverScreen();
   setupReplayButtons();
   setupTileModal();
+  setupConfirmationModal();
 }
 
 document.addEventListener('DOMContentLoaded', init);

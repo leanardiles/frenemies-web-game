@@ -118,6 +118,54 @@ p {
 }
 
 /* ============================================================
+   NAV BUTTON — persistent top-left (Back on intro screens, Quit during gameplay)
+   ============================================================ */
+.nav-btn {
+  display: none;  /* hidden by default; JS shows it on appropriate screens */
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  padding: 0.5rem 1.1rem;
+  background: var(--babel-ivory-soft);
+  border: 1px solid var(--babel-umber);
+  cursor: pointer;
+  z-index: 500;
+  border-radius: 2px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--babel-umber);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 1px 2px rgba(59, 36, 23, 0.15);
+  transition: background 0.15s, transform 0.06s;
+}
+
+.nav-btn.visible {
+  display: inline-block;
+}
+
+.nav-btn:hover {
+  background: var(--babel-ivory);
+  transform: translateY(-1px);
+}
+
+.nav-btn:active {
+  transform: translateY(0);
+}
+
+/* When nav button is in "quit" mode, give it the oxblood accent */
+.nav-btn.quit-mode {
+  border-color: var(--babel-oxblood);
+  color: var(--babel-oxblood);
+}
+
+.nav-btn.quit-mode:hover {
+  background: rgba(124, 45, 18, 0.06);
+}
+
+/* ============================================================
    MUTE BUTTON — persistent top-right corner control
    ============================================================ */
 .mute-btn {
@@ -656,4 +704,132 @@ p {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   opacity: 0.7;
+}
+
+/* ============================================================
+   LEVEL 1 SUMMARY SCREEN
+   ============================================================ */
+#screen-summary h2 {
+  font-size: 2.6rem;
+  margin-bottom: 1.5rem;
+  color: var(--babel-olive);
+}
+
+.summary-stats {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  margin-bottom: 2rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--babel-ivory-soft);
+  border: 1px solid var(--babel-umber);
+  border-radius: 2px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -2px 0 var(--babel-gold);
+}
+
+.summary-stat {
+  text-align: center;
+}
+
+.summary-stat-label {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--babel-umber-soft);
+  margin: 0 0 0.3rem;
+}
+
+.summary-stat-value {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: var(--babel-umber);
+  line-height: 1;
+}
+
+.summary-section-label {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--babel-umber);
+  margin: 0 0 0.4rem;
+  text-align: center;
+}
+
+.summary-hint {
+  font-style: italic;
+  color: var(--babel-umber-soft);
+  text-align: center;
+  font-size: 0.95rem;
+  margin: 0 0 1.25rem;
+}
+
+.summary-celebratory {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-style: italic;
+  color: var(--babel-olive);
+  text-align: center;
+  margin: 2rem 0 2.5rem;
+  line-height: 1.4;
+}
+
+.summary-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 2.5rem;
+}
+
+.summary-actions .primary-btn,
+.summary-actions .secondary-btn {
+  min-width: 240px;
+}
+
+/* Summary screen reuses the .grid and .tile classes — no extra rules needed */
+
+/* ============================================================
+   CONFIRMATION MODAL — Quit confirmation
+   ============================================================ */
+.confirm-modal-content {
+  background: var(--babel-ivory);
+  border: 2px solid var(--babel-umber);
+  padding: 2.25rem 2.5rem;
+  max-width: 440px;
+  width: 100%;
+  color: var(--babel-umber);
+  font-family: var(--font-body);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -2px 4px rgba(59, 36, 23, 0.18),
+    0 8px 20px rgba(59, 36, 23, 0.4);
+  border-radius: 2px;
+  animation: modalScaleIn 0.22s ease-out;
+  text-align: center;
+}
+
+.confirm-message {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--babel-umber);
+  margin: 0 0 1.75rem;
+}
+
+.confirm-actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.confirm-actions button {
+  min-width: 130px;
 }
