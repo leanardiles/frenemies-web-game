@@ -1,25 +1,56 @@
-/* Frenemies — bare functional styles
-   Visual identity (synthwave palette, typography) comes later.
-   For now: just enough to make things readable and clickable. */
+/* Frenemies — Babel visual identity
+   Path B: textured Babel with stone-tablet feel, weathered surfaces, inscriptional typography.
+   Color tokens, type system, and shared components defined first; component styles follow. */
 
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+:root {
+  /* Babel palette */
+  --babel-ivory:        #F5EFE0;  /* warm ivory — primary background */
+  --babel-ivory-soft:   #EFE7D2;  /* slightly darker ivory for surfaces */
+  --babel-umber:        #3B2417;  /* deep umber — primary text and borders */
+  --babel-umber-soft:   #5A4234;  /* softened umber for secondary text */
+  --babel-terracotta:   #C8763C;  /* terracotta — accent and primary buttons */
+  --babel-terracotta-deep: #A85C28;  /* deeper terracotta for hover/active */
+  --babel-gold:         #A8842F;  /* antique gold — secondary accents, dividers */
+  --babel-gold-soft:    #C9A04A;  /* lighter gold for highlights */
+  --babel-oxblood:      #7C2D12;  /* trap/error — deep weathered red */
+  --babel-oxblood-tint: #B85942;  /* lighter oxblood for backgrounds */
+  --babel-olive:        #5C7C4F;  /* safe/claim — muted earthy green */
+  --babel-olive-tint:   #8FA47F;  /* lighter olive for backgrounds */
+
+  /* Type system */
+  --font-display: 'Cormorant Display', Georgia, serif;
+  --font-body: 'EB Garamond', Georgia, serif;
+}
+
+/* ============================================================
+   BASE — body, typography, layout containers
+   ============================================================ */
 * {
   box-sizing: border-box;
 }
 
 body {
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: var(--font-body);
   margin: 0;
   padding: 0;
-  background: #f4f4f4;
-  color: #1a1a1a;
+  background-color: var(--babel-ivory);
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(168, 132, 47, 0.04) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(200, 118, 60, 0.04) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(59, 36, 23, 0.02) 0%, transparent 70%);
+  color: var(--babel-umber);
   line-height: 1.5;
+  font-size: 18px;
+  letter-spacing: 0.005em;
 }
 
-/* Screen visibility — only one screen visible at a time */
 .screen {
   display: none;
   min-height: 100vh;
-  padding: 2rem 1rem;
+  padding: 2.5rem 1rem;
 }
 
 .screen.active {
@@ -27,102 +58,150 @@ body {
 }
 
 .container {
-  max-width: 700px;
+  max-width: 760px;
   margin: 0 auto;
 }
 
-/* Cover screen */
-.title {
-  font-size: 3rem;
-  margin: 0 0 0.5rem;
+/* ============================================================
+   TYPOGRAPHY — display headings, body, accents
+   ============================================================ */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--babel-umber);
+}
+
+h2 {
+  font-size: 2.2rem;
+  margin: 0 0 1rem;
   text-align: center;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+/* ============================================================
+   COVER SCREEN — title and primary buttons
+   ============================================================ */
+.title {
+  font-family: var(--font-display);
+  font-size: 5rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin: 1.5rem 0 0.5rem;
+  text-align: center;
+  color: var(--babel-umber);
 }
 
 .tagline {
-  text-align: center;
+  font-family: var(--font-body);
   font-style: italic;
-  color: #666;
-  margin: 0 0 3rem;
-}
-
-.direction-selector {
+  font-size: 1.2rem;
   text-align: center;
+  color: var(--babel-umber-soft);
+  margin: 0 0 2rem;
+  letter-spacing: 0.01em;
 }
 
-.prompt {
-  margin-bottom: 1rem;
-}
-
-.direction-btn {
-  display: block;
-  width: 100%;
-  padding: 1rem;
-  margin: 0.5rem 0;
-  font-size: 1rem;
-  background: #fff;
-  border: 2px solid #1a1a1a;
-  cursor: pointer;
-  font-family: inherit;
-}
-
-.direction-btn:hover {
-  background: #1a1a1a;
-  color: #fff;
-}
-
-/* Cover screen — Play and Instructions buttons */
 .cover-buttons {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.75rem;
-  margin-top: 2rem;
+  gap: 0.85rem;
+  margin-top: 2.5rem;
 }
 
 .cover-buttons button {
-  min-width: 200px;
+  min-width: 240px;
 }
 
-/* Secondary button style — for Instructions, Back, etc. */
+/* ============================================================
+   BUTTONS — primary (terracotta) and secondary (outlined)
+   ============================================================ */
+.primary-btn,
+.replay-btn {
+  display: inline-block;
+  padding: 0.85rem 2.5rem;
+  font-size: 1.1rem;
+  font-family: var(--font-body);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  background: var(--babel-terracotta);
+  color: var(--babel-ivory);
+  border: 1px solid var(--babel-terracotta-deep);
+  cursor: pointer;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    0 1px 2px rgba(59, 36, 23, 0.2);
+  transition: background 0.15s, transform 0.05s;
+  border-radius: 2px;
+}
+
+.primary-btn:hover,
+.replay-btn:hover {
+  background: var(--babel-terracotta-deep);
+}
+
+.primary-btn:active,
+.replay-btn:active {
+  transform: translateY(1px);
+}
+
 .secondary-btn {
   display: inline-block;
-  padding: 0.75rem 2rem;
-  font-size: 1rem;
-  background: #fff;
-  color: #1a1a1a;
-  border: 1px solid #1a1a1a;
+  padding: 0.85rem 2.5rem;
+  font-size: 1.1rem;
+  font-family: var(--font-body);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  background: transparent;
+  color: var(--babel-umber);
+  border: 1px solid var(--babel-umber);
   cursor: pointer;
-  font-family: inherit;
+  border-radius: 2px;
+  transition: background 0.15s;
 }
 
 .secondary-btn:hover {
-  background: #f0f0f0;
+  background: rgba(59, 36, 23, 0.06);
 }
 
-/* Instructions screen */
+/* ============================================================
+   INSTRUCTIONS SCREEN — placeholder card
+   ============================================================ */
 .placeholder-text {
-  background: #fff;
-  border: 1px dashed #ccc;
-  padding: 2rem;
+  background: var(--babel-ivory-soft);
+  border: 1px dashed var(--babel-umber-soft);
+  padding: 2.5rem 2rem;
   text-align: center;
-  color: #666;
+  color: var(--babel-umber-soft);
   margin: 1.5rem 0;
+  font-style: italic;
+  border-radius: 2px;
 }
 
 .back-btn {
   display: inline-block;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }
 
-/* Language selector screen */
+/* ============================================================
+   LANGUAGE SELECTOR SCREEN
+   ============================================================ */
 .lang-row {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.75rem;
 }
 
 .lang-label {
-  font-size: 0.9rem;
-  color: #666;
-  margin: 0 0 0.5rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--babel-umber-soft);
+  margin: 0 0 0.6rem;
 }
 
 .lang-options {
@@ -132,121 +211,229 @@ body {
 }
 
 .lang-btn {
-  padding: 0.75rem 1.25rem;
-  font-size: 1rem;
-  font-family: inherit;
+  padding: 0.85rem 1.25rem;
+  font-size: 1.05rem;
+  font-family: var(--font-body);
   cursor: pointer;
-  border: 1px solid #1a1a1a;
-  background: #fff;
+  border: 1px solid var(--babel-umber);
+  background: var(--babel-ivory-soft);
+  color: var(--babel-umber);
   text-align: left;
+  border-radius: 2px;
+  transition: background 0.15s;
 }
 
 .lang-btn.lang-locked {
-  background: #f0f0f0;
-  color: #1a1a1a;
+  background: var(--babel-ivory-soft);
+  color: var(--babel-umber);
   cursor: not-allowed;
-  font-weight: bold;
+  font-weight: 500;
+  border-color: var(--babel-umber);
+  border-left: 4px solid var(--babel-gold);
+  padding-left: calc(1.25rem - 3px);
 }
 
 .lang-btn.lang-active {
-  background: #1a1a1a;
-  color: #fff;
-  font-weight: bold;
+  background: var(--babel-terracotta);
+  color: var(--babel-ivory);
+  font-weight: 500;
+  border-color: var(--babel-terracotta-deep);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 .lang-btn.lang-disabled {
-  background: #fff;
-  color: #999;
-  border-color: #ccc;
+  background: transparent;
+  color: var(--babel-umber-soft);
+  border-color: rgba(59, 36, 23, 0.25);
   cursor: not-allowed;
+  font-style: italic;
+  opacity: 0.6;
 }
 
 .lang-actions {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.6rem;
   align-items: center;
-  margin-top: 2rem;
+  margin-top: 2.5rem;
 }
 
-/* HUD (heads-up display during gameplay) */
+/* ============================================================
+   HUD — gameplay heads-up display
+   ============================================================ */
 .hud {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.75rem 1rem;
-  background: #fff;
-  border: 1px solid #ddd;
-  margin-bottom: 1rem;
+  padding: 0.9rem 1.25rem;
+  background: var(--babel-ivory-soft);
+  border: 1px solid var(--babel-umber);
+  margin-bottom: 1.25rem;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -2px 0 var(--babel-gold);
+  border-radius: 2px;
 }
 
 .hud-item {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
+  font-family: var(--font-body);
+  color: var(--babel-umber);
 }
 
 .hud-label {
-  font-weight: bold;
-  margin-right: 0.25rem;
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: var(--babel-umber-soft);
+  margin-right: 0.4rem;
 }
 
 .instructions {
   text-align: center;
-  color: #666;
-  margin-bottom: 1rem;
-  font-size: 0.9rem;
+  color: var(--babel-umber-soft);
+  margin-bottom: 1.25rem;
+  font-size: 1rem;
+  font-style: italic;
 }
 
-/* Grid of tiles */
+/* ============================================================
+   GRID AND TILES — the stone-tablet feel
+   ============================================================ */
 .grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 8px;
-  margin-bottom: 1rem;
+  gap: 10px;
+  margin-bottom: 1.25rem;
 }
 
-/* Sentence grid is a different shape — fewer columns, more space per tile */
 .grid.grid-sentences {
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  gap: 12px;
 }
 
 .tile {
-  padding: 1rem 0.5rem;
-  background: #fff;
-  border: 1px solid #ccc;
+  padding: 1rem 0.6rem;
+  background: var(--babel-ivory-soft);
+  border: 1px solid var(--babel-umber);
   cursor: pointer;
   text-align: center;
-  font-family: inherit;
-  font-size: 0.95rem;
-  min-height: 60px;
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--babel-umber);
+  min-height: 64px;
   display: flex;
   align-items: center;
   justify-content: center;
+  letter-spacing: 0.01em;
+  border-radius: 2px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 1px rgba(59, 36, 23, 0.12),
+    0 1px 1px rgba(59, 36, 23, 0.08);
+  transition: background 0.15s, transform 0.06s;
 }
 
-/* Sentence tiles need more height and left-aligned text for readability */
+.tile:hover:not(:disabled) {
+  background: var(--babel-ivory);
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 1px rgba(59, 36, 23, 0.12),
+    0 2px 3px rgba(59, 36, 23, 0.12);
+}
+
+.tile:disabled {
+  cursor: default;
+}
+
 .tile.tile-sentence {
-  padding: 0.85rem 0.85rem;
-  font-size: 0.9rem;
-  min-height: 80px;
+  padding: 0.95rem 0.95rem;
+  font-size: 0.98rem;
+  font-weight: 400;
+  min-height: 90px;
   text-align: left;
-  line-height: 1.35;
+  line-height: 1.4;
   align-items: flex-start;
 }
 
 .tile.tile-sentence .flagged {
-  font-weight: 700;
+  font-weight: 600;
+  color: var(--babel-terracotta-deep);
   text-decoration: underline;
-  text-underline-offset: 2px;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--babel-gold);
 }
 
-/* Level intro card sits between HUD and grid */
+.tile.claimed {
+  background: var(--babel-olive-tint);
+  border-color: var(--babel-olive);
+  color: #2D3F26;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    inset 0 -1px 2px rgba(45, 63, 38, 0.2);
+}
+
+.tile.trap-hit {
+  background: var(--babel-oxblood-tint);
+  border-color: var(--babel-oxblood);
+  color: #3D1407;
+  cursor: pointer;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    inset 0 -1px 2px rgba(124, 45, 18, 0.3);
+}
+
+.tile.trap-hit:hover {
+  background: #A0492F;
+  color: var(--babel-ivory);
+}
+
+.tile.trap-revealed {
+  background: rgba(124, 45, 18, 0.15);
+  border-color: var(--babel-oxblood);
+  color: var(--babel-oxblood);
+  opacity: 0.75;
+  font-style: italic;
+}
+
+/* ============================================================
+   FEEDBACK and intro card
+   ============================================================ */
+.feedback {
+  text-align: center;
+  font-size: 1.05rem;
+  font-style: italic;
+  min-height: 1.8rem;
+  margin: 0;
+  padding: 0.6rem;
+  color: var(--babel-umber-soft);
+}
+
+.feedback.success {
+  color: var(--babel-olive);
+  font-style: normal;
+}
+
+.feedback.failure {
+  color: var(--babel-oxblood);
+  font-style: normal;
+}
+
 .level-intro {
-  background: #fff;
-  border: 1px solid #ddd;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  font-size: 0.9rem;
+  background: var(--babel-ivory-soft);
+  border: 1px solid var(--babel-umber);
+  border-left: 4px solid var(--babel-gold);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.25rem;
+  font-size: 1rem;
+  border-radius: 2px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 1px 2px rgba(59, 36, 23, 0.06);
 }
 
 .level-intro p {
@@ -259,83 +446,50 @@ body {
 
 .carryover-note {
   font-style: italic;
-  color: #666;
-}
-
-.tile:hover:not(:disabled) {
-  background: #f0f0f0;
-}
-
-.tile:disabled {
-  cursor: not-allowed;
-}
-
-.tile.claimed {
-  background: #d4edda;
-  border-color: #28a745;
-  color: #155724;
-}
-
-.tile.trap-hit {
-  background: #f8d7da;
-  border-color: #dc3545;
-  color: #721c24;
-  cursor: pointer;
-}
-
-.tile.trap-hit:hover {
-  background: #f5c6cb;
-}
-
-.tile.trap-revealed {
-  background: #fff3cd;
-  border-color: #ffc107;
-  color: #856404;
-  opacity: 0.7;
-}
-
-/* Feedback */
-.feedback {
-  text-align: center;
+  color: var(--babel-umber-soft);
   font-size: 0.95rem;
-  min-height: 1.5rem;
-  margin: 0;
-  padding: 0.5rem;
 }
 
-.feedback.success {
-  color: #155724;
+/* ============================================================
+   END STATES — win and lose
+   ============================================================ */
+#screen-win .container,
+#screen-lose .container {
+  text-align: center;
+  padding-top: 2rem;
 }
 
-.feedback.failure {
-  color: #721c24;
+#screen-win h2,
+#screen-lose h2 {
+  font-size: 3rem;
+  letter-spacing: 0.04em;
 }
 
-/* Buttons */
-.primary-btn,
-.replay-btn {
-  display: block;
-  margin: 1.5rem auto;
-  padding: 0.75rem 2rem;
-  font-size: 1rem;
-  background: #1a1a1a;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  font-family: inherit;
+#screen-win h2 {
+  color: var(--babel-olive);
 }
 
-.primary-btn:hover,
-.replay-btn:hover {
-  background: #333;
+#screen-lose h2 {
+  color: var(--babel-oxblood);
 }
 
-/* Debrief list */
 #lose-debrief {
-  margin: 1rem 0;
-  padding: 1rem;
-  background: #fff;
-  border: 1px solid #ddd;
+  margin: 1.5rem auto;
+  padding: 1.25rem 1.5rem;
+  background: var(--babel-ivory-soft);
+  border: 1px solid var(--babel-umber);
+  text-align: left;
+  max-width: 540px;
+  border-radius: 2px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 1px 2px rgba(59, 36, 23, 0.06);
+}
+
+#lose-debrief p {
+  font-style: italic;
+  color: var(--babel-umber-soft);
+  margin: 0 0 0.75rem;
 }
 
 #lose-debrief ul {
@@ -344,7 +498,13 @@ body {
 }
 
 #lose-debrief li {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
+  font-size: 1rem;
+}
+
+#lose-debrief li strong {
+  color: var(--babel-oxblood);
+  font-weight: 600;
 }
 
 /* ============================================================
@@ -354,7 +514,7 @@ body {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(59, 36, 23, 0.55);
   z-index: 1000;
   align-items: center;
   justify-content: center;
@@ -372,59 +532,74 @@ body {
 }
 
 .tile-modal-content {
-  background: #f8d7da;
-  border: 2px solid #dc3545;
-  border-radius: 8px;
-  padding: 2rem;
-  max-width: 420px;
+  background: var(--babel-ivory);
+  border: 2px solid var(--babel-oxblood);
+  padding: 2.25rem 2.5rem;
+  max-width: 480px;
   width: 100%;
-  color: #721c24;
+  color: var(--babel-umber);
   cursor: pointer;
+  font-family: var(--font-body);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -2px 4px rgba(59, 36, 23, 0.18),
+    0 8px 20px rgba(59, 36, 23, 0.4);
+  border-radius: 2px;
   animation: modalScaleIn 0.22s ease-out;
 }
 
 @keyframes modalScaleIn {
-  from { transform: scale(0.92); }
-  to { transform: scale(1); }
+  from { transform: scale(0.92); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
 
 .modal-row {
   display: flex;
   align-items: baseline;
-  gap: 0.6rem;
-  margin: 0 0 0.25rem;
+  gap: 0.7rem;
+  margin: 0 0 0.35rem;
 }
 
 .modal-lang-tag {
+  font-family: var(--font-display);
   font-size: 0.85rem;
-  font-weight: 700;
-  opacity: 0.7;
-  letter-spacing: 0.04em;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--babel-gold);
 }
 
 .modal-word {
-  font-size: 1.6rem;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--babel-umber);
+  letter-spacing: 0.02em;
 }
 
 .modal-meaning {
   margin: 0 0 1rem;
-  font-size: 1rem;
-  line-height: 1.4;
-  padding-left: 2.4rem;
+  font-size: 1.05rem;
+  line-height: 1.45;
+  padding-left: 2.7rem;
+  color: var(--babel-umber-soft);
+  font-style: italic;
 }
 
 .modal-divider {
   border: 0;
-  border-top: 1px solid rgba(114, 28, 36, 0.3);
-  margin: 1.25rem 0;
+  border-top: 1px solid var(--babel-gold);
+  margin: 1.5rem 0;
+  opacity: 0.5;
 }
 
 .modal-hint {
-  margin: 1.5rem 0 0;
+  margin: 1.75rem 0 0;
   font-size: 0.78rem;
   font-style: italic;
-  opacity: 0.7;
+  color: var(--babel-umber-soft);
   text-align: center;
   padding-left: 0;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.7;
 }
