@@ -57,12 +57,35 @@
     </div>
   </section>
 
-  <!-- LEVEL 2: SENTENCE FIELD (placeholder for now) -->
+  <!-- LEVEL 2: SENTENCE FIELD -->
   <section id="screen-level2" class="screen">
     <div class="container">
-      <h2>Level 2 — Sentence Field</h2>
-      <p>Level 2 coming soon. You cleared Level 1 with <span id="carryover-score">0</span> points.</p>
-      <button id="level2-finish" class="primary-btn">Continue to End</button>
+      <header class="hud">
+        <div class="hud-item">
+          <span class="hud-label">Level 2 — Sentence Field</span>
+        </div>
+        <div class="hud-item">
+          <span class="hud-label">Lives:</span>
+          <span id="level2-lives">3</span>
+        </div>
+        <div class="hud-item">
+          <span class="hud-label">Progress:</span>
+          <span id="level2-progress">0 / 0</span>
+        </div>
+        <div class="hud-item">
+          <span class="hud-label">Score:</span>
+          <span id="level2-score">0</span>
+        </div>
+      </header>
+
+      <div id="level2-intro" class="level-intro">
+        <p>The traps from Level 1 reappear — this time in sentences. Claim the ones where the flagged word is used correctly. Avoid the ones where it isn't.</p>
+        <p class="carryover-note">You start Level 2 with <span id="carryover-lives">3</span> lives, based on your Level 1 performance.</p>
+      </div>
+
+      <div id="level2-grid" class="grid grid-sentences"></div>
+
+      <p id="level2-feedback" class="feedback">Click a sentence to claim it.</p>
     </div>
   </section>
 

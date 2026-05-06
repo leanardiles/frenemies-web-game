@@ -105,6 +105,12 @@ body {
   margin-bottom: 1rem;
 }
 
+/* Sentence grid is a different shape — fewer columns, more space per tile */
+.grid.grid-sentences {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
 .tile {
   padding: 1rem 0.5rem;
   background: #fff;
@@ -117,6 +123,44 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Sentence tiles need more height and left-aligned text for readability */
+.tile.tile-sentence {
+  padding: 0.85rem 0.85rem;
+  font-size: 0.9rem;
+  min-height: 80px;
+  text-align: left;
+  line-height: 1.35;
+  align-items: flex-start;
+}
+
+.tile.tile-sentence .flagged {
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Level intro card sits between HUD and grid */
+.level-intro {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.level-intro p {
+  margin: 0 0 0.5rem;
+}
+
+.level-intro p:last-child {
+  margin-bottom: 0;
+}
+
+.carryover-note {
+  font-style: italic;
+  color: #666;
 }
 
 .tile:hover:not(:disabled) {
