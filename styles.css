@@ -342,12 +342,14 @@ p {
   text-transform: uppercase;
   color: var(--babel-umber-soft);
   margin: 0 0 0.6rem;
+  text-align: center;
 }
 
 .lang-options {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
+  align-items: center;
 }
 
 /* Base language tile — uniform shape across mother tongue and learning options */
@@ -359,6 +361,7 @@ p {
   letter-spacing: 0.02em;
   cursor: pointer;
   width: 100%;
+  max-width: 280px;
   text-align: center;
   /* Default state: gold-filled, ivory text — "available, not yet chosen" */
   background: var(--babel-gold);
