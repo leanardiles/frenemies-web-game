@@ -15,6 +15,10 @@
   <audio id="audio-intro" src="audio/theme-intro.mp3" loop preload="auto"></audio>
   <audio id="audio-gameplay" src="audio/theme-gameplay.mp3" loop preload="auto"></audio>
 
+  <!-- SFX — short non-looping sound effects -->
+  <audio id="sfx-click" src="audio/sound-shk.mp3" preload="auto"></audio>
+  <audio id="sfx-fail" src="audio/sound-fail.mp3" preload="auto"></audio>
+
   <!-- TOP-LEFT NAV BUTTON — context-aware: Back on intro/instructions/language, Quit on gameplay -->
   <button id="nav-btn" class="nav-btn" aria-label="Back or quit"></button>
 
@@ -118,7 +122,6 @@
 
       <div id="level2-intro" class="level-intro">
         <p>The traps from Level 1 reappear — this time in sentences. Claim the ones where the flagged word is used correctly. Avoid the ones where it isn't.</p>
-        <p class="carryover-note">You start Level 2 with <span id="carryover-lives">3</span> lives, based on your Level 1 performance.</p>
       </div>
 
       <div id="level2-grid" class="grid grid-sentences"></div>

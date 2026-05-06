@@ -236,6 +236,43 @@ const audio = {
 };
 
 // ============================================================
+// SFX — short sound effects (click, fail, etc.)
+// ============================================================
+// Plays single-shot sounds on demand. Layers on top of background music
+// without ducking it. Currently honors the same mute state as music;
+// a separate SFX mute toggle will be added later.
+const sfx = {
+  click: null,
+  fail: null,
+  baseVolume: 0.4,  // SFX sit slightly below music baseline so they don't dominate
+
+  init() {
+    this.click = document.getElementById('sfx-click');
+    this.fail = document.getElementById('sfx-fail');
+    if (this.click) this.click.volume = this.baseVolume;
+    if (this.fail) this.fail.volume = this.baseVolume;
+  },
+
+  play(name) {
+    // Currently mirrors music mute. Will split when separate SFX toggle is added.
+    if (audio.muted) return;
+    const el = this[name];
+    if (!el) return;
+    // Reset to start so rapid-fire clicks don't get ignored mid-playback
+    try {
+      el.currentTime = 0;
+      const promise = el.play();
+      if (promise) promise.catch(() => { /* autoplay block — silent fail */ });
+    } catch (e) {
+      // Defensive: any DOM/audio error shouldn't break gameplay
+    }
+  },
+
+  playClick() { this.play('click'); },
+  playFail() { this.play('fail'); }
+};
+
+// ============================================================
 // CORPUS LOADING
 // ============================================================
 async function loadCorpus() {
@@ -391,6 +428,7 @@ function handleTileClick(index) {
     GAME.lives -= 1;
     GAME.trapsHit.push(tile.word);
     tileEl.classList.add('trap-hit');
+    sfx.playFail();
     setFeedback(`Trap. Double-click the tile to see what it really means.`, 'failure');
 
     if (GAME.lives <= 0) {
@@ -403,6 +441,7 @@ function handleTileClick(index) {
     GAME.safesClaimed += 1;
     tileEl.classList.add('claimed');
     tileEl.disabled = true;
+    sfx.playClick();
     setFeedback(`Safe. "${tile.displayText}" is a true cognate.`, 'success');
 
     // Win check: all safe tiles claimed?
@@ -583,6 +622,23 @@ function setupPopupModals() {
   });
 }
 
+// ============================================================
+// GLOBAL BUTTON CLICK SOUND
+// ============================================================
+// Plays the click SFX on any button click EXCEPT:
+//  - .tile elements (have their own SFX via claim handlers — would double-play)
+//  - .mute-btn (would create a feedback loop — clicking to unmute plays a sound)
+function setupGlobalClickSound() {
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('button');
+    if (!btn) return;
+    if (btn.classList.contains('tile')) return;
+    if (btn.classList.contains('mute-btn')) return;
+    if (btn.disabled) return;
+    sfx.playClick();
+  });
+}
+
 function renderSummaryTraps() {
   const grid = document.getElementById('summary-traps-grid');
   grid.innerHTML = '';
@@ -737,6 +793,7 @@ function handleLevel2TileClick(index) {
     GAME.lives -= 1;
     GAME.trapsHit.push(tile.sentence);
     tileEl.classList.add('trap-hit');
+    sfx.playFail();
     setLevel2Feedback(`Trap. The word is misused — ${tile.sentence.translation_meaning}.`, 'failure');
 
     if (GAME.lives <= 0) {
@@ -748,6 +805,7 @@ function handleLevel2TileClick(index) {
     GAME.score += 1;
     GAME.safesClaimed += 1;
     tileEl.classList.add('claimed');
+    sfx.playClick();
     setLevel2Feedback(`Safe. Correct usage — ${tile.sentence.translation_meaning}.`, 'success');
 
     // Win check: all safe sentences claimed?
@@ -848,11 +906,13 @@ async function init() {
   await loadCorpus();
   if (!GAME.corpus) return;
   audio.init();
+  sfx.init();
   setupCoverScreen();
   setupReplayButtons();
   setupTileModal();
   setupConfirmationModal();
   setupPopupModals();
+  setupGlobalClickSound();
 }
 
 document.addEventListener('DOMContentLoaded', init);
