@@ -854,12 +854,7 @@ function renderLevel2Grid() {
     btn.dataset.index = index;
 
     // Build sentence with the flagged word emphasized
-    const sentence = tile.sentence.sentence;
-    const flaggedWord = tile.sentence.flagged_word;
-    // Use a regex that handles word boundaries case-insensitively, but preserves original case
-    const escaped = flaggedWord.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    const regex = new RegExp(`\\b(${escaped})\\b`, 'i');
-    const html = sentence.replace(regex, '<span class="flagged">$1</span>');
+    const html = highlightFlaggedWord(tile.sentence.sentence, tile.sentence.flagged_word);
     btn.innerHTML = html;
 
     btn.addEventListener('click', () => handleLevel2TileClick(index));
@@ -950,6 +945,14 @@ function endGame(won) {
   }
 }
 
+// Wraps the flagged word inside a sentence with a styled span.
+// Reused by Level 2 tile rendering and the lose-state debrief.
+function highlightFlaggedWord(sentence, flaggedWord) {
+  const escaped = flaggedWord.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const regex = new RegExp(`\\b(${escaped})\\b`, 'i');
+  return sentence.replace(regex, '<span class="flagged">$1</span>');
+}
+
 function renderLoseDebrief() {
   const debrief = document.getElementById('lose-debrief');
   if (GAME.trapsHit.length === 0) {
@@ -966,7 +969,8 @@ function renderLoseDebrief() {
     }).join('');
   } else {
     items = GAME.trapsHit.map(s => {
-      return `<li>"${s.sentence}" — ${s.translation_meaning}</li>`;
+      const highlighted = highlightFlaggedWord(s.sentence, s.flagged_word);
+      return `<li>"${highlighted}" — ${s.translation_meaning}</li>`;
     }).join('');
   }
 

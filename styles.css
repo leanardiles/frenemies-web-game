@@ -581,6 +581,15 @@ p {
   line-height: 1.45;
 }
 
+/* Base styling for the flagged word inside any sentence (Level 2 tiles, lose debrief, anywhere) */
+.flagged {
+  font-weight: 600;
+  color: var(--babel-terracotta-deep);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--babel-gold);
+}
+
 .tile.tile-sentence .flagged {
   font-weight: 600;
   color: var(--babel-terracotta-deep);
