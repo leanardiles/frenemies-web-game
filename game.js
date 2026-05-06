@@ -59,14 +59,34 @@ async function loadCorpus() {
 }
 
 // ============================================================
-// COVER SCREEN — direction selection
+// COVER, INSTRUCTIONS, LANGUAGE SELECTOR
 // ============================================================
+// The prototype is locked to: English-native player learning Spanish.
+// Direction 'es-from-en' means the player sees Spanish words/sentences and
+// judges them against the English meanings they'd assume.
+const PROTOTYPE_DIRECTION = 'es-from-en';
+
 function setupCoverScreen() {
-  document.querySelectorAll('.direction-btn').forEach(btn => {
+  // Cover screen: Play and Instructions buttons
+  document.getElementById('cover-play-btn').addEventListener('click', () => {
+    showScreen('screen-language');
+  });
+  document.getElementById('cover-instructions-btn').addEventListener('click', () => {
+    showScreen('screen-instructions');
+  });
+
+  // Language screen: Play button starts the game with the locked direction
+  document.getElementById('lang-play-btn').addEventListener('click', () => {
+    GAME.direction = PROTOTYPE_DIRECTION;
+    console.log('Direction locked to:', GAME.direction);
+    startLevel1();
+  });
+
+  // Back buttons (used on instructions and language screens)
+  document.querySelectorAll('.back-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      GAME.direction = btn.dataset.direction;
-      console.log('Direction selected:', GAME.direction);
-      startLevel1();
+      const target = btn.dataset.backTo || 'screen-cover';
+      showScreen(target);
     });
   });
 }
@@ -245,13 +265,21 @@ function goToLevel2() {
 function pickTilesForLevel2() {
   const allSentences = GAME.corpus.level2_sentences;
 
-  // Filter to sentences whose `based_on` references a false friend that appeared in Level 1
-  const relevantSentences = allSentences.filter(s => GAME.level1TrapIds.includes(s.based_on));
+  // The player's reading language matches the direction they picked at the cover screen.
+  // 'en-from-es' = player reads English; 'es-from-en' = player reads Spanish.
+  const displayLang = (GAME.direction === 'en-from-es') ? 'en' : 'es';
+
+  // Filter to sentences that:
+  //   1. Reference a false friend that appeared in Level 1 (connected pool)
+  //   2. Are in the language the player chose to read
+  const relevantSentences = allSentences.filter(s =>
+    GAME.level1TrapIds.includes(s.based_on) && s.language === displayLang
+  );
 
   if (relevantSentences.length === 0) {
-    console.warn('No Level 2 sentences available for Level 1 traps; falling back to all sentences');
-    // Defensive fallback: if for some reason no sentences match, use any
-    return shuffleSentences(allSentences).slice(0, LEVEL2_MAX_TILES);
+    console.warn('No Level 2 sentences available for Level 1 traps in chosen language; falling back to all sentences in that language');
+    // Defensive fallback: ignore the connected-pool constraint, keep the language constraint
+    return shuffleSentences(allSentences.filter(s => s.language === displayLang)).slice(0, LEVEL2_MAX_TILES);
   }
 
   // Sample a target trap ratio for this level
@@ -422,8 +450,8 @@ function renderLoseDebrief() {
 function setupReplayButtons() {
   document.querySelectorAll('.replay-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      // Reset to cover screen so player can re-pick direction
-      showScreen('screen-cover');
+      // Direction is locked, so replay goes straight to a fresh Level 1
+      startLevel1();
     });
   });
 }

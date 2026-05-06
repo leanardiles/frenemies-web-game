@@ -12,16 +12,46 @@
   <section id="screen-cover" class="screen active">
     <div class="container">
       <h1 class="title">Frenemies</h1>
-      <p class="tagline">Some words look like friends. Some are traps.</p>
+      <p class="tagline">Some words look like friends, but are traps.</p>
 
-      <div class="direction-selector">
-        <p class="prompt">Choose your direction of play:</p>
-        <button class="direction-btn" data-direction="en-from-es">
-          I read English / I judge against Spanish
-        </button>
-        <button class="direction-btn" data-direction="es-from-en">
-          I read Spanish / I judge against English
-        </button>
+      <div class="cover-buttons">
+        <button id="cover-play-btn" class="primary-btn">Play</button>
+        <button id="cover-instructions-btn" class="secondary-btn">Instructions</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTRUCTIONS SCREEN (placeholder) -->
+  <section id="screen-instructions" class="screen">
+    <div class="container">
+      <h2>How to play</h2>
+      <p class="placeholder-text">Instructions coming soon — this section will include a brief walkthrough of the gameplay.</p>
+      <button class="back-btn secondary-btn" data-back-to="screen-cover">Back</button>
+    </div>
+  </section>
+
+  <!-- LANGUAGE SELECTOR SCREEN -->
+  <section id="screen-language" class="screen">
+    <div class="container">
+      <h2>Choose your languages</h2>
+
+      <div class="lang-row">
+        <p class="lang-label">Mother tongue:</p>
+        <button class="lang-btn lang-locked" disabled>English</button>
+      </div>
+
+      <div class="lang-row">
+        <p class="lang-label">Language you're learning:</p>
+        <div class="lang-options">
+          <button class="lang-btn lang-target lang-active" data-target="es">Spanish</button>
+          <button class="lang-btn lang-target lang-disabled" disabled>French (coming soon)</button>
+          <button class="lang-btn lang-target lang-disabled" disabled>Dutch (coming soon)</button>
+        </div>
+      </div>
+
+      <div class="lang-actions">
+        <button id="lang-play-btn" class="primary-btn">Play</button>
+        <button class="back-btn secondary-btn" data-back-to="screen-cover">Back</button>
       </div>
     </div>
   </section>
