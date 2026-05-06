@@ -42,6 +42,14 @@ function showScreen(screenId) {
   document.getElementById(screenId).classList.add('active');
   audio.onScreenChange(screenId);
   updateNavButton(screenId);
+
+  // Reset language selection when the language screen becomes active —
+  // makes the click-to-select gesture fresh every time the player visits.
+  if (screenId === 'screen-language') {
+    document.querySelectorAll('.lang-btn.lang-target').forEach(b => b.classList.remove('lang-selected'));
+    const playBtn = document.getElementById('lang-play-btn');
+    if (playBtn) playBtn.disabled = true;
+  }
 }
 
 // ============================================================
@@ -250,8 +258,21 @@ function setupCoverScreen() {
     showScreen('screen-instructions');
   });
 
+  // Language screen: clicking an available target tile selects it (only one at a time)
+  const playBtn = document.getElementById('lang-play-btn');
+  document.querySelectorAll('.lang-btn.lang-target:not(.lang-disabled)').forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Clear other selections in the target group, then select this one
+      document.querySelectorAll('.lang-btn.lang-target').forEach(b => b.classList.remove('lang-selected'));
+      btn.classList.add('lang-selected');
+      // Enable Play now that a learning language is selected
+      playBtn.disabled = false;
+    });
+  });
+
   // Language screen: Play button starts the game with the locked direction
-  document.getElementById('lang-play-btn').addEventListener('click', () => {
+  playBtn.addEventListener('click', () => {
+    if (playBtn.disabled) return;
     GAME.direction = PROTOTYPE_DIRECTION;
     console.log('Direction locked to:', GAME.direction);
     startLevel1();

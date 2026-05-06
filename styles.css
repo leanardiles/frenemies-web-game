@@ -310,47 +310,67 @@ p {
 .lang-options {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.6rem;
 }
 
+/* Base language tile — uniform shape across mother tongue and learning options */
 .lang-btn {
-  padding: 0.85rem 1.25rem;
-  font-size: 1.05rem;
+  padding: 0.95rem 1.25rem;
+  font-size: 1.1rem;
   font-family: var(--font-body);
+  font-weight: 500;
+  letter-spacing: 0.02em;
   cursor: pointer;
-  border: 1px solid var(--babel-umber);
-  background: var(--babel-ivory-soft);
-  color: var(--babel-umber);
-  text-align: left;
-  border-radius: 2px;
-  transition: background 0.15s;
-}
-
-.lang-btn.lang-locked {
-  background: var(--babel-ivory-soft);
-  color: var(--babel-umber);
-  cursor: not-allowed;
-  font-weight: 500;
-  border-color: var(--babel-umber);
-  border-left: 4px solid var(--babel-gold);
-  padding-left: calc(1.25rem - 3px);
-}
-
-.lang-btn.lang-active {
-  background: var(--babel-terracotta);
+  width: 100%;
+  text-align: center;
+  /* Default state: gold-filled, ivory text — "available, not yet chosen" */
+  background: var(--babel-gold);
   color: var(--babel-ivory);
-  font-weight: 500;
-  border-color: var(--babel-terracotta-deep);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  border: 1px solid var(--babel-gold);
+  border-radius: 2px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    0 1px 2px rgba(59, 36, 23, 0.15);
+  transition: background 0.15s, border-color 0.15s, transform 0.06s;
 }
 
-.lang-btn.lang-disabled {
+.lang-btn:hover:not(:disabled):not(.lang-selected) {
+  background: var(--babel-gold-soft);
+  transform: translateY(-1px);
+}
+
+/* Selected state: terracotta-filled — "this is your active choice" */
+.lang-btn.lang-selected {
+  background: var(--babel-terracotta);
+  border-color: var(--babel-terracotta-deep);
+  color: var(--babel-ivory);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 1px 2px rgba(59, 36, 23, 0.2);
+}
+
+/* Disabled state: muted, no shadow, italic text — "not yet available" */
+.lang-btn.lang-disabled,
+.lang-btn:disabled.lang-disabled {
   background: transparent;
   color: var(--babel-umber-soft);
-  border-color: rgba(59, 36, 23, 0.25);
+  border: 1px solid rgba(59, 36, 23, 0.2);
   cursor: not-allowed;
   font-style: italic;
-  opacity: 0.6;
+  opacity: 0.5;
+  box-shadow: none;
+}
+
+.lang-btn.lang-disabled:hover {
+  background: transparent;
+  transform: none;
+}
+
+/* Mother tongue tile is locked (always selected, no interactivity).
+   Override the disabled-button default cursor since this tile isn't actually interactive. */
+.lang-btn.lang-mother {
+  cursor: default;
+  opacity: 1;  /* don't apply the disabled fade */
 }
 
 .lang-actions {
@@ -359,6 +379,14 @@ p {
   gap: 0.6rem;
   align-items: center;
   margin-top: 2.5rem;
+}
+
+/* Play button disabled state when no language is selected */
+.lang-actions .primary-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  background: var(--babel-terracotta);
+  transform: none;
 }
 
 /* ============================================================

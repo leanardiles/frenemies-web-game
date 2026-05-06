@@ -6,7 +6,7 @@
   <title>Frenemies</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Display:wght@500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Display:wght@500;600;700&family=Cormorant+Unicase:wght@500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -52,20 +52,22 @@
 
       <div class="lang-row">
         <p class="lang-label">Mother tongue:</p>
-        <button class="lang-btn lang-locked" disabled>English</button>
+        <div class="lang-options">
+          <button class="lang-btn lang-mother lang-selected" disabled>English</button>
+        </div>
       </div>
 
       <div class="lang-row">
         <p class="lang-label">Language you're learning:</p>
         <div class="lang-options">
-          <button class="lang-btn lang-target lang-active" data-target="es">Spanish</button>
-          <button class="lang-btn lang-target lang-disabled" disabled>French (coming soon)</button>
-          <button class="lang-btn lang-target lang-disabled" disabled>Dutch (coming soon)</button>
+          <button class="lang-btn lang-target" data-target="es">Spanish</button>
+          <button class="lang-btn lang-target lang-disabled" disabled>French</button>
+          <button class="lang-btn lang-target lang-disabled" disabled>Dutch</button>
         </div>
       </div>
 
       <div class="lang-actions">
-        <button id="lang-play-btn" class="primary-btn">Play</button>
+        <button id="lang-play-btn" class="primary-btn" disabled>Play</button>
       </div>
     </div>
   </section>
