@@ -136,10 +136,9 @@ p {
 .tagline {
   font-family: var(--font-body);
   font-style: italic;
-  font-size: 1.6rem;
-  font-weight: 500;
+  font-size: 1.2rem;
   text-align: center;
-  color: var(--babel-umber);
+  color: var(--babel-umber-soft);
   margin: 0 0 2rem;
   letter-spacing: 0.01em;
 }
@@ -785,13 +784,8 @@ p {
 }
 
 /* ============================================================
-   LEVEL 1 SUMMARY SCREEN
+   LEVEL 1 SUMMARY — content styling (now lives in popup modal)
    ============================================================ */
-#screen-summary h2 {
-  font-size: 2.6rem;
-  margin-bottom: 1.5rem;
-  color: var(--babel-olive);
-}
 
 .summary-stats {
   display: flex;
@@ -857,20 +851,7 @@ p {
   line-height: 1.4;
 }
 
-.summary-actions {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.8rem;
-  margin-top: 2.5rem;
-}
-
-.summary-actions .primary-btn,
-.summary-actions .secondary-btn {
-  min-width: 240px;
-}
-
-/* Summary screen reuses the .grid and .tile classes — no extra rules needed */
+/* Summary content reuses .grid and .tile classes; .popup-actions handles button layout */
 
 /* ============================================================
    CONFIRMATION MODAL — Quit confirmation
@@ -910,4 +891,68 @@ p {
 
 .confirm-actions button {
   min-width: 130px;
+}
+
+/* ============================================================
+   POPUP MODAL — for summary and instructions content
+   ============================================================
+   Larger and more elaborate than the tile or confirm modals.
+   Uses backdrop-filter: blur to soften the underlying screen,
+   creating a layered "look through to what's behind" effect.
+   ============================================================ */
+.popup-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(59, 36, 23, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+
+.popup-modal.active {
+  display: flex;
+  animation: modalFadeIn 0.2s ease-out;
+}
+
+.popup-modal-content {
+  background: var(--babel-ivory);
+  border: 2px solid var(--babel-umber);
+  padding: 2.25rem 2.5rem;
+  max-width: 700px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  color: var(--babel-umber);
+  font-family: var(--font-body);
+  border-radius: 2px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -3px 6px rgba(59, 36, 23, 0.18),
+    0 12px 30px rgba(59, 36, 23, 0.45);
+  animation: modalScaleIn 0.25s ease-out;
+}
+
+.popup-modal-content h2 {
+  font-size: 2.4rem;
+  margin: 0 0 1.5rem;
+  text-align: center;
+  color: var(--babel-olive);
+}
+
+.popup-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+  margin-top: 2rem;
+}
+
+.popup-actions .primary-btn,
+.popup-actions .secondary-btn {
+  min-width: 240px;
 }

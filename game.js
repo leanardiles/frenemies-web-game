@@ -66,7 +66,7 @@ function updateNavButton(screenId) {
   btn.classList.remove('visible', 'quit-mode');
   btn.onclick = null;
 
-  if (screenId === 'screen-instructions' || screenId === 'screen-language') {
+  if (screenId === 'screen-language') {
     btn.textContent = '← Back';
     btn.classList.add('visible');
     btn.onclick = () => showScreen('screen-cover');
@@ -81,9 +81,9 @@ function updateNavButton(screenId) {
 // ============================================================
 // QUIT FLOW — confirmation modal then return to cover
 // ============================================================
-function requestQuit() {
+function requestQuit(onConfirm) {
   showConfirmation('Are you sure you want to quit?', () => {
-    // User confirmed — return to cover screen
+    if (onConfirm) onConfirm();
     showScreen('screen-cover');
   });
 }
@@ -147,9 +147,9 @@ const audio = {
 
   // Map screen IDs to which track should be playing on that screen
   trackForScreen(screenId) {
-    const introScreens = ['screen-cover', 'screen-instructions', 'screen-language'];
+    const introScreens = ['screen-cover', 'screen-language'];
     const gameplayScreens = ['screen-level1', 'screen-level2'];
-    const silentScreens = ['screen-win', 'screen-lose', 'screen-summary'];
+    const silentScreens = ['screen-win', 'screen-lose'];
     if (introScreens.includes(screenId)) return 'intro';
     if (gameplayScreens.includes(screenId)) return 'gameplay';
     if (silentScreens.includes(screenId)) return null;
@@ -222,6 +222,16 @@ const audio = {
         }
       }
     }
+  },
+
+  // Fade out the current track without changing mute state — used when modal pauses
+  // gameplay reflectively. The next showScreen() call will resume music for whichever
+  // screen comes next.
+  duck() {
+    const t = this.current === 'intro' ? this.intro :
+              this.current === 'gameplay' ? this.gameplay : null;
+    if (t) this.fade(t, t.volume, 0, () => t.pause());
+    this.current = null;
   }
 };
 
@@ -255,7 +265,7 @@ function setupCoverScreen() {
     showScreen('screen-language');
   });
   document.getElementById('cover-instructions-btn').addEventListener('click', () => {
-    showScreen('screen-instructions');
+    openInstructionsModal();
   });
 
   // Language screen: clicking an available target tile selects it (only one at a time)
@@ -518,10 +528,59 @@ function goToLevel1Summary() {
   }
 
   // Wire the action buttons (re-wire each time to ensure clean state)
-  document.getElementById('summary-continue-btn').onclick = () => goToLevel2();
-  document.getElementById('summary-quit-btn').onclick = () => requestQuit();
+  document.getElementById('summary-continue-btn').onclick = () => {
+    closeSummaryModal();
+    goToLevel2();
+  };
+  document.getElementById('summary-quit-btn').onclick = () => {
+    // requestQuit handles its own confirmation; on confirm, summary modal also closes
+    requestQuit(() => closeSummaryModal());
+  };
 
-  showScreen('screen-summary');
+  openSummaryModal();
+}
+
+function openSummaryModal() {
+  document.getElementById('summary-modal').classList.add('active');
+  // Fade out background music — the summary is a quiet, reflective pause
+  audio.duck();
+}
+
+function closeSummaryModal() {
+  document.getElementById('summary-modal').classList.remove('active');
+  // Note: music doesn't auto-restore here because Continue takes us to Level 2
+  // (which has its own music) and Quit takes us to cover (which restarts music).
+}
+
+function openInstructionsModal() {
+  document.getElementById('instructions-modal').classList.add('active');
+}
+
+function closeInstructionsModal() {
+  document.getElementById('instructions-modal').classList.remove('active');
+}
+
+function setupPopupModals() {
+  // Instructions modal: Close button, backdrop click, and Escape all dismiss
+  const instrModal = document.getElementById('instructions-modal');
+  document.getElementById('instructions-close-btn').onclick = closeInstructionsModal;
+  instrModal.addEventListener('click', (e) => {
+    if (e.target === instrModal) closeInstructionsModal();
+  });
+
+  // Summary modal: only the explicit buttons dismiss (no backdrop click,
+  // since the user must make a choice to continue or quit)
+  // Buttons are wired in goToLevel1Summary each time the modal opens.
+
+  // Escape closes whichever popup modal is currently active
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    if (instrModal.classList.contains('active')) {
+      closeInstructionsModal();
+    }
+    // Note: summary modal intentionally does NOT close on Escape —
+    // the user must make a choice (Continue or Quit).
+  });
 }
 
 function renderSummaryTraps() {
@@ -794,6 +853,7 @@ async function init() {
   setupReplayButtons();
   setupTileModal();
   setupConfirmationModal();
+  setupPopupModals();
 }
 
 document.addEventListener('DOMContentLoaded', init);
