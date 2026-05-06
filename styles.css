@@ -22,6 +22,7 @@
 
   /* Type system */
   --font-display: 'Cormorant Display', Georgia, serif;
+  --font-title: 'Cormorant Unicase', 'Cormorant Display', Georgia, serif;
   --font-body: 'EB Garamond', Georgia, serif;
 }
 
@@ -86,10 +87,10 @@ p {
    COVER SCREEN — title and primary buttons
    ============================================================ */
 .title {
-  font-family: var(--font-display);
+  font-family: var(--font-title);
   font-size: 5rem;
   font-weight: 600;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   margin: 1.5rem 0 0.5rem;
   text-align: center;
   color: var(--babel-umber);
@@ -412,13 +413,21 @@ p {
 }
 
 .grid.grid-sentences {
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
 }
 
 .tile {
   padding: 1rem 0.6rem;
-  background: var(--babel-ivory-soft);
+  background-color: var(--babel-ivory-soft);
+  /* Subtle stone-tablet surface: layered radial gradients suggest irregular shading
+     and small surface variation, like aged clay. Restrained so type stays readable. */
+  background-image:
+    radial-gradient(ellipse at 30% 25%, rgba(168, 132, 47, 0.06) 0%, transparent 45%),
+    radial-gradient(ellipse at 75% 70%, rgba(124, 45, 18, 0.04) 0%, transparent 50%),
+    radial-gradient(circle at 60% 30%, rgba(255, 250, 235, 0.5) 0%, transparent 35%),
+    radial-gradient(circle at 20% 80%, rgba(59, 36, 23, 0.04) 0%, transparent 40%);
+  background-size: 100% 100%;
   border: 1px solid var(--babel-umber);
   cursor: pointer;
   text-align: center;
@@ -432,19 +441,24 @@ p {
   justify-content: center;
   letter-spacing: 0.01em;
   border-radius: 2px;
+  /* Carved-tablet effect: subtle inset shadow on top + bottom highlight */
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.4),
     inset 0 -1px 1px rgba(59, 36, 23, 0.12),
+    inset 1px 0 1px rgba(255, 255, 255, 0.15),
+    inset -1px 0 1px rgba(59, 36, 23, 0.08),
     0 1px 1px rgba(59, 36, 23, 0.08);
-  transition: background 0.15s, transform 0.06s;
+  transition: background-color 0.15s, transform 0.06s, box-shadow 0.15s;
 }
 
 .tile:hover:not(:disabled) {
-  background: var(--babel-ivory);
+  background-color: var(--babel-ivory);
   transform: translateY(-1px);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.5),
     inset 0 -1px 1px rgba(59, 36, 23, 0.12),
+    inset 1px 0 1px rgba(255, 255, 255, 0.18),
+    inset -1px 0 1px rgba(59, 36, 23, 0.08),
     0 2px 3px rgba(59, 36, 23, 0.12);
 }
 
@@ -453,12 +467,12 @@ p {
 }
 
 .tile.tile-sentence {
-  padding: 0.95rem 0.95rem;
-  font-size: 0.98rem;
+  padding: 1.1rem 1.25rem;
+  font-size: 1.05rem;
   font-weight: 400;
-  min-height: 90px;
+  min-height: 95px;
   text-align: left;
-  line-height: 1.4;
+  line-height: 1.45;
   align-items: flex-start;
 }
 
@@ -471,7 +485,7 @@ p {
 }
 
 .tile.claimed {
-  background: var(--babel-olive-tint);
+  background-color: var(--babel-olive-tint);
   border-color: var(--babel-olive);
   color: #2D3F26;
   box-shadow:
@@ -480,7 +494,7 @@ p {
 }
 
 .tile.trap-hit {
-  background: var(--babel-oxblood-tint);
+  background-color: var(--babel-oxblood-tint);
   border-color: var(--babel-oxblood);
   color: #3D1407;
   cursor: pointer;
@@ -490,12 +504,12 @@ p {
 }
 
 .tile.trap-hit:hover {
-  background: #A0492F;
+  background-color: #A0492F;
   color: var(--babel-ivory);
 }
 
 .tile.trap-revealed {
-  background: rgba(124, 45, 18, 0.15);
+  background-color: rgba(124, 45, 18, 0.15);
   border-color: var(--babel-oxblood);
   color: var(--babel-oxblood);
   opacity: 0.75;
@@ -526,20 +540,16 @@ p {
 }
 
 .level-intro {
-  background: var(--babel-ivory-soft);
-  border: 1px solid var(--babel-umber);
-  border-left: 4px solid var(--babel-gold);
-  padding: 1rem 1.25rem;
-  margin-bottom: 1.25rem;
+  margin: 0 0 1.5rem;
+  padding: 0 0.5rem;
   font-size: 1rem;
-  border-radius: 2px;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.4),
-    0 1px 2px rgba(59, 36, 23, 0.06);
+  text-align: center;
+  font-style: italic;
+  color: var(--babel-umber-soft);
 }
 
 .level-intro p {
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.4rem;
 }
 
 .level-intro p:last-child {
@@ -547,9 +557,8 @@ p {
 }
 
 .carryover-note {
-  font-style: italic;
-  color: var(--babel-umber-soft);
-  font-size: 0.95rem;
+  font-size: 0.92rem;
+  opacity: 0.8;
 }
 
 /* ============================================================

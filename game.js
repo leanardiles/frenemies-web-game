@@ -25,7 +25,7 @@ const TRAP_RATIO_MAX = 0.45;      // maximum % of tiles that are traps
 const STARTING_LIVES = 3;
 
 // Level 2 settings
-const LEVEL2_MAX_TILES = 12;        // cap Level 2 size (3x4 grid) regardless of pool
+const LEVEL2_TILES = 8;             // fixed grid: 2 columns x 4 rows
 const LEVEL2_TRAP_RATIO_MIN = 0.40; // Level 2 is meant to be more challenging
 const LEVEL2_TRAP_RATIO_MAX = 0.55;
 
@@ -567,24 +567,42 @@ function pickTilesForLevel2() {
   if (relevantSentences.length === 0) {
     console.warn('No Level 2 sentences available for Level 1 traps in chosen language; falling back to all sentences in that language');
     // Defensive fallback: ignore the connected-pool constraint, keep the language constraint
-    return shuffleSentences(allSentences.filter(s => s.language === displayLang)).slice(0, LEVEL2_MAX_TILES);
+    return shuffleSentences(allSentences.filter(s => s.language === displayLang)).slice(0, LEVEL2_TILES);
   }
 
   // Sample a target trap ratio for this level
   const ratio = LEVEL2_TRAP_RATIO_MIN + Math.random() * (LEVEL2_TRAP_RATIO_MAX - LEVEL2_TRAP_RATIO_MIN);
 
-  // Decide how many tiles total — capped by LEVEL2_MAX_TILES and limited by available sentences
-  const targetTotal = Math.min(LEVEL2_MAX_TILES, relevantSentences.length);
+  // Always aim for exactly LEVEL2_TILES tiles (8) — fixed grid size
+  const targetTotal = LEVEL2_TILES;
   const targetTraps = Math.round(targetTotal * ratio);
   const targetSafes = targetTotal - targetTraps;
 
-  const traps = relevantSentences.filter(s => !s.correct_usage);
-  const safes = relevantSentences.filter(s => s.correct_usage);
+  // Connected-pool traps and safes (limited to false friends from Level 1)
+  let traps = relevantSentences.filter(s => !s.correct_usage);
+  let safes = relevantSentences.filter(s => s.correct_usage);
+
+  // If the connected pool is too thin to honor the trap ratio, top up from the broader
+  // language pool. This prioritizes maintaining gameplay difficulty over strict pool purity.
+  if (traps.length < targetTraps) {
+    const extraTraps = allSentences.filter(s =>
+      s.language === displayLang && !s.correct_usage &&
+      !traps.some(t => t.id === s.id)
+    );
+    traps = traps.concat(shuffleSentences(extraTraps).slice(0, targetTraps - traps.length));
+  }
+  if (safes.length < targetSafes) {
+    const extraSafes = allSentences.filter(s =>
+      s.language === displayLang && s.correct_usage &&
+      !safes.some(t => t.id === s.id)
+    );
+    safes = safes.concat(shuffleSentences(extraSafes).slice(0, targetSafes - safes.length));
+  }
 
   const pickedTraps = shuffleSentences(traps).slice(0, targetTraps);
   const pickedSafes = shuffleSentences(safes).slice(0, targetSafes);
 
-  console.log(`Level 2: ${pickedTraps.length} traps + ${pickedSafes.length} safes from pool of ${relevantSentences.length} sentences (${(ratio * 100).toFixed(0)}% target trap ratio)`);
+  console.log(`Level 2: ${pickedTraps.length} traps + ${pickedSafes.length} safes (${(ratio * 100).toFixed(0)}% target trap ratio, connected pool size: ${relevantSentences.length})`);
 
   // Set up progress tracking — in Level 2, "safe" tiles are correct usages
   GAME.safesTotal = pickedSafes.length;
