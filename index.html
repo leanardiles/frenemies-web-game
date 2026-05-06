@@ -11,6 +11,16 @@
 </head>
 <body>
 
+  <!-- AUDIO ELEMENTS — preloaded, looped, controlled via JS -->
+  <audio id="audio-intro" src="audio/theme-intro.mp3" loop preload="auto"></audio>
+  <audio id="audio-gameplay" src="audio/theme-gameplay.mp3" loop preload="auto"></audio>
+
+  <!-- MUTE BUTTON — persistent in top-right corner across all screens -->
+  <button id="mute-btn" class="mute-btn" aria-label="Toggle music" aria-pressed="true">
+    <span class="mute-icon-on" aria-hidden="true">♪</span>
+    <span class="mute-icon-off" aria-hidden="true">♪</span>
+  </button>
+
   <!-- COVER SCREEN -->
   <section id="screen-cover" class="screen active">
     <div class="container">

@@ -40,7 +40,111 @@ function pickTrapRatio() {
 function showScreen(screenId) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(screenId).classList.add('active');
+  audio.onScreenChange(screenId);
 }
+
+// ============================================================
+// AUDIO — background music with crossfade and mute toggle
+// ============================================================
+const audio = {
+  intro: null,
+  gameplay: null,
+  muted: true,                  // start muted by default; user must opt in
+  current: null,                // 'intro' | 'gameplay' | null
+  baseVolume: 0.5,              // perceived volume target when unmuted
+  fadeDurationMs: 800,
+  fadeTimer: null,
+
+  init() {
+    this.intro = document.getElementById('audio-intro');
+    this.gameplay = document.getElementById('audio-gameplay');
+    this.intro.volume = 0;
+    this.gameplay.volume = 0;
+
+    // Wire up the mute button
+    const btn = document.getElementById('mute-btn');
+    btn.addEventListener('click', () => this.toggleMute());
+  },
+
+  // Map screen IDs to which track should be playing on that screen
+  trackForScreen(screenId) {
+    const introScreens = ['screen-cover', 'screen-instructions', 'screen-language'];
+    const gameplayScreens = ['screen-level1', 'screen-level2'];
+    const silentScreens = ['screen-win', 'screen-lose'];
+    if (introScreens.includes(screenId)) return 'intro';
+    if (gameplayScreens.includes(screenId)) return 'gameplay';
+    if (silentScreens.includes(screenId)) return null;
+    return null;
+  },
+
+  onScreenChange(screenId) {
+    const target = this.trackForScreen(screenId);
+    this.switchTo(target);
+  },
+
+  switchTo(target) {
+    if (target === this.current) return;  // already playing the right track
+
+    const oldTrack = this.current === 'intro' ? this.intro :
+                     this.current === 'gameplay' ? this.gameplay : null;
+    const newTrack = target === 'intro' ? this.intro :
+                     target === 'gameplay' ? this.gameplay : null;
+
+    this.current = target;
+
+    // Crossfade: fade old out, fade new in simultaneously
+    if (oldTrack) this.fade(oldTrack, oldTrack.volume, 0, () => oldTrack.pause());
+
+    if (newTrack && !this.muted) {
+      newTrack.currentTime = 0;
+      const playPromise = newTrack.play();
+      // Browser may block autoplay before first interaction — that's fine, just swallow it
+      if (playPromise) playPromise.catch(() => { /* will play after first interaction */ });
+      this.fade(newTrack, 0, this.baseVolume);
+    }
+  },
+
+  fade(track, fromVol, toVol, onComplete) {
+    const steps = 20;
+    const stepMs = this.fadeDurationMs / steps;
+    let i = 0;
+    const interval = setInterval(() => {
+      i++;
+      track.volume = Math.max(0, Math.min(1, fromVol + (toVol - fromVol) * (i / steps)));
+      if (i >= steps) {
+        clearInterval(interval);
+        if (onComplete) onComplete();
+      }
+    }, stepMs);
+  },
+
+  toggleMute() {
+    this.muted = !this.muted;
+    const btn = document.getElementById('mute-btn');
+    btn.setAttribute('aria-pressed', this.muted ? 'true' : 'false');
+
+    if (this.muted) {
+      // Fade out current track
+      const t = this.current === 'intro' ? this.intro :
+                this.current === 'gameplay' ? this.gameplay : null;
+      if (t) this.fade(t, t.volume, 0, () => t.pause());
+    } else {
+      // Unmute: start whichever track matches the current screen
+      const activeScreen = document.querySelector('.screen.active');
+      if (activeScreen) {
+        const target = this.trackForScreen(activeScreen.id);
+        if (target) {
+          const t = target === 'intro' ? this.intro : this.gameplay;
+          this.current = target;
+          t.currentTime = 0;
+          const playPromise = t.play();
+          if (playPromise) playPromise.catch(() => {});
+          this.fade(t, 0, this.baseVolume);
+        }
+      }
+    }
+  }
+};
 
 // ============================================================
 // CORPUS LOADING
@@ -523,6 +627,7 @@ function setupReplayButtons() {
 async function init() {
   await loadCorpus();
   if (!GAME.corpus) return;
+  audio.init();
   setupCoverScreen();
   setupReplayButtons();
   setupTileModal();

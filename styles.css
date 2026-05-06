@@ -118,8 +118,62 @@ p {
 }
 
 /* ============================================================
-   BUTTONS — primary (terracotta) and secondary (outlined)
+   MUTE BUTTON — persistent top-right corner control
    ============================================================ */
+.mute-btn {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  width: 44px;
+  height: 44px;
+  background: var(--babel-ivory-soft);
+  border: 1px solid var(--babel-umber);
+  cursor: pointer;
+  z-index: 500;
+  border-radius: 50%;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--babel-umber);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 1px 2px rgba(59, 36, 23, 0.15);
+  transition: background 0.15s, transform 0.06s;
+}
+
+.mute-btn:hover {
+  background: var(--babel-ivory);
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    0 2px 3px rgba(59, 36, 23, 0.2);
+}
+
+.mute-btn:active {
+  transform: translateY(0);
+}
+
+/* Toggle which icon is shown based on aria-pressed state */
+.mute-btn[aria-pressed="true"] .mute-icon-on { display: none; }
+.mute-btn[aria-pressed="true"] .mute-icon-off { display: inline; opacity: 0.4; }
+.mute-btn[aria-pressed="false"] .mute-icon-on { display: inline; color: var(--babel-terracotta-deep); }
+.mute-btn[aria-pressed="false"] .mute-icon-off { display: none; }
+
+/* When muted, add a strikethrough across the icon */
+.mute-btn[aria-pressed="true"]::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 25%;
+  width: 50%;
+  height: 1.5px;
+  background: var(--babel-umber-soft);
+  transform: rotate(-30deg);
+  transform-origin: center;
+  opacity: 0.7;
+}
 .primary-btn,
 .replay-btn {
   display: inline-block;
