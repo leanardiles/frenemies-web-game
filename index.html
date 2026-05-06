@@ -85,7 +85,7 @@
         </div>
         <div class="hud-item">
           <span class="hud-label">Progress:</span>
-          <span id="level1-progress">0 / 0</span>
+          <button id="level1-progress" class="progress-toggle progress-hidden" aria-label="Reveal progress (costs 1 life)">? / ?</button>
         </div>
       </header>
 
@@ -112,7 +112,7 @@
         </div>
         <div class="hud-item">
           <span class="hud-label">Progress:</span>
-          <span id="level2-progress">0 / 0</span>
+          <button id="level2-progress" class="progress-toggle progress-hidden" aria-label="Reveal progress (costs 1 life)">? / ?</button>
         </div>
       </header>
 
@@ -132,7 +132,10 @@
       <h2>Field Cleared</h2>
       <p>You spotted every trap and claimed every safe word.</p>
       <p>You finished with <span id="win-lives">0</span> lives intact.</p>
-      <button class="replay-btn primary-btn">Play Again</button>
+      <div class="popup-actions">
+        <button class="replay-btn primary-btn">Play Again</button>
+        <button class="back-to-start-btn secondary-btn">Back to Start</button>
+      </div>
     </div>
   </section>
 
@@ -142,7 +145,10 @@
       <h2>Field Lost</h2>
       <p>The traps got you.</p>
       <div id="lose-debrief"></div>
-      <button class="replay-btn primary-btn">Play Again</button>
+      <div class="popup-actions">
+        <button class="replay-btn primary-btn">Play Again</button>
+        <button class="back-to-start-btn secondary-btn">Back to Start</button>
+      </div>
     </div>
   </section>
 

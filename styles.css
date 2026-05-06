@@ -462,6 +462,41 @@ p {
   margin-right: 0.4rem;
 }
 
+/* Progress toggle: a button that costs 1 life to reveal the count.
+   Hidden state looks clickable; revealed state looks like plain text. */
+.progress-toggle {
+  font-family: inherit;
+  font-size: 0.95rem;
+  padding: 0.15rem 0.6rem;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.progress-toggle.progress-hidden {
+  background: var(--babel-terracotta);
+  color: var(--babel-ivory);
+  border: 1px solid var(--babel-terracotta-deep);
+  font-weight: 600;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    0 1px 2px rgba(59, 36, 23, 0.15);
+}
+
+.progress-toggle.progress-hidden:hover {
+  background: var(--babel-terracotta-deep);
+}
+
+.progress-toggle.progress-revealed {
+  background: transparent;
+  color: var(--babel-umber);
+  border: none;
+  cursor: default;
+  padding: 0.15rem 0;
+  font-weight: normal;
+  box-shadow: none;
+}
+
 .instructions {
   text-align: center;
   color: var(--babel-umber-soft);

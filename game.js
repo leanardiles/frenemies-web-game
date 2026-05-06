@@ -15,7 +15,8 @@ const GAME = {
   level2Tiles: [],     // sentence tiles for Level 2
   safesTotal: 0,       // how many safe tiles in the current field
   safesClaimed: 0,     // how many the player has claimed so far
-  trapsHit: []         // for the lose-state debrief
+  trapsHit: [],        // for the lose-state debrief
+  progressRevealed: false  // has the player paid 1 life to reveal progress this level?
 };
 
 const GRID_SIZE = 20;             // 5x4 grid for Level 1
@@ -351,6 +352,7 @@ function startLevel1() {
   GAME.lives = STARTING_LIVES;
   GAME.trapsHit = [];
   GAME.level1TrapIds = [];
+  GAME.progressRevealed = false;
 
   // Build the tile set from the corpus
   GAME.level1Tiles = pickTilesForLevel1();
@@ -540,9 +542,26 @@ function setupTileModal() {
 // ============================================================
 function updateHUD() {
   document.getElementById('level1-lives').textContent = GAME.lives;
-  const progressEl = document.getElementById('level1-progress');
-  if (progressEl) {
-    progressEl.textContent = `${GAME.safesClaimed} / ${GAME.safesTotal}`;
+  updateProgressDisplay('level1-progress');
+}
+
+// Updates a progress button: shows '? / ?' when hidden, real count when revealed.
+// Used by both Level 1 and Level 2 HUDs.
+function updateProgressDisplay(elementId) {
+  const el = document.getElementById(elementId);
+  if (!el) return;
+  if (GAME.progressRevealed) {
+    el.textContent = `${GAME.safesClaimed} / ${GAME.safesTotal}`;
+    el.classList.remove('progress-hidden');
+    el.classList.add('progress-revealed');
+    el.setAttribute('aria-label', 'Progress');
+    el.disabled = true;
+  } else {
+    el.textContent = '? / ?';
+    el.classList.add('progress-hidden');
+    el.classList.remove('progress-revealed');
+    el.setAttribute('aria-label', 'Reveal progress (costs 1 life)');
+    el.disabled = false;
   }
 }
 
@@ -648,6 +667,46 @@ function setupGlobalClickSound() {
   });
 }
 
+// ============================================================
+// PROGRESS TOGGLE — pay 1 life to reveal the progress counter
+// ============================================================
+// The progress counter starts hidden ('? / ?') and is clickable. Clicking
+// opens a confirmation; on confirm, the player loses 1 life and the actual
+// count appears for the rest of the level. Blocked if the player has only
+// 1 life left (would zero them out from a single click — too punishing).
+function setupProgressToggle() {
+  document.querySelectorAll('.progress-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Already revealed? No-op (also has disabled=true so this rarely fires)
+      if (GAME.progressRevealed) return;
+
+      // Block if the click would be fatal — the player should not be able to
+      // end the game with a single curiosity click on this UI element.
+      if (GAME.lives <= 1) {
+        const feedbackEl = GAME.level === 1
+          ? document.getElementById('level1-feedback')
+          : document.getElementById('level2-feedback');
+        if (feedbackEl) {
+          feedbackEl.textContent = 'Not enough lives to reveal — you only have 1 left.';
+          feedbackEl.className = 'feedback failure';
+        }
+        return;
+      }
+
+      showConfirmation(
+        'Reveal progress for 1 life? This cannot be undone.',
+        () => {
+          GAME.lives -= 1;
+          GAME.progressRevealed = true;
+          // Refresh the appropriate HUD so the reveal is visible
+          if (GAME.level === 1) updateHUD();
+          else updateLevel2HUD();
+        }
+      );
+    });
+  });
+}
+
 function renderSummaryTraps() {
   const grid = document.getElementById('summary-traps-grid');
   grid.innerHTML = '';
@@ -696,6 +755,7 @@ function goToLevel2() {
   GAME.level = 2;
   GAME.lives = carryoverLives;
   GAME.trapsHit = [];
+  GAME.progressRevealed = false;
 
   // Build the sentence tile set
   GAME.level2Tiles = pickTilesForLevel2();
@@ -850,7 +910,7 @@ function handleLevel2TileClick(index) {
 
 function updateLevel2HUD() {
   document.getElementById('level2-lives').textContent = GAME.lives;
-  document.getElementById('level2-progress').textContent = `${GAME.safesClaimed} / ${GAME.safesTotal}`;
+  updateProgressDisplay('level2-progress');
 }
 
 function setLevel2Feedback(text, type) {
@@ -923,6 +983,15 @@ function setupReplayButtons() {
       startLevel1();
     });
   });
+
+  // Back to Start: returns the player to the cover screen from win/lose states.
+  // No confirmation needed since the session is already over — there's nothing
+  // to interrupt. Distinct from in-game Quit, which DOES require confirmation.
+  document.querySelectorAll('.back-to-start-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      showScreen('screen-cover');
+    });
+  });
 }
 
 // ============================================================
@@ -939,6 +1008,7 @@ async function init() {
   setupConfirmationModal();
   setupPopupModals();
   setupGlobalClickSound();
+  setupProgressToggle();
 }
 
 document.addEventListener('DOMContentLoaded', init);
