@@ -624,7 +624,6 @@ function goToLevel2() {
   // Render
   renderLevel2Grid();
   updateLevel2HUD();
-  document.getElementById('carryover-lives').textContent = carryoverLives;
   setLevel2Feedback('Click a sentence to claim it.', '');
 
   showScreen('screen-level2');

@@ -535,13 +535,15 @@ p {
 }
 
 .tile.tile-sentence {
-  padding: 1.1rem 1.25rem;
+  /* Switch from flex to block — flex was collapsing whitespace around inline <span>,
+     causing the flagged word to butt up against surrounding text. */
+  display: block;
+  padding: 0.9rem 1.25rem;
   font-size: 1.05rem;
   font-weight: 400;
-  min-height: 95px;
-  text-align: left;
+  min-height: 62px;
+  text-align: center;
   line-height: 1.45;
-  align-items: flex-start;
 }
 
 .tile.tile-sentence .flagged {
@@ -694,10 +696,17 @@ p {
   position: fixed;
   inset: 0;
   background: rgba(59, 36, 23, 0.55);
-  z-index: 1000;
+  z-index: 1100;  /* above popup modals so tile reveals work from within summary */
   align-items: center;
   justify-content: center;
   padding: 1rem;
+}
+
+/* Confirmation modal must be at the highest z-index — it can appear over both popup
+   modals (summary's Quit) and gameplay screens (Level 1/2 Quit) and must always be
+   the topmost layer for destructive-action confirmation. */
+#confirm-modal {
+  z-index: 1200;
 }
 
 .tile-modal.active {
