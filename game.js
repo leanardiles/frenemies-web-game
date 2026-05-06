@@ -130,7 +130,7 @@ const audio = {
   gameplay: null,
   muted: true,                  // start muted by default; user must opt in
   current: null,                // 'intro' | 'gameplay' | null
-  baseVolume: 0.5,              // perceived volume target when unmuted
+  baseVolume: 0.35,              // perceived volume target when unmuted
   fadeDurationMs: 800,
   fadeTimer: null,
 
@@ -250,7 +250,7 @@ const sfx = {
     this.click = document.getElementById('sfx-click');
     this.fail = document.getElementById('sfx-fail');
     if (this.click) this.click.volume = this.baseVolume;
-    if (this.fail) this.fail.volume = this.baseVolume;
+    if (this.fail) this.fail.volume = Math.min(1.0, this.baseVolume * 1.4);
   },
 
   play(name) {
