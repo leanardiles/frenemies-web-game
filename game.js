@@ -130,7 +130,7 @@ const audio = {
   gameplay: null,
   muted: true,                  // start muted by default; user must opt in
   current: null,                // 'intro' | 'gameplay' | null
-  baseVolume: 0.35,              // perceived volume target when unmuted
+  baseVolume: 0.5,              // perceived volume target when unmuted
   fadeDurationMs: 800,
   fadeTimer: null,
 
@@ -244,13 +244,19 @@ const audio = {
 const sfx = {
   click: null,
   fail: null,
+  levelClear: null,
+  levelLose: null,
   baseVolume: 0.4,  // SFX sit slightly below music baseline so they don't dominate
 
   init() {
     this.click = document.getElementById('sfx-click');
     this.fail = document.getElementById('sfx-fail');
+    this.levelClear = document.getElementById('sfx-level-clear');
+    this.levelLose = document.getElementById('sfx-level-lose');
     if (this.click) this.click.volume = this.baseVolume;
-    if (this.fail) this.fail.volume = Math.min(1.0, this.baseVolume * 1.4);
+    if (this.fail) this.fail.volume = this.baseVolume;
+    if (this.levelClear) this.levelClear.volume = this.baseVolume;
+    if (this.levelLose) this.levelLose.volume = this.baseVolume;
   },
 
   play(name) {
@@ -269,7 +275,9 @@ const sfx = {
   },
 
   playClick() { this.play('click'); },
-  playFail() { this.play('fail'); }
+  playFail() { this.play('fail'); },
+  playLevelClear() { this.play('levelClear'); },
+  playLevelLose() { this.play('levelLose'); }
 };
 
 // ============================================================
@@ -432,6 +440,7 @@ function handleTileClick(index) {
     setFeedback(`Trap. Double-click the tile to see what it really means.`, 'failure');
 
     if (GAME.lives <= 0) {
+      sfx.playLevelLose();
       endGame(false);
       return;
     }
@@ -448,6 +457,7 @@ function handleTileClick(index) {
     const remainingSafes = GAME.level1Tiles.filter(t => !t.isTrap && !t.claimed);
     if (remainingSafes.length === 0) {
       // Level 1 complete — go to summary screen, not straight to Level 2
+      sfx.playLevelClear();
       setTimeout(() => goToLevel1Summary(), 800);
       return;
     }
@@ -797,6 +807,7 @@ function handleLevel2TileClick(index) {
     setLevel2Feedback(`Trap. The word is misused — ${tile.sentence.translation_meaning}.`, 'failure');
 
     if (GAME.lives <= 0) {
+      sfx.playLevelLose();
       endGame(false);
       return;
     }
@@ -812,6 +823,7 @@ function handleLevel2TileClick(index) {
     const remainingSafes = GAME.level2Tiles.filter(t => !t.isTrap && !t.claimed);
     if (remainingSafes.length === 0) {
       // Level 2 complete — full game won!
+      sfx.playLevelClear();
       setTimeout(() => endGame(true), 1000);
       return;
     }
