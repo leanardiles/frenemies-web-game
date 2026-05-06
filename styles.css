@@ -38,25 +38,62 @@ body {
   margin: 0;
   padding: 0;
   background-color: var(--babel-ivory);
-  background-image:
-    radial-gradient(circle at 20% 30%, rgba(168, 132, 47, 0.04) 0%, transparent 50%),
-    radial-gradient(circle at 80% 70%, rgba(200, 118, 60, 0.04) 0%, transparent 50%),
-    radial-gradient(circle at 50% 50%, rgba(59, 36, 23, 0.02) 0%, transparent 70%);
   color: var(--babel-umber);
   line-height: 1.5;
   font-size: 18px;
   letter-spacing: 0.005em;
 }
 
+/* ============================================================
+   SCREEN BACKGROUNDS — image backdrops with ivory overlay
+   ============================================================
+   Each screen group gets its assigned background image, layered with
+   a translucent ivory overlay so text and tiles remain readable on
+   top. The overlay opacity is tunable: lower = image more visible,
+   higher = image more muted.
+   ============================================================ */
 .screen {
   display: none;
   min-height: 100vh;
   padding: 2.5rem 1rem;
+  position: relative;
+  /* Background image is placed via the ::before pseudo-element below,
+     so we can apply an overlay without affecting child elements. */
 }
 
 .screen.active {
   display: block;
 }
+
+/* Pseudo-element holds the image + ivory overlay. Sits behind all content. */
+.screen::before {
+  content: '';
+  position: fixed;  /* fixed so the background doesn't scroll with content */
+  inset: 0;
+  z-index: -1;
+  background-color: var(--babel-ivory);  /* fallback while image loads */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* Ivory overlay applied via box-shadow inset, so the image still shows through */
+  box-shadow: inset 0 0 0 100vmax rgba(245, 239, 224, 0.35);
+}
+
+/* Intro background: cover, instructions, language screens */
+#screen-cover.active::before,
+#screen-instructions.active::before,
+#screen-language.active::before {
+  background-image: url('images/intro-background.png');
+}
+
+/* Playing background: Level 1 and Level 2 */
+#screen-level1.active::before,
+#screen-level2.active::before {
+  background-image: url('images/playing-background.png');
+}
+
+/* Summary, win, lose screens have no image yet — fall back to plain ivory.
+   These can be mapped to a specific image later. */
 
 .container {
   max-width: 760px;
